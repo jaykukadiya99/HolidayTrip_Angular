@@ -1,0 +1,21 @@
+export class Package {
+    public _id? : string;
+    public Title : string;
+    public MainImage : string;
+    public CategoryId : string;
+    public AgentId : string;
+    public FixedDepartureDate : string;
+    public Description : string;
+    public Itinerary : string;
+    public Inclusion : string;
+    public Exclusion : string;
+    public OtherInfo : string;
+    public TandC : string;
+    public CityIncluded : string[];
+    public Price : Number;
+    public PriceDesc : string;
+    public Brochure : string;
+    public TrendingRank : number;
+    public InsertedDate : string;
+    public status : string;
+}
