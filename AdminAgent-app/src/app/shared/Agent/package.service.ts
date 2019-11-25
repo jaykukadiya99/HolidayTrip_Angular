@@ -7,10 +7,19 @@ import { HttpClient } from "@angular/common/http";
 })
 export class PackageService {
   
+  private packages:Package;
   private baseUri:string = "http://localhost:58030/api";
   constructor(private http:HttpClient) { }
 
   getAllPackage(){
     return this.http.get(this.baseUri+"/Package");
+  }
+
+  setter(packages:Package) {
+    this.packages=packages;
+  }
+
+  getter() {
+    return this.packages;
   }
 }

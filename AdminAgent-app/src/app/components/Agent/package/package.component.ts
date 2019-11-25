@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PackageService } from "../../../shared/Agent/package.service";
+import { Package } from "../../../Models/package";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-package',
@@ -8,7 +10,8 @@ import { PackageService } from "../../../shared/Agent/package.service";
 })
 export class PackageComponent implements OnInit {
 
-  constructor(private _packageSerive:PackageService) { }
+  private packages:any;
+  constructor(private _packageSerive:PackageService, private router:Router) { }
 
   ngOnInit() {
     this.readPackge();
@@ -17,11 +20,18 @@ export class PackageComponent implements OnInit {
   readPackge() {
     this._packageSerive.getAllPackage().subscribe(
       data=> {
-        console.log(data);
+        this.packages=data;
+        console.log(this.packages);
       },
       error=>{
         console.log(error);
       }
     )
+  }
+
+  newPackage(event:any) {
+    event.preventDefault();
+    this._packageSerive.setter(new Package());
+    this.router.navigate(["agent/package/create"]);
   }
 }

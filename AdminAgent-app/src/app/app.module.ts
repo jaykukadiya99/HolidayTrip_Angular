@@ -9,10 +9,12 @@ import { NavbarComponent } from './components/Agent/navbar/navbar.component';
 import { PackageComponent } from './components/Agent/package/package.component';
 import { DashboardComponent } from './components/Agent/dashboard/dashboard.component';
 import { PackageService } from "../app/shared/Agent/package.service";
+import { CreatePackageComponent } from './components/Agent/create-package/create-package.component';
 
 const agentRoutes:Routes = [
-  {path:"agent/package",component:PackageComponent},
-  {path:'agent/dashboard', component:DashboardComponent}
+  {path:'agent/package',component:PackageComponent},
+  {path:'agent/dashboard', component:DashboardComponent},
+  {path:'agent/package/create',component:CreatePackageComponent}
 ]
 
 @NgModule({
@@ -20,7 +22,8 @@ const agentRoutes:Routes = [
     AppComponent,
     NavbarComponent,
     PackageComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreatePackageComponent
   ],
   imports: [
     BrowserModule,

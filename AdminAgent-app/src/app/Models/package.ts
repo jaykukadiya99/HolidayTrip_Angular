@@ -4,6 +4,7 @@ export class Package {
     public MainImage : string;
     public CategoryId : string;
     public AgentId : string;
+    public Days : number;
     public FixedDepartureDate : string;
     public Description : string;
     public Itinerary : string;
