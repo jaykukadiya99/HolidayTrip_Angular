@@ -1,5 +1,5 @@
 export class Package {
-    public _id? : string;
+    public Id? : string;
     public Title : string;
     public MainImage : string;
     public CategoryId : string;

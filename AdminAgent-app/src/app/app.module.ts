@@ -9,12 +9,15 @@ import { NavbarComponent } from './components/Agent/navbar/navbar.component';
 import { PackageComponent } from './components/Agent/package/package.component';
 import { DashboardComponent } from './components/Agent/dashboard/dashboard.component';
 import { PackageService } from "../app/shared/Agent/package.service";
+import { AgentLoginService } from "../app/shared/Agent/agent-login.service";
 import { CreatePackageComponent } from './components/Agent/create-package/create-package.component';
+import { AgentLoginComponent } from './components/Agent/agent-login/agent-login.component';
 
 const agentRoutes:Routes = [
   {path:'agent/package',component:PackageComponent},
   {path:'agent/dashboard', component:DashboardComponent},
-  {path:'agent/package/create',component:CreatePackageComponent}
+  {path:'agent/package/create',component:CreatePackageComponent},
+  {path:'agent/login',component:AgentLoginComponent}
 ]
 
 @NgModule({
@@ -23,7 +26,8 @@ const agentRoutes:Routes = [
     NavbarComponent,
     PackageComponent,
     DashboardComponent,
-    CreatePackageComponent
+    CreatePackageComponent,
+    AgentLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ const agentRoutes:Routes = [
     HttpClientModule,
     RouterModule.forRoot(agentRoutes)
   ],
-  providers: [PackageService],
+  providers: [PackageService,AgentLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
