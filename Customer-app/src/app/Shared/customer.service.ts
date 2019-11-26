@@ -10,7 +10,11 @@ export class CustomerService {
   
   constructor(private http : HttpClient) { }
 
-  customerLogin(customer:Customer){
-    return this.http.post(this.baseUri+"/AllRoute/AgentLogin",this.customer);
+  addBook(name) {
+    const obj = {
+      name: name
+    };
+    console.log(obj);
+    return this.http.post(`${this.baseUri}`+'/Customer/login', obj);
   }
 }
