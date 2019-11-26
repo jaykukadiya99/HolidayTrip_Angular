@@ -14,8 +14,8 @@ export class AgentLoginService {
   constructor(private http:HttpClient) { }
 
   agentLogin(agents:Agent) {
-    this.objAgent.AgencyEmail = this.agents.AgencyEmail;
-    this.objAgent.Pass = this.agents.Pass;
+    this.objAgent.AgencyEmail = agents.AgencyEmail;
+    this.objAgent.Pass = agents.Pass;
     return this.http.post(this.baseUri+"/AllRoute/AgentLogin",this.objAgent);
   }
 }
