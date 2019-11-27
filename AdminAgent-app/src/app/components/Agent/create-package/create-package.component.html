@@ -70,7 +70,10 @@
                         <div class="form-row pb-2">
                             <div class="form-group col-md-2">
                                 <label for="CityInclude">City Include:</label>
-                                <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities">
+                                <!-- <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities"> -->
+                                <select name="CityInclude" id="CityInclude" class="custom-select" multiple="multiple" [(ngModel)]="cities">
+                                    <option *ngFor="let city of selectCities; let i=index" [ngValue]="city.cityName">{{city.cityName}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-row pb-2">
