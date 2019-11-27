@@ -13,10 +13,12 @@ import { CustomerService } from "./Shared/customer.service";
 import { HttpClientModule } from "@angular/common/http";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 const custRoute :Routes = [ 
-   {path:"",component:DashboardComponent,canActivate: [AuthGuardService]},
-   {path:"customerLogin",component:CustomerLoginComponent}
+   {path:"",component:DashboardComponent},
+   {path:"customerLogin",component:CustomerLoginComponent},
+   {path:"wishList",component:WishListComponent,canActivate: [AuthGuardService]}
 ];
 
 export function tokenGetter() {
@@ -28,7 +30,8 @@ export function tokenGetter() {
     AppComponent,
     NavbarComponent,
     CustomerLoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule,
