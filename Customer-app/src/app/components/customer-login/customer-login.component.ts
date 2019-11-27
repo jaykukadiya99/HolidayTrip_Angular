@@ -1,37 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { CustomerService } from "../../Shared/customer.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import { analyzeFile } from '@angular/compiler';
+import { Customer } from "../../Models/customer";
+import { error } from 'util';
+
 @Component({
   selector: 'app-customer-login',
   templateUrl: './customer-login.component.html',
   styleUrls: ['./customer-login.component.css']
 })
 export class CustomerLoginComponent implements OnInit {
-  angForm: FormGroup;
-  constructor(private route: ActivatedRoute,
-    private router: Router,private fb: FormBuilder,private cs :CustomerService) { 
-    this.createForm();
+  private customers :Customer = new Customer();
+  private invalidLogin ;
+
+  constructor(private _customerService :CustomerService,private routes :Router) { 
   }
 
   ngOnInit() {
+
   }
   
-  createForm() {
-    this.angForm = this.fb.group({
-      Mobile: ['', Validators.required ],
-    });
-  }
-
-  customerLogin(name) {
-        this.cs.addBook(name).subscribe(
-      data=> {
-        console.log(data);        
-      }, error => {
-        console.log(error);
+  login(){
+    this._customerService.addUser(this.customers).subscribe(
+      // data =>{
+      //   console.log(data);
+      // },
+      // error => {
+      //   console.log(error);
+      // }
+      response => {
+        console.log(response);
+        let token = (<any>response).token;
+        localStorage.setItem("jwt", token);
+        this.invalidLogin = false;
+        this.routes.navigate(["/"]);
+      }, err => {
+        this.invalidLogin = true;
       }
     )
-        this.router.navigate(['']);
-      }
+  }
+
+  logOut() {
+    localStorage.removeItem("jwt");
+ }
 }
