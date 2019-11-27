@@ -21,7 +21,7 @@ export class PackageComponent implements OnInit {
     this._packageSerive.getAllPackage().subscribe(
       data=> {
         this.packages=data;
-        console.log(this.packages);
+        // console.log(this.packages);
       },
       error=>{
         console.log(error);

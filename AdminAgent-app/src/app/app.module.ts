@@ -9,10 +9,13 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/Agent/navbar/navbar.component';
 import { PackageComponent } from './components/Agent/package/package.component';
 import { DashboardComponent } from './components/Agent/dashboard/dashboard.component';
-import { PackageService } from "../app/shared/Agent/package.service";
-import { AgentLoginService } from "../app/shared/Agent/agent-login.service";
 import { CreatePackageComponent } from './components/Agent/create-package/create-package.component';
 import { AgentLoginComponent } from './components/Agent/agent-login/agent-login.component';
+
+import { PackageService } from "../app/shared/Agent/package.service";
+import { AgentLoginService } from "../app/shared/Agent/agent-login.service";
+import { CategoryService } from "../app/shared/Category/category.service";
+import { CityService } from "../app/shared/City/city.service";
 
 const agentRoutes:Routes = [
   {path:'agent/package',component:PackageComponent},
@@ -37,7 +40,7 @@ const agentRoutes:Routes = [
     FormsModule,
     RouterModule.forRoot(agentRoutes)
   ],
-  providers: [PackageService,AgentLoginService],
+  providers: [PackageService,AgentLoginService,CategoryService,CityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

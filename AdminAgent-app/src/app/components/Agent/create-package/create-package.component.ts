@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PackageService } from "../../../shared/Agent/package.service";
 import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
+import { CityService } from "../../../shared/City/city.service";
 
 @Component({
   selector: 'app-create-package',
@@ -9,17 +10,26 @@ import { Router } from "@angular/router";
   styleUrls: ['./create-package.component.css']
 })
 export class CreatePackageComponent implements OnInit {
-  private packages:Package= new Package();
+  private packages:Package;
   public cities:string;
   private itineraries:any[]=new Array();
   public itineraryObj:any= { Title : "", Description : "" };
   public itineryImg;
   public MainImage;
   public Brochure;
-  constructor(private _packageService:PackageService, private router:Router) { }
+  public selectCities:any;
+  constructor(private _packageService:PackageService, private _cityService:CityService, private router:Router) { }
 
   ngOnInit() {
     this.packages=this._packageService.getter();
+    this._cityService.getAllCity().subscribe(
+      data => {
+        this.selectCities = data;
+        console.log(this.selectCities);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
   AddItinerary(){
@@ -34,7 +44,7 @@ export class CreatePackageComponent implements OnInit {
     formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
     formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
     for(let i=0; i<this.itineraries.length ; i++){
-      console.log(i)
+      // console.log(i)
       formsData.append("ItineryImg"+i,this.itineraries[i].img[0],this.itineraries[i].img[0]["name"]);
       this.itineraries[i]={"Title":this.itineraries[i].Title, "Description" : this.itineraries[i].Description};
     }
