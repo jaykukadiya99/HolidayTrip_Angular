@@ -7,17 +7,17 @@
                         <div class="form-row pb-2">
                             <div class="form-group col-md-8 pr-4">
                             <label for="Title">Package Title</label>
-                            <input type="text" class="form-control" id="Title" placeholder="Place your Package Title here....." name="Title">
+                            <input type="text" class="form-control" id="Title" placeholder="Place your Package Title here....." name="Title" [(ngModel)]="packages.Title">
                             </div>
                             <div class="form-group col-md-4 pr-4">
                             <label for="Days">Days</label>
-                            <input type="number" class="form-control" id="Days" placeholder="Total days of package" name="Days">
+                            <input type="number" class="form-control" id="Days" placeholder="Total days of package" name="Days" [(ngModel)]="packages.Days">
                             </div>
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-9 pr-4">
                                 <label for="Description">Description</label>
-                                <textarea class="form-control" id="Description" name="Description" rows="4"></textarea>
+                                <textarea class="form-control" id="Description" name="Description" rows="4" [(ngModel)]="packages.Description"></textarea>
                                 <small class="text-info">
                                 Add short description of package.
                                 </small>
@@ -25,11 +25,11 @@
                             <div class="form-group col-md-3 pr-4">
                                 <div class="form-row pb-2">
                                     <label for="Category">Category</label>
-                                    <input type="text" class="form-control" id="Category" name="Category">
+                                    <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category">
                                 </div>
                                 <div class="form-row">
                                     <label for="FixedDepartureDate">Fixed Departure Date</label>
-                                    <input type="date" class="form-control" id="FixedDepartureDate" name="FixedDepartureDate">
+                                    <input type="date" class="form-control" id="FixedDepartureDate" name="FixedDepartureDate" [(ngModel)]="packages.FixedDepartureDate">
                                 </div>
                             </div>
                         </div>
@@ -37,70 +37,70 @@
                             <div class="form-row ml-2 mr-2 mt-2">
                                 <div class="form-group col-md-9 pr-4">
                                     <label for="ITitle">Itinerary Title</label>
-                                    <input type="text" class="form-control" id="ITitle" placeholder="Short Title for Itinerary....." name="ITitle">
+                                    <input type="text" class="form-control" id="ITitle" placeholder="Short Title for Itinerary....." name="ITitle" [(ngModel)]="itineraryObj.Title">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="IImages[]">Images:</label>
-                                    <input type="file" class="form-control" id="IImages[]" name="IImages[]">        
+                                    <label for="IImages">Images:</label>
+                                    <input type="file" class="form-control" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages">        
                                 </div>
                             </div>
                             <div class="form-row ml-2 mr-2">
                                 <div class="form-group col-md-9 pr-4">
                                     <label for="IDescription">Description</label>
-                                    <textarea class="form-control" id="IDescription" name="IDescription" rows="2"></textarea>
+                                    <textarea class="form-control" id="IDescription" name="IDescription" rows="2" [(ngModel)]="itineraryObj.Description"></textarea>
                                     <small class="text-info">
                                     Add short description for Itinerary.
                                     </small>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <button class="btn btn-success"><i class="fa fa-plus"></i> Add Itinerary</button>
+                                    <button class="btn btn-success" (click)="AddItinerary()"><i class="fa fa-plus"></i> Add Itinerary</button>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-6 pr-4">
                                 <label for="Inclusion">Inclusions</label>
-                                <textarea class="form-control" id="Inclusion" name="Inclusion" rows="3"></textarea>
+                                <textarea class="form-control" id="Inclusion" name="Inclusion" rows="3" [(ngModel)]="packages.Inclusion"></textarea>
                             </div>
                             <div class="form-group col-md-6 pr-4">
                                 <label for="Exclusion">Exclusions</label>
-                                <textarea class="form-control" id="Exclusion" name="Exclusion" rows="3"></textarea>
+                                <textarea class="form-control" id="Exclusion" name="Exclusion" rows="3" [(ngModel)]="packages.Exclusion"></textarea>
                             </div>
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-2">
                                 <label for="CityInclude">City Include:</label>
-                                <input type="text" class="form-control" id="CityInclude" name="CityInclude">
+                                <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities">
                             </div>
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-3">
                                 <label for="Price">Package Price:</label>
-                                <input type="number" class="form-control" id="Price" name="Price">
+                                <input type="number" class="form-control" id="Price" name="Price" [(ngModel)]="packages.Price">
                             </div>
                             <div class="form-group col-md-9">
-                                <label for="PriceDesc">Package Price:</label>
-                                <input type="text" class="form-control" id="PriceDesc" name="PriceDesc">
+                                <label for="PriceDesc">Package Description:</label>
+                                <input type="text" class="form-control" id="PriceDesc" name="PriceDesc" [(ngModel)]="packages.PriceDesc">
                             </div>
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-6">
                                 <label for="MainImage">Main Package Image:</label>
-                                <input type="file" class="form-control" id="MainImage" name="MainImage">
+                                <input type="file" #MainImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeImage(MainImage.files,0,$event)" class="form-control" id="MainImage" name="MainImage">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Brochure">Select Brochure</label>
-                                <input type="file" class="form-control" id="Brochure" name="Brochure">
+                                <input type="file" #Brochure accept=".pdf" (change)="changeImage(Brochure.files,1,$event)" class="form-control" id="Brochure" name="Brochure">
                             </div>
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-6">
                                 <label for="OtherInfo">Other Information:</label>
-                                <textarea class="form-control" id="OtherInfo" name="OtherInfo" rows="2"></textarea>
+                                <textarea class="form-control" id="OtherInfo" name="OtherInfo" rows="2" [(ngModel)]="packages.OtherInfo"></textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="TandC">Terms and Conditions</label>
-                                <textarea class="form-control" id="TandC" name="TandC" rows="2"></textarea>
+                                <textarea class="form-control" id="TandC" name="TandC" rows="2" [(ngModel)]="packages.TandC"></textarea>
                             </div>
                         </div>
 
@@ -137,7 +137,7 @@
                             </label>
                             </div>
                         </div> -->
-                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <button type="submit" class="btn btn-primary" (click)="createPackage()">Sign in</button>
                     </form>
         </div>
     </div>

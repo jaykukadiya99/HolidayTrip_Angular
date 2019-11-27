@@ -15,6 +15,10 @@ export class PackageService {
     return this.http.get(this.baseUri+"/Package");
   }
 
+  insertPackage(formdata){
+    return this.http.post(this.baseUri+"/Package",formdata);
+  }
+
   setter(packages:Package) {
     this.packages=packages;
   }
