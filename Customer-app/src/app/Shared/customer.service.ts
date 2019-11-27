@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Customer } from "../Models/customer";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,HttpHeaders } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
@@ -10,11 +10,11 @@ export class CustomerService {
   
   constructor(private http : HttpClient) { }
 
-  addBook(name) {
-    const obj = {
-      name: name
-    };
-    console.log(obj);
-    return this.http.post(`${this.baseUri}`+'/Customer/login', obj);
+  addUser(customer:Customer) {
+    return this.http.post(`${this.baseUri}`+'/Customer/login', customer,{
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    });
   }
 }
