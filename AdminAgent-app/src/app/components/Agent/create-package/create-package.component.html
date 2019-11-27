@@ -25,7 +25,10 @@
                             <div class="form-group col-md-3 pr-4">
                                 <div class="form-row pb-2">
                                     <label for="Category">Category</label>
-                                    <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category">
+                                    <!-- <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category"> -->
+                                    <select name="Category" id="Category" class="form-group selectpicker" multiple data-live-search="true" [(ngModel)]="categories">
+                                        <option *ngFor="let category of selectCategories; let i=index" [ngValue]="category.categoryName">{{category.categoryName}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-row">
                                     <label for="FixedDepartureDate">Fixed Departure Date</label>
@@ -35,13 +38,22 @@
                         </div>
                         <div class="card">
                             <div class="form-row ml-2 mr-2 mt-2">
-                                <div class="form-group col-md-9 pr-4">
+                                <div class="form-group col-md-8 pr-4">
                                     <label for="ITitle">Itinerary Title</label>
                                     <input type="text" class="form-control" id="ITitle" placeholder="Short Title for Itinerary....." name="ITitle" [(ngModel)]="itineraryObj.Title">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="IImages">Images:</label>
-                                    <input type="file" class="form-control" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages">        
+                                <div class="form-group col-md-4">
+                                    <label>Images:</label>
+                                    <!-- <input type="file" class="form-control" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages">         -->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text" id="IImagesLB">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages" aria-describedby="IImagesLB">
+                                          <label class="custom-file-label" for="IImages">Choose Image</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row ml-2 mr-2">
@@ -68,10 +80,10 @@
                             </div>
                         </div>
                         <div class="form-row pb-2">
-                            <div class="form-group col-md-2">
-                                <label for="CityInclude">City Include:</label>
+                            <div class="form-group col-md-6">
+                                <label for="CityInclude">City Includes: </label>
                                 <!-- <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities"> -->
-                                <select name="CityInclude" id="CityInclude" class="custom-select" multiple="multiple" [(ngModel)]="cities">
+                                <select name="CityInclude" id="CityInclude" class="form-group selectpicker" multiple data-live-search="true" [(ngModel)]="cities">
                                     <option *ngFor="let city of selectCities; let i=index" [ngValue]="city.cityName">{{city.cityName}}</option>
                                 </select>
                             </div>
@@ -90,6 +102,7 @@
                             <div class="form-group col-md-6">
                                 <label for="MainImage">Main Package Image:</label>
                                 <input type="file" #MainImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeImage(MainImage.files,0,$event)" class="form-control" id="MainImage" name="MainImage">
+                                
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Brochure">Select Brochure</label>

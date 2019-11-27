@@ -3,6 +3,8 @@ import { PackageService } from "../../../shared/Agent/package.service";
 import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
 import { CityService } from "../../../shared/City/city.service";
+import { CategoryService } from "../../../shared/Category/category.service";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-create-package',
@@ -12,15 +14,18 @@ import { CityService } from "../../../shared/City/city.service";
 export class CreatePackageComponent implements OnInit {
   private packages:Package;
   public cities:string;
+  public categories:string;
   private itineraries:any[]=new Array();
   public itineraryObj:any= { Title : "", Description : "" };
   public itineryImg;
   public MainImage;
   public Brochure;
   public selectCities:any;
-  constructor(private _packageService:PackageService, private _cityService:CityService, private router:Router) { }
+  public selectCategories:any;
+  constructor(private _packageService:PackageService, private _cityService:CityService, private _categoryService:CategoryService, private router:Router) { }
 
   ngOnInit() {
+    this._packageService.setter(new Package());
     this.packages=this._packageService.getter();
     this._cityService.getAllCity().subscribe(
       data => {
@@ -30,6 +35,21 @@ export class CreatePackageComponent implements OnInit {
         console.log(error);
       }
     )
+    this._categoryService.getAllCategory().subscribe(
+      data => {
+        this.selectCategories = data;
+        console.log(this.selectCategories);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  
+  ngAfterViewInit() {
+    // let element = document.getElementById('CityInclude');
+    // element.className="selectpicker";
+    $(".selectpicker").selectpicker("refresh");
   }
 
   AddItinerary(){
@@ -40,6 +60,7 @@ export class CreatePackageComponent implements OnInit {
 
   createPackage(){
     this.packages.CityIncluded=this.cities.split(",");
+    this.packages.CategoryId = this.categories.split(",");
     let formsData = new FormData();
     formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
     formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
