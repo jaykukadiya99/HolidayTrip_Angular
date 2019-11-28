@@ -2,7 +2,7 @@ export class Package {
     public Id? : string;
     public Title : string;
     //public MainImage : string;
-    public CategoryId : string;
+    public CategoryId : string[];
     //public AgentId : string;
     public Days : number;
     public FixedDepartureDate : string;

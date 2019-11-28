@@ -17,6 +17,7 @@ import { AgentLoginService } from "../app/shared/Agent/agent-login.service";
 import { CategoryService } from "../app/shared/Category/category.service";
 import { CityService } from "../app/shared/City/city.service";
 
+
 const agentRoutes:Routes = [
   {path:'agent/package',component:PackageComponent},
   {path:'agent/dashboard', component:DashboardComponent},

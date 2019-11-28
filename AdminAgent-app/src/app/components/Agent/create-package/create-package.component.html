@@ -12,6 +12,9 @@
                             <div class="form-group col-md-4 pr-4">
                             <label for="Days">Days</label>
                             <input type="number" class="form-control" id="Days" placeholder="Total days of package" name="Days" [(ngModel)]="packages.Days">
+                            <small class="text-info">
+                                {{packages.Days}} Days and {{packages.Days-1}} Nights
+                            </small>
                             </div>
                         </div>
                         <div class="form-row pb-2">
@@ -23,10 +26,7 @@
                                 </small>
                             </div>
                             <div class="form-group col-md-3 pr-4">
-                                <div class="form-row pb-2">
-                                    <label for="Category">Category</label>
-                                    <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category">
-                                </div>
+                                
                                 <div class="form-row">
                                     <label for="FixedDepartureDate">Fixed Departure Date</label>
                                     <input type="date" class="form-control" id="FixedDepartureDate" name="FixedDepartureDate" [(ngModel)]="packages.FixedDepartureDate">
@@ -35,13 +35,22 @@
                         </div>
                         <div class="card">
                             <div class="form-row ml-2 mr-2 mt-2">
-                                <div class="form-group col-md-9 pr-4">
+                                <div class="form-group col-md-8 pr-4">
                                     <label for="ITitle">Itinerary Title</label>
                                     <input type="text" class="form-control" id="ITitle" placeholder="Short Title for Itinerary....." name="ITitle" [(ngModel)]="itineraryObj.Title">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="IImages">Images:</label>
-                                    <input type="file" class="form-control" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages">        
+                                <div class="form-group col-md-4">
+                                    <label>Images:</label>
+                                    <!-- <input type="file" class="form-control" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages">         -->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text" id="IImagesLB">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages" aria-describedby="IImagesLB">
+                                          <label class="custom-file-label" for="IImages">Choose Image</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row ml-2 mr-2">
@@ -57,7 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row pb-2">
+                        <div class="form-row pb-2 mt-3">
                             <div class="form-group col-md-6 pr-4">
                                 <label for="Inclusion">Inclusions</label>
                                 <textarea class="form-control" id="Inclusion" name="Inclusion" rows="3" [(ngModel)]="packages.Inclusion"></textarea>
@@ -68,12 +77,27 @@
                             </div>
                         </div>
                         <div class="form-row pb-2">
-                            <div class="form-group col-md-2">
-                                <label for="CityInclude">City Include:</label>
+                            <div class="form-group col-md-6 pr-4">
+                                <label for="CityInclude">City Includes: </label>
                                 <!-- <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities"> -->
-                                <select name="CityInclude" id="CityInclude" class="custom-select" multiple="multiple" [(ngModel)]="cities">
+                                <select name="CityInclude" #citySelect (dblclick)="onCitySelected(citySelect.options[citySelect.options.selectedIndex].text)" id="CityInclude" class="form-control" multiple data-live-search="true">
+                           <!-- <select name="CityInclude" id="CityInclude" class="selectpicker" multiple data-live-search="true" [(ngModel)]="cities"> -->
                                     <option *ngFor="let city of selectCities; let i=index" [ngValue]="city.cityName">{{city.cityName}}</option>
                                 </select>
+                                <small class="text-info">
+                                    <ng-container *ngFor="let ct of cityArray">{{ct}}, </ng-container>
+                                </small>
+                            </div>
+                            <div class="form-group col-md-6 pr-4">
+                                <label for="Category">Category</label>
+                                <!-- <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category"> -->
+                                <select name="Category" #categorySelect (dblclick)="onCategorySelected(categorySelect.options[categorySelect.options.selectedIndex].text)" id="Category" class="form-control" multiple data-live-search="true">
+                           <!-- <select name="Category" id="Category" class="selectpicker" multiple data-live-search="true" [(ngModel)]="categories"> -->
+                                    <option *ngFor="let category of selectCategories; let i=index" [ngValue]="category.categoryName">{{category.categoryName}}</option>
+                                </select>
+                                <small class="text-info">
+                                    <ng-container *ngFor="let cat of categoryArray">{{cat}}, </ng-container>
+                                </small>
                             </div>
                         </div>
                         <div class="form-row pb-2">
@@ -88,12 +112,30 @@
                         </div>
                         <div class="form-row pb-2">
                             <div class="form-group col-md-6">
-                                <label for="MainImage">Main Package Image:</label>
-                                <input type="file" #MainImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeImage(MainImage.files,0,$event)" class="form-control" id="MainImage" name="MainImage">
+                                <label>Main Package Image:</label>
+                                <!-- <input type="file" #MainImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeImage(MainImage.files,0,$event)" class="form-control" id="MainImage" name="MainImage"> -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="MainImageLB">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" #MainImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeImage(MainImage.files,0,$event)" id="MainImage" name="MainImage" aria-describedby="MainImageLB">
+                                      <label class="custom-file-label" for="MainImage">Choose Image</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="Brochure">Select Brochure</label>
-                                <input type="file" #Brochure accept=".pdf" (change)="changeImage(Brochure.files,1,$event)" class="form-control" id="Brochure" name="Brochure">
+                                <label>Select Brochure</label>
+                                <!-- <input type="file" #Brochure accept=".pdf" (change)="changeImage(Brochure.files,1,$event)" class="form-control" id="Brochure" name="Brochure"> -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="BrochureLB">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" #Brochure accept=".pdf" (change)="changeImage(Brochure.files,1,$event)" id="Brochure" name="Brochure" aria-describedby="BrochureLB">
+                                      <label class="custom-file-label" for="Brochure">Choose PDF file</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row pb-2">

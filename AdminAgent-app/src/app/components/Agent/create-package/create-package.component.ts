@@ -3,6 +3,7 @@ import { PackageService } from "../../../shared/Agent/package.service";
 import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
 import { CityService } from "../../../shared/City/city.service";
+import { CategoryService } from "../../../shared/Category/category.service";
 
 @Component({
   selector: 'app-create-package',
@@ -11,21 +12,37 @@ import { CityService } from "../../../shared/City/city.service";
 })
 export class CreatePackageComponent implements OnInit {
   private packages:Package;
-  public cities:string;
+  // public cities:string;
+  // public categories:string;
   private itineraries:any[]=new Array();
   public itineraryObj:any= { Title : "", Description : "" };
   public itineryImg;
   public MainImage;
   public Brochure;
   public selectCities:any;
-  constructor(private _packageService:PackageService, private _cityService:CityService, private router:Router) { }
+  public selectCategories:any;
+  public cityArray:any[] = new Array();
+  public categoryArray:any[] = new Array();
+  constructor(private _packageService:PackageService, private _cityService:CityService, private _categoryService:CategoryService, private router:Router) { }
 
   ngOnInit() {
+    this.cityArray=[];
+    this.categoryArray=[];
+    this._packageService.setter(new Package());
     this.packages=this._packageService.getter();
+    this.packages.Days=1;
     this._cityService.getAllCity().subscribe(
       data => {
         this.selectCities = data;
-        console.log(this.selectCities);
+        // console.log(this.selectCities);
+      }, error => {
+        console.log(error);
+      }
+    )
+    this._categoryService.getAllCategory().subscribe(
+      data => {
+        this.selectCategories = data;
+        // console.log(this.selectCategories);
       }, error => {
         console.log(error);
       }
@@ -35,14 +52,26 @@ export class CreatePackageComponent implements OnInit {
   AddItinerary(){
     this.itineraryObj.img = this.itineryImg;
     this.itineraries.push(this.itineraryObj);
+    let title = this.itineraryObj.Title;
+    let imgI = this.itineraryObj.img;
     this.itineraryObj= { Title : "", Description : "" };
+    window.alert(title+" is added");
+    return;
   }
 
   createPackage(){
-    this.packages.CityIncluded=this.cities.split(",");
+    // this.packages.CityIncluded=this.cities.split(",");
+    // this.packages.CategoryId = this.categories.split(",");
+    this.packages.CategoryId = this.categoryArray;
+    this.packages.CityIncluded = this.cityArray;
+
     let formsData = new FormData();
     formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
     formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
+    // console.log(formsData);
+    // console.log(this.Brochure[0],this.Brochure[0]["name"]);
+    // console.log(this.MainImage[0],this.MainImage[0]["name"]);
+
     for(let i=0; i<this.itineraries.length ; i++){
       // console.log(i)
       formsData.append("ItineryImg"+i,this.itineraries[i].img[0],this.itineraries[i].img[0]["name"]);
@@ -50,7 +79,9 @@ export class CreatePackageComponent implements OnInit {
     }
     this.packages.Itinerary=this.itineraries;
     formsData.append("data",JSON.stringify(this.packages));
+    // console.log(JSON.stringify(this.packages));
     console.log(formsData);
+
     // this._packageService.insertPackage(formsData).subscribe(
     //   data=> {
     //     console.log(data);
@@ -83,4 +114,31 @@ export class CreatePackageComponent implements OnInit {
     this.itineryImg=<Array<File>>event.target.files;
   }
 
+  onCitySelected(value:string) {
+    if(this.cityArray.length==0) {
+      this.cityArray.push(value);
+    } else {
+      if(this.cityArray.includes(value)) {
+        let ind = this.cityArray.indexOf(value);
+        this.cityArray.splice(ind,1);
+      } else {
+        this.cityArray.push(value)
+      }
+    }
+    // console.log(this.cityArray);
+  }
+
+  onCategorySelected(value:string) {
+    if(this.categoryArray.length==0) {
+      this.categoryArray.push(value);
+    } else {
+      if(this.categoryArray.includes(value)) {
+        let ind = this.categoryArray.indexOf(value);
+        this.categoryArray.splice(ind,1);
+      } else {
+        this.categoryArray.push(value)
+      }
+    }
+    // console.log(this.categoryArray);
+  }
 }
