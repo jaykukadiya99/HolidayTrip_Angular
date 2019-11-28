@@ -15,28 +15,26 @@ export class CustomerLoginComponent implements OnInit {
   private customers :Customer = new Customer();
   private invalidLogin ;
 
-  constructor(private jwtHelper: JwtHelperService,private _customerService :CustomerService,private routes :Router) { 
-  }
+  constructor(private jwtHelper: JwtHelperService,
+    private _customerService :CustomerService,
+    private routes :Router) { }
 
   ngOnInit() {
 
   }
   
   login(){
-    this._customerService.addUser(this.customers).subscribe(
-      // data =>{
-      //   console.log(data);
-      // },
-      // error => {
-      //   console.log(error);
-      // }
+    this._customerService.addUser(this.customers).subscribe(      
       response => {
-        console.log(response);
+        // console.log(response);
         let token = (<any>response).token;
         localStorage.setItem("jwt", token);
-        console.log(this.jwtHelper.decodeToken(token));
+        //console.log(this.jwtHelper.decodeToken(token));
+        var jwtdata = this.jwtHelper.decodeToken(token);
+        // var data = JSON.parse(jwtdata.sub);
+        localStorage.setItem("customerId", jwtdata.nameid);
         this.invalidLogin = false;
-        this.routes.navigate(["/"]);
+        this.routes.navigate(["/customer-otp"]);
       }, err => {
         this.invalidLogin = true;
       }
@@ -45,5 +43,6 @@ export class CustomerLoginComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("customerId");
  }
 }

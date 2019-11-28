@@ -11,10 +11,10 @@ export class CustomerService {
   constructor(private http : HttpClient) { }
 
   addUser(customer:Customer) {
-    return this.http.post(`${this.baseUri}`+'/Customer/login', customer,{
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    });
+    return this.http.post(`${this.baseUri}`+'/Customer/login', customer);
+  }
+
+  otpCheck(customer:Customer){
+    return this.http.post(`${this.baseUri}`+'/Customer/customerOtp', customer);
   }
 }

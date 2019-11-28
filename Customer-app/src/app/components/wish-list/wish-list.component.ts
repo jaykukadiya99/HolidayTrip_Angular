@@ -13,11 +13,8 @@ export class WishListComponent implements OnInit {
   constructor(private http:HttpClient,private jwtHelper :JwtHelperService) { }
   ngOnInit() {
     let token = localStorage.getItem("jwt");
-    this.http.get("http://localhost:58030/api/Customer/Get", {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    }).subscribe(response => {
+    this.http.get("http://localhost:58030/api/Customer/Auth")
+    .subscribe(response => {
       this.customers = response;     
       console.log(response); 
     }, err => {

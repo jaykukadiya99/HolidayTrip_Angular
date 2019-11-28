@@ -17,7 +17,7 @@ export class AuthGuardService implements CanActivate {
       var data = JSON.parse(jwtdata.sub);    
       console.log(jwtdata.typ);
       console.log(data.Id);
-      console.log(this.jwtHelper.decodeToken(token));
+      //console.log(this.jwtHelper.decodeToken(token));
       return true;
     }
     this.router.navigate(["customerLogin"]);

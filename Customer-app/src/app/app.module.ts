@@ -14,10 +14,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { CustomerOtpComponent } from './components/customer-otp/customer-otp.component';
 
 const custRoute :Routes = [ 
    {path:"",component:DashboardComponent},
    {path:"customerLogin",component:CustomerLoginComponent},
+   {path:"customer-otp",component:CustomerOtpComponent,canActivate:[AuthGuardService]},
    {path:"wishList",component:WishListComponent,canActivate: [AuthGuardService]}
 ];
 
@@ -31,7 +33,8 @@ export function tokenGetter() {
     NavbarComponent,
     CustomerLoginComponent,
     DashboardComponent,
-    WishListComponent
+    WishListComponent,
+    CustomerOtpComponent
   ],
   imports: [
     BrowserModule,

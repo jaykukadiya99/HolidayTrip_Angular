@@ -50,13 +50,14 @@ export class CreatePackageComponent implements OnInit {
     }
     this.packages.Itinerary=this.itineraries;
     formsData.append("data",JSON.stringify(this.packages));
-    this._packageService.insertPackage(formsData).subscribe(
-      data=> {
-        console.log(data);
-      }, error => {
-        console.log(error);
-      }
-    )
+    console.log(formsData);
+    // this._packageService.insertPackage(formsData).subscribe(
+    //   data=> {
+    //     console.log(data);
+    //   }, error => {
+    //     console.log(error);
+    //   }
+    // )
   }
 
   changeImage(files, index, event) {
