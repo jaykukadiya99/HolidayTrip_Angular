@@ -82,13 +82,13 @@ export class CreatePackageComponent implements OnInit {
     // console.log(JSON.stringify(this.packages));
     console.log(formsData);
 
-    // this._packageService.insertPackage(formsData).subscribe(
-    //   data=> {
-    //     console.log(data);
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // )
+    this._packageService.insertPackage(formsData).subscribe(
+      data=> {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
   changeImage(files, index, event) {
