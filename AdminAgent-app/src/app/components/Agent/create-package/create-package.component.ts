@@ -66,8 +66,6 @@ export class CreatePackageComponent implements OnInit {
     this.packages.CityIncluded = this.cityArray;
 
     let formsData = new FormData();
-    formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
-    formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
     // console.log(formsData);
     // console.log(this.Brochure[0],this.Brochure[0]["name"]);
     // console.log(this.MainImage[0],this.MainImage[0]["name"]);
@@ -77,10 +75,12 @@ export class CreatePackageComponent implements OnInit {
       formsData.append("ItineryImg"+i,this.itineraries[i].img[0],this.itineraries[i].img[0]["name"]);
       this.itineraries[i]={"Title":this.itineraries[i].Title, "Description" : this.itineraries[i].Description};
     }
+    formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
+    formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
     this.packages.Itinerary=this.itineraries;
     formsData.append("data",JSON.stringify(this.packages));
     // console.log(JSON.stringify(this.packages));
-    console.log(formsData);
+    // console.log(formsData);
 
     this._packageService.insertPackage(formsData).subscribe(
       data=> {
