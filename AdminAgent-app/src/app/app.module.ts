@@ -12,6 +12,8 @@ import { DashboardComponent } from './components/Agent/dashboard/dashboard.compo
 import { CreatePackageComponent } from './components/Agent/create-package/create-package.component';
 import { AgentLoginComponent } from './components/Agent/agent-login/agent-login.component';
 
+import { DataTablesModule } from "angular-datatables";
+
 import { PackageService } from "../app/shared/Agent/package.service";
 import { AgentLoginService } from "../app/shared/Agent/agent-login.service";
 import { CategoryService } from "../app/shared/Category/category.service";
@@ -39,6 +41,7 @@ const agentRoutes:Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    DataTablesModule,
     RouterModule.forRoot(agentRoutes)
   ],
   providers: [PackageService,AgentLoginService,CategoryService,CityService],
