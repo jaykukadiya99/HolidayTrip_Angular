@@ -14,7 +14,7 @@ export class CreatePackageComponent implements OnInit {
   private packages:Package;
   // public cities:string;
   // public categories:string;
-  private itineraries:any[]=new Array();
+  public itineraries:any[]=new Array();
   public itineraryObj:any= { Title : "", Description : "" };
   public itineryImg;
   public MainImage;
@@ -23,6 +23,7 @@ export class CreatePackageComponent implements OnInit {
   public selectCategories:any;
   public cityArray:any[] = new Array();
   public categoryArray:any[] = new Array();
+  public formsData:FormData = new FormData();
   constructor(private _packageService:PackageService, private _cityService:CityService, private _categoryService:CategoryService, private router:Router) { }
 
   ngOnInit() {
@@ -53,7 +54,9 @@ export class CreatePackageComponent implements OnInit {
     this.itineraryObj.img = this.itineryImg;
     this.itineraries.push(this.itineraryObj);
     let title = this.itineraryObj.Title;
-    let imgI = this.itineraryObj.img;
+    this.formsData.append(this.itineraryObj.Title,this.itineraryObj.img[0],this.itineraryObj.img[0]["name"]);
+    // console.log(this.itineraries);
+    // let imgI = this.itineraryObj.img;
     this.itineraryObj= { Title : "", Description : "" };
     window.alert(title+" is added");
     return;
@@ -65,24 +68,26 @@ export class CreatePackageComponent implements OnInit {
     this.packages.CategoryId = this.categoryArray;
     this.packages.CityIncluded = this.cityArray;
 
-    let formsData = new FormData();
+    // let formsData = new FormData();
     // console.log(formsData);
     // console.log(this.Brochure[0],this.Brochure[0]["name"]);
     // console.log(this.MainImage[0],this.MainImage[0]["name"]);
 
+    // console.log(this.itineraries);
     for(let i=0; i<this.itineraries.length ; i++){
-      // console.log(i)
-      formsData.append("ItineryImg"+i,this.itineraries[i].img[0],this.itineraries[i].img[0]["name"]);
+      console.log(i);
+      // this.formsData.append("ItineryImg"+i,this.itineraries[i].img[0],this.itineraries[i].img[0]["name"]);
       this.itineraries[i]={"Title":this.itineraries[i].Title, "Description" : this.itineraries[i].Description};
     }
-    formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
-    formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
+
+    this.formsData.append("MainImage",this.MainImage[0],this.MainImage[0]["name"]);
+    this.formsData.append("Brochure",this.Brochure[0],this.Brochure[0]["name"]);
     this.packages.Itinerary=this.itineraries;
-    formsData.append("data",JSON.stringify(this.packages));
+    this.formsData.append("data",JSON.stringify(this.packages));
     // console.log(JSON.stringify(this.packages));
     // console.log(formsData);
 
-    this._packageService.insertPackage(formsData).subscribe(
+    this._packageService.insertPackage(this.formsData).subscribe(
       data=> {
         console.log(data);
       }, error => {

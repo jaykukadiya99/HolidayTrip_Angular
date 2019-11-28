@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class PackageComponent implements OnInit {
 
   private packages:any;
+  public baseUri:string="http://localhost:58030/Resources";
   constructor(private _packageSerive:PackageService, private router:Router) { }
 
   ngOnInit() {

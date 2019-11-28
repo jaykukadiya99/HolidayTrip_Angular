@@ -19,7 +19,7 @@ import { CityService } from "../app/shared/City/city.service";
 
 
 const agentRoutes:Routes = [
-  {path:'agent/package',component:PackageComponent},
+  {path:'agent',component:PackageComponent},
   {path:'agent/dashboard', component:DashboardComponent},
   {path:'agent/package/create',component:CreatePackageComponent},
   {path:'agent/login',component:AgentLoginComponent}

@@ -6,23 +6,31 @@
 </div>
 <br>
 <div class="row">
-    <table class="table">
-        <tr>
-            <th>Package Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Departure Date</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <tr *ngFor="let package of packages">
-            <td></td>
-            <td>{{package.title}}</td>
-            <td>{{package.price}}</td>
-            <td>{{package.fixedDepatureDate}}</td>
-            <td><button class="btn bg-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
-            <td><button class="btn bg-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
-        </tr>
+    <table class="table table-hover table-responsive-sm table-responsive-md">
+        <thead>
+            <tr>
+                <th>Package Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Departure Date</th>
+                <th>Cities</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let package of packages">
+                <td>
+                    <img src="{{baseUri}}/Images/{{package.mainImage}}" alt="{{package.title}} Image" class="rounded" width="200" height="90">
+                </td>
+                <td>{{package.title}}</td>
+                <td>{{package.price}}</td>
+                <td>{{package.fixedDepatureDate}}</td>
+                <td>{{package.cityIncluded}}</td>
+                <td><button class="btn bg-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
+                <td><button class="btn bg-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
+            </tr>
+        </tbody>
     </table>    
 </div>
 </div>
