@@ -33,11 +33,11 @@ export class CustomerOtpComponent implements OnInit {
         console.log(data);
         if(msgObj.msg=="Valid User")
         {
-          // this.routes.navigate(["/"]);
+          this.routes.navigate(["/"]);
         }
         else
         {
-          // this.routes.navigate(["/customerLogin"]);
+          this.routes.navigate(["/customerLogin"]);
         }
       },
       error => {

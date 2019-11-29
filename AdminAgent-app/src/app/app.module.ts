@@ -18,13 +18,20 @@ import { PackageService } from "../app/shared/Agent/package.service";
 import { AgentLoginService } from "../app/shared/Agent/agent-login.service";
 import { CategoryService } from "../app/shared/Category/category.service";
 import { CityService } from "../app/shared/City/city.service";
+import { JwtModule } from "@auth0/angular-jwt";
+import { AuthGuardService } from "./shared/Authenticate/auth-guard.service";
+import { AgentSignupComponent } from './components/Agent/agent-signup/agent-signup.component';
 
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 const agentRoutes:Routes = [
-  {path:'agent',component:PackageComponent},
-  {path:'agent/dashboard', component:DashboardComponent},
-  {path:'agent/package/create',component:CreatePackageComponent},
-  {path:'agent/login',component:AgentLoginComponent}
+  {path:'',component:PackageComponent,canActivate:[AuthGuardService]},
+  {path:'dashboard', component:DashboardComponent,canActivate:[AuthGuardService]},
+  {path:'package/create',component:CreatePackageComponent,canActivate:[AuthGuardService]},
+  {path:'login',component:AgentLoginComponent},
+  {path:'signup',component:AgentSignupComponent}
 ]
 
 @NgModule({
@@ -34,7 +41,8 @@ const agentRoutes:Routes = [
     PackageComponent,
     DashboardComponent,
     CreatePackageComponent,
-    AgentLoginComponent
+    AgentLoginComponent,
+    AgentSignupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +50,16 @@ const agentRoutes:Routes = [
     HttpClientModule,
     FormsModule,
     DataTablesModule,
-    RouterModule.forRoot(agentRoutes)
+    RouterModule.forRoot(agentRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:58030"],
+        blacklistedRoutes: []
+      }
+    })
   ],
-  providers: [PackageService,AgentLoginService,CategoryService,CityService],
+  providers: [AuthGuardService,PackageService,AgentLoginService,CategoryService,CityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

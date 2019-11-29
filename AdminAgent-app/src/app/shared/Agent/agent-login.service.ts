@@ -8,19 +8,15 @@ import { Agent } from "../../Models/agent";
 
 
 export class AgentLoginService {
-  private agents:Agent;
-  private objAgent : AgentLogin;
   private baseUri:string = "http://localhost:58030/api";
+  
   constructor(private http:HttpClient) { }
 
   agentLogin(agents:Agent) {
-    this.objAgent.AgencyEmail = agents.AgencyEmail;
-    this.objAgent.Pass = agents.Pass;
-    return this.http.post(this.baseUri+"/AllRoute/AgentLogin",this.objAgent);
+    return this.http.post(this.baseUri+"/AllRoute/AgentLogin",agents);
   }
-}
 
-class AgentLogin {
-  public AgencyEmail : string;
-  public Pass : string;
+  agentSingUp(agent:Agent){
+    return this.http.post(this.baseUri+"/Agent",agent);
+  }
 }

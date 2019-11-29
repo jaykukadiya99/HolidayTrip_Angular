@@ -89,7 +89,7 @@ export class CreatePackageComponent implements OnInit {
 
     this._packageService.insertPackage(this.formsData).subscribe(
       data=> {
-        console.log(data);
+        console.log(data);        
       }, error => {
         console.log(error);
       }

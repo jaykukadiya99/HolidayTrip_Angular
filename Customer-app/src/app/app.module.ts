@@ -10,11 +10,12 @@ import { CustomerLoginComponent } from './components/customer-login/customer-log
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { CustomerService } from "./Shared/customer.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule ,HttpInterceptor } from "@angular/common/http";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CustomerOtpComponent } from './components/customer-otp/customer-otp.component';
+
 
 const custRoute :Routes = [ 
    {path:"",component:DashboardComponent},

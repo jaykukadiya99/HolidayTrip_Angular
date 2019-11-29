@@ -12,11 +12,11 @@ export class AuthGuardService implements CanActivate {
     var token = localStorage.getItem("jwt");
     
     if (token && !this.jwtHelper.isTokenExpired(token)){
-      console.log(token);
-      var jwtdata = this.jwtHelper.decodeToken(token);
-      var data = JSON.parse(jwtdata.sub);    
-      console.log(jwtdata.typ);
-      console.log(data.Id);
+      //console.log(token);
+      // var jwtdata = this.jwtHelper.decodeToken(token);
+      // var data = JSON.parse(jwtdata.sub);    
+      // console.log(jwtdata.typ);
+      // console.log(data.Id);
       //console.log(this.jwtHelper.decodeToken(token));
       return true;
     }

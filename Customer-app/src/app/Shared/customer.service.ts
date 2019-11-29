@@ -8,10 +8,15 @@ export class CustomerService {
   private baseUri:string = "http://localhost:58030/api";
   private customer : Customer;
   
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'jay'
+  });
+
   constructor(private http : HttpClient) { }
 
   addUser(customer:Customer) {
-    return this.http.post(`${this.baseUri}`+'/Customer/login', customer);
+    return this.http.post(`${this.baseUri}`+'/Customer/login', customer,{ headers: this.headers });
   }
 
   otpCheck(customer:Customer){

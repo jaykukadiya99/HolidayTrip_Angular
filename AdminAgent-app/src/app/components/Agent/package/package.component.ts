@@ -22,7 +22,7 @@ export class PackageComponent implements OnInit {
     this._packageSerive.getAllPackage().subscribe(
       data=> {
         this.packages=data;
-        // console.log(this.packages);
+        console.log(this.packages);
       },
       error=>{
         console.log(error);
@@ -33,6 +33,6 @@ export class PackageComponent implements OnInit {
   newPackage(event:any) {
     event.preventDefault();
     this._packageSerive.setter(new Package());
-    this.router.navigate(["agent/package/create"]);
+    this.router.navigate(["package/create"]);
   }
 }
