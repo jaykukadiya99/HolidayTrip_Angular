@@ -21,6 +21,9 @@ import { CityService } from "../app/shared/City/city.service";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuardService } from "./shared/Authenticate/auth-guard.service";
 import { AgentSignupComponent } from './components/Agent/agent-signup/agent-signup.component';
+import { AdminLoginComponent } from './components/Admin/admin-login/admin-login.component';
+import { AdminNavbarComponent } from './components/Admin/admin-navbar/admin-navbar.component';
+import { AdminDashboardComponent } from './components/Admin/admin-dashboard/admin-dashboard.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -31,7 +34,10 @@ const agentRoutes:Routes = [
   {path:'dashboard', component:DashboardComponent,canActivate:[AuthGuardService]},
   {path:'package/create',component:CreatePackageComponent,canActivate:[AuthGuardService]},
   {path:'login',component:AgentLoginComponent},
-  {path:'signup',component:AgentSignupComponent}
+  {path:'signup',component:AgentSignupComponent},
+
+  {path:'admin',component:AdminLoginComponent},
+  {path:'admin/dashboard',component:AdminDashboardComponent}
 ]
 
 @NgModule({
@@ -42,7 +48,10 @@ const agentRoutes:Routes = [
     DashboardComponent,
     CreatePackageComponent,
     AgentLoginComponent,
-    AgentSignupComponent
+    AgentSignupComponent,
+    AdminLoginComponent,
+    AdminNavbarComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
