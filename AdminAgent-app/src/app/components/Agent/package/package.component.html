@@ -27,8 +27,9 @@
                 <td>{{package.price}}</td>
                 <td>{{package.fixedDepartureDate}}</td>
                 <td>{{package.cityIncluded}}</td>
+                
                 <td><button class="btn bg-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
-                <td><button class="btn bg-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
+                <td><button class="btn bg-danger" (click)="deletePackage(package.id)" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
             </tr>
         </tbody>
     </table>    

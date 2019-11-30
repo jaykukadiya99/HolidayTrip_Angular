@@ -35,4 +35,20 @@ export class PackageComponent implements OnInit {
     this._packageSerive.setter(new Package());
     this.router.navigate(["package/create"]);
   }
+
+  deletePackage(id:string){
+    console.log(id);
+    var dataObj :any;
+    this._packageSerive.deletePackage(id).subscribe(
+      data=>{
+        console.log(data);
+        dataObj = data;  
+        window.location.reload();     
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+
+  }
 }

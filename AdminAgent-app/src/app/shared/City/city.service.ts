@@ -12,4 +12,12 @@ export class CityService {
   getAllCity() {
     return this.http.get(this.baseUri+"/City");
   }
+
+  addNewCity(city){
+    return this.http.post(this.baseUri+"/City",city);
+  }
+
+  deleteCity(id){
+    return this.http.delete(this.baseUri+"/City/"+id);
+  }
 }

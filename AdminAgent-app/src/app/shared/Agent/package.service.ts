@@ -31,4 +31,9 @@ export class PackageService {
   getter() {
     return this.packages;
   }
+
+  deletePackage(id)
+  {
+    return this.http.delete(this.baseUri+"/Package/"+id);
+  }
 }
