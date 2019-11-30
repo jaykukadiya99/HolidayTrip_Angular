@@ -2,20 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule , Routes, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-
+import { HttpClientModule ,HttpInterceptor } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
+import { JwtModule } from "@auth0/angular-jwt";
+import { JwPaginationComponent } from "jw-angular-pagination";
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CustomerLoginComponent } from './components/customer-login/customer-login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-import { CustomerService } from "./Shared/customer.service";
-import { HttpClientModule ,HttpInterceptor } from "@angular/common/http";
-import { JwtModule } from "@auth0/angular-jwt";
-import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CustomerOtpComponent } from './components/customer-otp/customer-otp.component';
 
+import { CustomerService } from "./Shared/customer.service";
+import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
+import { PackageService } from "./Shared/package.service";
 
 const custRoute :Routes = [ 
    {path:"",component:DashboardComponent},
@@ -35,7 +36,8 @@ export function tokenGetter() {
     CustomerLoginComponent,
     DashboardComponent,
     WishListComponent,
-    CustomerOtpComponent
+    CustomerOtpComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [CustomerService,AuthGuardService],
+  providers: [CustomerService,AuthGuardService,PackageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
