@@ -11,18 +11,20 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CustomerLoginComponent } from './components/customer-login/customer-login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CustomerOtpComponent } from './components/customer-otp/customer-otp.component';
 
 import { CustomerService } from "./Shared/customer.service";
 import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
 import { PackageService } from "./Shared/package.service";
+import { MyinquiryComponent } from './components/myinquiry/myinquiry.component';
+import { MyprofileComponent } from './components/myprofile/myprofile.component';
 
 const custRoute :Routes = [ 
    {path:"",component:DashboardComponent},
    {path:"customerLogin",component:CustomerLoginComponent},
    {path:"customer-otp",component:CustomerOtpComponent,canActivate:[AuthGuardService]},
-   {path:"wishList",component:WishListComponent,canActivate: [AuthGuardService]}
+   {path:"myInquiry",component:MyinquiryComponent,canActivate:[AuthGuardService]},
+   {path:"myProfile",component:MyprofileComponent,canActivate:[AuthGuardService]}
 ];
 
 export function tokenGetter() {
@@ -35,9 +37,10 @@ export function tokenGetter() {
     NavbarComponent,
     CustomerLoginComponent,
     DashboardComponent,
-    WishListComponent,
     CustomerOtpComponent,
-    JwPaginationComponent
+    JwPaginationComponent,
+    MyinquiryComponent,
+    MyprofileComponent
   ],
   imports: [
     BrowserModule,

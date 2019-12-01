@@ -20,7 +20,7 @@ export class CustomerLoginComponent implements OnInit {
     private routes :Router) { }
 
   ngOnInit() {
-
+    
   }
   
   login(){
@@ -33,6 +33,7 @@ export class CustomerLoginComponent implements OnInit {
         var jwtdata = this.jwtHelper.decodeToken(token);
         // var data = JSON.parse(jwtdata.sub);
         localStorage.setItem("customerId", jwtdata.nameid);
+        localStorage.setItem("userType",jwtdata.typ);
         this.invalidLogin = false;
         this.routes.navigate(["/customer-otp"]);
       }, err => {

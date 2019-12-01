@@ -19,15 +19,15 @@
             <div *ngFor = "let arr of forArray; let y = index">
                 <div *ngIf="i + y < pageOfItems.length">
                     <!-- <div class="card border-primary mb-5 mt-5 mr-5"> -->
-                        <div class="card border-primary mx-3 my-3" style="max-width: 15rem;">
-                        <img class="card-img-top img-fluid" src="{{baseUri}}/Images/{{pageOfItems[i + y].mainImage}}" alt="{{pageOfItems[i + y].title}} Image">
+                        <div class="card border-primary mx-3 my-3" style="max-width: 15rem; height:26rem;">
+                        <img class="card-img-top img-fluid" src="{{baseUri}}/Images/{{pageOfItems[i + y].package.mainImage}}" alt="{{pageOfItems[i + y].package.title}} Image">
                         <div class="card-body">
-                            <h5 class="card-title text-capitalize">{{ pageOfItems[i + y].title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-right text-muted">{{ pageOfItems[i + y].days }} Day(s) and {{ pageOfItems[i + y].days-1 }} Night(s)</h6>
+                            <h5 class="card-title text-capitalize">{{ pageOfItems[i + y].package.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-right text-muted">{{ pageOfItems[i + y].package.days }} Day(s) and {{ pageOfItems[i + y].package.days-1 }} Night(s)</h6>
                             <br>
                             <p class="card-text">
                                 <i class="fa fa-inr" aria-hidden="true"></i>
-                                {{ pageOfItems[i + y].price }} <small><i>({{ pageOfItems[i + y].priceDesc }})</i></small>
+                                {{ pageOfItems[i + y].package.price }} <small><i>({{ pageOfItems[i + y].package.priceDesc }})</i></small>
                                 <br>
                                 <br>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#tripModalCenter'+ (i+y)">
@@ -43,7 +43,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-capitalize" id="tripModalCenterTitle{{i+y}}">{{ pageOfItems[i + y].title }}</h5>
+                                <h5 class="modal-title text-capitalize" id="tripModalCenterTitle{{i+y}}">{{ pageOfItems[i + y].package.title }}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -52,10 +52,10 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <img class="img-fluid border border-dark rounded" src="{{baseUri}}/Images/{{pageOfItems[i + y].mainImage}}" alt="{{pageOfItems[i + y].title}} Image">
+                                            <img class="img-fluid border border-dark rounded" src="{{baseUri}}/Images/{{pageOfItems[i + y].package.mainImage}}" alt="{{pageOfItems[i + y].package.title}} Image">
                                         </div>
                                         <div class="col-md-8">
-                                            <p class="lead text-capitalize">{{ pageOfItems[i + y].description }}</p>
+                                            <p class="lead text-capitalize">{{ pageOfItems[i + y].package.description }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -63,7 +63,7 @@
                                             <div class="font-weight-bold">Package Type:</div>
                                         </div>
                                         <div class="col-md-8">
-                                            <p class="text-capitalize">{{ pageOfItems[i + y].categoryId }}</p>
+                                            <p class="text-capitalize">{{ pageOfItems[i + y].package.categoryId }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -71,7 +71,7 @@
                                             <div class="font-weight-bold">City Included:</div>
                                         </div>
                                         <div class="col-md-8">
-                                            <p class="text-capitalize">{{ pageOfItems[i + y].cityIncluded }}</p>
+                                            <p class="text-capitalize">{{ pageOfItems[i + y].package.cityIncluded }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -79,7 +79,7 @@
                                             <div class="font-weight-bold">Departure Date:</div>
                                         </div>
                                         <div class="col-md-8">
-                                            <p>{{ pageOfItems[i + y].fixedDepartureDate }}</p>
+                                            <p>{{ pageOfItems[i + y].package.fixedDepartureDate }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -87,10 +87,10 @@
                                             <div class="font-weight-bold">Days:</div>
                                         </div>
                                         <div class="col-md-8">
-                                            <p>{{ pageOfItems[i + y].days }}</p>
+                                            <p>{{ pageOfItems[i + y].package.days }}</p>
                                         </div>
                                     </div>
-                                    <div class="accordion" id="collapseItinerary" *ngFor="let itnry of pageOfItems[i + y].itinerary; let z=index;">
+                                    <div class="accordion" id="collapseItinerary" *ngFor="let itnry of pageOfItems[i + y].package.itinerary; let z=index;">
                                         <div class="card">
                                             <div class="card-header" [attr.id]="'heading'+z">
                                                 <h5 class="mb-0">
@@ -150,22 +150,22 @@
                                         <div class="col-md-12">
                                             <div class="collapse" id="collapseInclusion">
                                                 <div class="card card-body">
-                                                    <p>{{ pageOfItems[i + y].inclusion }}</p>
+                                                    <p>{{ pageOfItems[i + y].package.inclusion }}</p>
                                                 </div>
                                             </div>
                                             <div class="collapse" id="collapseExclusion">
                                                 <div class="card card-body">
-                                                    <p>{{ pageOfItems[i + y].exclusion }}</p>
+                                                    <p>{{ pageOfItems[i + y].package.exclusion }}</p>
                                                 </div>
                                             </div>  
                                             <div class="collapse" id="collapseOtherInfo">
                                                 <div class="card card-body">
-                                                    <p>{{ pageOfItems[i + y].otherInfo }}</p>
+                                                    <p>{{ pageOfItems[i + y].package.otherInfo }}</p>
                                                 </div>
                                             </div>
                                             <div class="collapse" id="collapseTandC">
                                                 <div class="card card-body">
-                                                    <p>{{ pageOfItems[i + y].tandC }}</p>
+                                                    <p>{{ pageOfItems[i + y].package.tandC }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <p>
-                                                <a href="{{baseUri}}/Images/{{pageOfItems[i + y].brochure}}">Download Here</a>
+                                                <a href="{{baseUri}}/Images/{{pageOfItems[i + y].package.brochure}}">Download Here</a>
                                             </p>
                                         </div>
                                     </div>
@@ -187,7 +187,7 @@
                                         <div class="col-md-8">    
                                             <p>
                                                 <i class="fa fa-inr" aria-hidden="true"></i>
-                                                {{ pageOfItems[i + y].price }} <small><i>({{ pageOfItems[i + y].priceDesc }})</i></small>
+                                                {{ pageOfItems[i + y].package.price }} <small><i>({{ pageOfItems[i + y].package.priceDesc }})</i></small>
                                             </p>    
                                         </div>
                                     </div>
@@ -200,26 +200,77 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12 d-flex justify-content-center">
+                                            <p>
+                                                <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseAgent" aria-expanded="false" aria-controls="collapseAgent">
+                                                    I'll Contact
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <div class="collapse" id="collapseInquiry">
                                         <div class="form-group row">
                                             <label for="txtPerson" class="col-md-2 col-form-label">Person:</label>
                                             <div class="col-md-10">
-                                                <p><input type="text" class="form-control" id="txtPerson" placeholder="No. of Persons" required></p>
+                                                <p><input type="text" class="form-control" [(ngModel)]="inqPerson" id="txtPerson" placeholder="Specify the approx range of Persons." required></p>
                                             </div>
                                         </div>  
                                         <div class="form-group row">
                                             <label for="txtInquiryAbout" class="col-md-2 col-form-label">About:</label>
                                             <div class="col-md-10">
-                                                <p><input type="text" class="form-control" id="txtInquiryAbout" placeholder="Mention If any Special Requirement"></p>
+                                                <p><input type="text" class="form-control" [(ngModel)]="inqAbout" id="txtInquiryAbout" placeholder="Mention If any Special Requirement."></p>
                                             </div>
                                         </div> 
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button (click)="generateInquiry()" type="submit" class="btn btn-success mb-2">Generate Inquiry</button>
+                                                <button (click)="generateInquiry(pageOfItems[i + y].agent[0].id,pageOfItems[i + y].package.id,inqPerson,inqAbout)" type="submit" class="btn btn-success mb-2" data-dismiss="modal">Generate Inquiry</button>
                                             </div>
                                         </div> 
                                     </div>
-                                    <div class="row">
+                                    <div class="collapse" id="collapseAgent">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p>
+                                                    {{pageOfItems[i + y].agent[0].agencyName}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p>
+                                                    {{pageOfItems[i + y].agent[0].agencyEmail}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p>
+                                                    {{pageOfItems[i + y].agent[0].contactMobile}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <i class="fa fa-address-card" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p>
+                                                    {{pageOfItems[i + y].agent[0].agencyAddress.addressLine1}}, {{pageOfItems[i + y].agent[0].agencyAddress.addressLine2}}, {{pageOfItems[i + y].agent[0].agencyAddress.area}}, {{pageOfItems[i + y].agent[0].agencyAddress.city}}, {{pageOfItems[i + y].agent[0].agencyAddress.state}}, {{pageOfItems[i + y].agent[0].agencyAddress.pinCode}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row">
                                         <div class="col-md-12 d-flex justify-content-center">
                                             <p>
                                                 <button (click)="clickWishList()" class="btn" type="button">
@@ -227,7 +278,7 @@
                                                 </button>
                                             </p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="modal-footer">
