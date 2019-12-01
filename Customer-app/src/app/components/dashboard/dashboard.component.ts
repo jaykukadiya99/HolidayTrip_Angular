@@ -20,17 +20,23 @@ export class DashboardComponent implements OnInit {
   public inqPerson:string;
   public allCity:any;
   public allCategory:any;
+  public tripCityD:string;
+  public tripCategoryD:string;
+  public tripDaysD:string;
   public forArray = [1,2,3,4];
   public baseUri:string = "http://localhost:58030/Resources";
   constructor(private router : Router,private jwtHelper : JwtHelperService, private _packageService : PackageService, private _inquiryService : InquiryService, private _cityService: CityService, private _categoryService:CategoryService) { }
   ngOnInit() {
     this.loadPackages();
+    this.tripCategoryD="selectcategory";
+    this.tripCityD="selectcity";
+    this.tripDaysD="selectdays";
     this.inqAbout="";
     this.inqPerson="";
     this._cityService.getAllCity().subscribe(
       data=>{
         this.allCity=data;
-        console.log(this.allCity);
+        // console.log(this.allCity);
       }, error=>{
         console.log(error);
       }
@@ -38,7 +44,7 @@ export class DashboardComponent implements OnInit {
     this._categoryService.getAllCategory().subscribe(
       data=>{
         this.allCategory=data;
-        console.log(this.allCategory);
+        // console.log(this.allCategory);
       }, error=>{
         console.log(error);
       }
@@ -86,7 +92,7 @@ export class DashboardComponent implements OnInit {
       // console.log(objInq);
       this._inquiryService.generateInquiry(objInq).subscribe(
         data => {
-          console.log(data);
+          // console.log(data);
           this.inqAbout=" ";
           this.inqPerson=" "; 
           window.alert("Agent will contact you soon.");
@@ -123,7 +129,22 @@ export class DashboardComponent implements OnInit {
   }
 
   applyFilter() {
-    
+    let filterObj:any = {
+      City : this.tripCityD,
+      Category : this.tripCategoryD,
+      Days : this.tripDaysD
+    }
+    // console.log(filterObj);
+    var formsdata = new FormData();
+    formsdata.append("filter",JSON.stringify(filterObj));
+    this._packageService.getFilteredData(formsdata).subscribe(
+      data => {
+        this.packages=data;
+        this.items = this.packages;
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   clearFilter() {

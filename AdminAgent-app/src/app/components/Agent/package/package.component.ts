@@ -43,7 +43,7 @@ export class PackageComponent implements OnInit {
       data=>{
         console.log(data);
         dataObj = data;  
-        window.location.reload();     
+        this.readPackge();     
       },
       error=>{
         console.log(error);

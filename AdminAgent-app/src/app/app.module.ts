@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/Agent/navbar/navbar.component';
 import { PackageComponent } from './components/Agent/package/package.component';
-import { DashboardComponent } from './components/Agent/dashboard/dashboard.component';
 import { CreatePackageComponent } from './components/Agent/create-package/create-package.component';
 import { AgentLoginComponent } from './components/Agent/agent-login/agent-login.component';
 
@@ -34,8 +33,7 @@ export function tokenGetter() {
 }
 
 const agentRoutes:Routes = [
-  {path:'package',component:PackageComponent,canActivate:[AuthGuardService]},
-  {path:'', component:DashboardComponent,canActivate:[AuthGuardService]},
+  {path:'', component:PackageComponent,canActivate:[AuthGuardService]},
   {path:'package/create',component:CreatePackageComponent,canActivate:[AuthGuardService]},
   {path:'login',component:AgentLoginComponent},
   {path:'signup',component:AgentSignupComponent},
@@ -53,7 +51,6 @@ const agentRoutes:Routes = [
     AppComponent,
     NavbarComponent,
     PackageComponent,
-    DashboardComponent,
     CreatePackageComponent,
     AgentLoginComponent,
     AgentSignupComponent,

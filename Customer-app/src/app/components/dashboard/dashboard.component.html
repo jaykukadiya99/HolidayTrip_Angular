@@ -18,22 +18,22 @@
             See What, You want.
         </button>
         <div class="collapse form-group" id="collapseFilter">
-            <select class="form-control ml-2 mt-2 " name="tripCity" id="tripCity">
-                <option disabled selected>-- Select City --</option>
+            <select class="form-control ml-2 mt-2" name="tripCity" id="tripCity" [(ngModel)]="tripCityD">
+                <option disabled selected value="selectcity">-- Select City --</option>
                 <!-- <option value="1">1+ Days</option> -->
                 <option *ngFor="let city of allCity; let i=index" [ngValue]="city.cityName">
                     {{city.cityName}}
                 </option>
             </select>
-            <select class="form-control ml-2 mt-2 " name="tripCategory" id="tripCategory">
-                <option disabled selected>-- Select Category --</option>
+            <select class="form-control ml-2 mt-2" name="tripCategory" id="tripCategory" [(ngModel)]="tripCategoryD">
+                <option disabled selected value="selectcategory">-- Select Category --</option>
                 <!-- <option value="1">1+ Days</option> -->
                 <option *ngFor="let category of allCategory; let i=index" [ngValue]="category.categoryName">
                     {{category.categoryName}}
                 </option>
             </select>
-            <select class="form-control ml-2 mt-2 " name="tripDays" id="tripDays">
-                <option disabled selected>-- Select Days --</option>
+            <select class="form-control ml-2 mt-2" name="tripDays" id="tripDays" [(ngModel)]="tripDaysD">
+                <option disabled selected value="selectdays">-- Select Days --</option>
                 <option value="1">1+ Days</option>
                 <option value="5">5+ Days</option>
                 <option value="10">10+ Days</option>

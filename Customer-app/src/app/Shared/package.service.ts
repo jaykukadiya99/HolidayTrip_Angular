@@ -11,4 +11,8 @@ export class PackageService {
   getAllPackage() {
     return this.http.get(this.baseUri+"/Package");
   }
+
+  getFilteredData(filterObj:any) {
+    return this.http.get(this.baseUri+"/Customer/customerFilter",filterObj);
+  }
 }

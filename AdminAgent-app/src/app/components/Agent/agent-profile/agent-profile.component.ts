@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AgentLoginService } from "../../../shared/Agent/agent-login.service";
-import { Agent } from "../../../Models/agent";
+import { PackageService } from "../../../shared/Agent/package.service";
 
 @Component({
   selector: 'app-agent-profile',
@@ -19,13 +19,23 @@ export class AgentProfileComponent implements OnInit {
   };
   contactNumber = [];
   public imageAgency;
+  public totPackages:any;
   public baseUri = "http://localhost:58030/Resources/";
   public contacts:string;
   constructor(private router: Router,
-    private _agentService: AgentLoginService) { }
+    private _agentService: AgentLoginService, private _packageService:PackageService) { }
 
   ngOnInit() {
     this.getAgent();
+    this._packageService.getAllPackage().subscribe(
+      data=>{
+        this.totPackages=data;
+        this.totPackages=this.totPackages.length;
+        // console.log(this.totPackages);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
   getAgent() {

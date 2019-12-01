@@ -1,7 +1,38 @@
 <app-navbar></app-navbar>
 <br>
 <div class="container">
-    <div class="card">
+    <div class="row">
+        <div class="col-sm-6 col-md-6" >
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Total Package</div>
+                <div class="card-body text-dark">
+                    <!-- <h5 class="card-title">Dark card title</h5> -->
+                    <p class="card-text text-center display-2"><a href="/">{{totPackages}}</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6" >
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Total Pending Inquiry</div>
+                <div class="card-body text-dark">
+                    <!-- <h5 class="card-title">Dark card title</h5> -->
+                    <p class="card-text text-center display-2">{{totPackages}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseProfile" aria-expanded="false" aria-controls="collapseProfile">
+                    Show Profile
+                </button>
+            </p>
+        </div>
+    </div>
+
+    <div class="card collapse mx-1 my-1" id="collapseProfile">
         <div class="card-header">My Profile</div>
         <div class="card-body">
             <form>
@@ -97,4 +128,5 @@
             </form>
         </div>
     </div>
+
 </div>
