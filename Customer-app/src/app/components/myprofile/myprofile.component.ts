@@ -32,11 +32,13 @@ export class MyprofileComponent implements OnInit {
 
   updateCustomer() {
     let custId: string = localStorage.getItem("customerId");
-    this._customerService.updateUserDetails(custId,this.customer).subscribe(
+    let formsData = new FormData();
+    formsData.append("data",JSON.stringify(this.customer));
+    this._customerService.updateUserDetails(custId,formsData).subscribe(
       data => {
         window.alert("Your profile is updated");
         this.getCustomer();
-        console.log(data);
+        //console.log(data);
       }, error => {
         console.log(error);
       }

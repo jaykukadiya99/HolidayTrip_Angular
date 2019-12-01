@@ -21,8 +21,8 @@ export class CustomerService {
     return this.http.get(this.baseUri+'/Customer/GetOne/'+custId);
   }
 
-  updateUserDetails(custId:string,customer:Customer) {
-    return this.http.put(this.baseUri+"/Customer/"+custId,customer);
+  updateUserDetails(custId:string,formsData) {
+    return this.http.put(this.baseUri+"/Customer/Update/"+custId,formsData);
   }
 
 }
