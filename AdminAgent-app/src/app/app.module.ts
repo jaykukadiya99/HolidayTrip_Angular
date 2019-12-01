@@ -27,18 +27,20 @@ import { AdminDashboardComponent } from './components/Admin/admin-dashboard/admi
 import { AdminCityComponent } from './components/Admin/admin-city/admin-city.component';
 import { AdminCategoryComponent } from './components/Admin/admin-category/admin-category.component';
 import { AgentProfileComponent } from './components/Agent/agent-profile/agent-profile.component';
+import { AgentInquiryComponent } from './components/Agent/agent-inquiry/agent-inquiry.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
 
 const agentRoutes:Routes = [
-  {path:'',component:PackageComponent,canActivate:[AuthGuardService]},
-  {path:'dashboard', component:DashboardComponent,canActivate:[AuthGuardService]},
+  {path:'package',component:PackageComponent,canActivate:[AuthGuardService]},
+  {path:'', component:DashboardComponent,canActivate:[AuthGuardService]},
   {path:'package/create',component:CreatePackageComponent,canActivate:[AuthGuardService]},
   {path:'login',component:AgentLoginComponent},
   {path:'signup',component:AgentSignupComponent},
   {path:'MyProfile',component:AgentProfileComponent},
+  {path:'inquiry',component:AgentInquiryComponent},
 
   {path:'admin',component:AdminLoginComponent},
   {path:'admin/dashboard',component:AdminDashboardComponent},
@@ -60,7 +62,8 @@ const agentRoutes:Routes = [
     AdminDashboardComponent,
     AdminCityComponent,
     AdminCategoryComponent,
-    AgentProfileComponent
+    AgentProfileComponent,
+    AgentInquiryComponent
   ],
   imports: [
     BrowserModule,

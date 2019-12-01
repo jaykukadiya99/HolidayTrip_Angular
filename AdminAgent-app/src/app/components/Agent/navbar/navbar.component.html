@@ -2,21 +2,21 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">HolidayTrip</a>
+    <a class="navbar-brand" routerLink="">HolidayTrip</a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Home</a>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <a class="nav-link" routerLink="">Home</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="">Package</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/package">Package</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Show Inquiry</a>
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/inquiry">Show Inquiry</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/MyProfile">My Profile</a>
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/MyProfile">My Profile</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
