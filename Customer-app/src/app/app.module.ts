@@ -6,6 +6,7 @@ import { HttpClientModule ,HttpInterceptor } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { JwtModule } from "@auth0/angular-jwt";
 import { JwPaginationComponent } from "jw-angular-pagination";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,6 +19,8 @@ import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
 import { PackageService } from "./Shared/package.service";
 import { MyinquiryComponent } from './components/myinquiry/myinquiry.component';
 import { MyprofileComponent } from './components/myprofile/myprofile.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const custRoute :Routes = [ 
    {path:"",component:DashboardComponent},
@@ -48,13 +51,15 @@ export function tokenGetter() {
     FormsModule,
     RouterModule.forRoot(custRoute),
     HttpClientModule,
+    Ng2SearchPipeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ["localhost:58030"],
         blacklistedRoutes: []
       }
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [CustomerService,AuthGuardService,PackageService],
   bootstrap: [AppComponent]
