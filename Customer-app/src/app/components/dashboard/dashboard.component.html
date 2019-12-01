@@ -20,17 +20,17 @@
         <div class="collapse form-group" id="collapseFilter">
             <select class="form-control ml-2 mt-2 " name="tripCity" id="tripCity">
                 <option disabled selected>-- Select City --</option>
-                <option value="1">1+ Days</option>
-                <option value="5">5+ Days</option>
-                <option value="10">10+ Days</option>
-                <option value="15">15+ Days</option>
+                <!-- <option value="1">1+ Days</option> -->
+                <option *ngFor="let city of allCity; let i=index" [ngValue]="city.cityName">
+                    {{city.cityName}}
+                </option>
             </select>
             <select class="form-control ml-2 mt-2 " name="tripCategory" id="tripCategory">
                 <option disabled selected>-- Select Category --</option>
-                <option value="1">1+ Days</option>
-                <option value="5">5+ Days</option>
-                <option value="10">10+ Days</option>
-                <option value="15">15+ Days</option>
+                <!-- <option value="1">1+ Days</option> -->
+                <option *ngFor="let category of allCategory; let i=index" [ngValue]="category.categoryName">
+                    {{category.categoryName}}
+                </option>
             </select>
             <select class="form-control ml-2 mt-2 " name="tripDays" id="tripDays">
                 <option disabled selected>-- Select Days --</option>
@@ -39,8 +39,8 @@
                 <option value="10">10+ Days</option>
                 <option value="15">15+ Days</option>
             </select>
-            <button type="submit" class="btn btn-success ml-2 mt-2"><i class="fa fa-check" aria-hidden="true"></i>Apply Filter</button>
-            <button type="submit" class="btn btn-danger ml-2 mt-2"><i class="fa fa-times" aria-hidden="true"></i>Clear Filter</button>
+            <button type="submit" class="btn btn-success ml-2 mt-2" (click)="applyFilter()"><i class="fa fa-check" aria-hidden="true"></i>Apply Filter</button>
+            <button type="submit" class="btn btn-danger ml-2 mt-2" (click)="clearFilter()"><i class="fa fa-times" aria-hidden="true"></i>Clear Filter</button>
         </div>
     </form>
     <div *ngFor="let item of pageOfItems; let i = index;">

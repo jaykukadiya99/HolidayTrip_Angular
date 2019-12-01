@@ -5,21 +5,24 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule ,HttpInterceptor } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { JwtModule } from "@auth0/angular-jwt";
-import { JwPaginationComponent } from "jw-angular-pagination";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { JwPaginationComponent } from "jw-angular-pagination";
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CustomerLoginComponent } from './components/customer-login/customer-login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CustomerOtpComponent } from './components/customer-otp/customer-otp.component';
+import { MyinquiryComponent } from './components/myinquiry/myinquiry.component';
+import { MyprofileComponent } from './components/myprofile/myprofile.component';
 
 import { CustomerService } from "./Shared/customer.service";
 import { AuthGuardService } from "./Shared/Authenticate/auth-guard.service";
 import { PackageService } from "./Shared/package.service";
-import { MyinquiryComponent } from './components/myinquiry/myinquiry.component';
-import { MyprofileComponent } from './components/myprofile/myprofile.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { CityService } from "./Shared/city.service";
+import { CategoryService } from "./Shared/category.service";
+
 import { environment } from '../environments/environment';
 
 const custRoute :Routes = [ 
@@ -61,7 +64,7 @@ export function tokenGetter() {
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [CustomerService,AuthGuardService,PackageService],
+  providers: [CustomerService,AuthGuardService,PackageService,CityService,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

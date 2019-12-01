@@ -3,6 +3,8 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
 import { PackageService } from "../../Shared/package.service";
 import { InquiryService } from "../../Shared/inquiry.service";
+import { CategoryService } from "../../Shared/category.service";
+import { CityService } from "../../Shared/city.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,13 +18,31 @@ export class DashboardComponent implements OnInit {
   pageOfItems: Array<any>;
   public inqAbout:string;
   public inqPerson:string;
+  public allCity:any;
+  public allCategory:any;
   public forArray = [1,2,3,4];
   public baseUri:string = "http://localhost:58030/Resources";
-  constructor(private router : Router,private jwtHelper : JwtHelperService, private _packageService : PackageService, private _inquiryService : InquiryService) { }
+  constructor(private router : Router,private jwtHelper : JwtHelperService, private _packageService : PackageService, private _inquiryService : InquiryService, private _cityService: CityService, private _categoryService:CategoryService) { }
   ngOnInit() {
     this.loadPackages();
     this.inqAbout="";
     this.inqPerson="";
+    this._cityService.getAllCity().subscribe(
+      data=>{
+        this.allCity=data;
+        console.log(this.allCity);
+      }, error=>{
+        console.log(error);
+      }
+    );
+    this._categoryService.getAllCategory().subscribe(
+      data=>{
+        this.allCategory=data;
+        console.log(this.allCategory);
+      }, error=>{
+        console.log(error);
+      }
+    );
     // this.items = Array(50).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
   }
 
@@ -99,6 +119,14 @@ export class DashboardComponent implements OnInit {
       }, error => {
         console.log(error);
       }
-    )
+    );
+  }
+
+  applyFilter() {
+    
+  }
+
+  clearFilter() {
+    this.loadPackages();
   }
 }
