@@ -59,6 +59,7 @@ export class AgentProfileComponent implements OnInit {
     
     this._agentService.updateAgent(formsdata).subscribe(
       data => {
+        window.alert("Your profile is updated");
         this.getAgent();
         console.log(data);
       },

@@ -1,2 +1,36 @@
 <app-navbar></app-navbar>
-<p>myprofile works!</p>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">My Profile</div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="txtFname"> First Name: </label>
+                        <input type="text" class="form-control" id="txtFname" placeholder="Enter Your First Name" name="txtFname"
+                            [(ngModel)]="customer.firstName">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtLname">Last Name: </label>
+                        <input type="text" class="form-control" id="txtLname" placeholder="Enter Your Last Name" name="txtLname"
+                            [(ngModel)]="customer.lastName">
+                    </div>
+                </div>
+                <div class="form-row pb-2">
+                    <div class="form-group col-md-6 pr-4">
+                        <label for="txtEmail">Email id: </label>
+                        <input type="text" class="form-control" id="txtEmail" name="txtEmail"
+                            [(ngModel)]="customer.email" placeholder="Enter Your Email-id">
+                    </div>
+                    <div class="form-group col-md-6 pr-4">
+                        <label for="txtMobile">Mobile number:</label>
+                        <input type="text" class="form-control" readonly id="txtMobile" name="txtMobile"
+                            [(ngModel)]="customer.mobile">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="updateCustomer()">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
