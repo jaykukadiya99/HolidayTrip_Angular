@@ -12,4 +12,12 @@ export class CategoryService {
   getAllCategory() {
     return this.http.get(this.baseUri+"/Category");
   }
+
+  addNewCategory(data){
+    return this.http.post(this.baseUri+"/Category/",data);
+  }
+
+  deleteCategory(id){
+    return this.http.delete(this.baseUri+"/Category/"+id);
+  }
 }

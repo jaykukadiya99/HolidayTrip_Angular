@@ -19,4 +19,14 @@ export class AgentLoginService {
   agentSingUp(agent:Agent){
     return this.http.post(this.baseUri+"/Agent",agent);
   }
+
+  getAgent(){
+    var id = localStorage.getItem("AgentId");
+    return this.http.get(this.baseUri+"/Agent/"+id);
+  }
+
+  updateAgent(value){
+    var id = localStorage.getItem("AgentId");
+    return this.http.put(this.baseUri+"/Agent/"+id,value);
+  }
 }
