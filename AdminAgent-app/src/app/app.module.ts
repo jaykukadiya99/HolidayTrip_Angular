@@ -26,6 +26,7 @@ import { AdminNavbarComponent } from './components/Admin/admin-navbar/admin-navb
 import { AdminDashboardComponent } from './components/Admin/admin-dashboard/admin-dashboard.component';
 import { AdminCityComponent } from './components/Admin/admin-city/admin-city.component';
 import { AdminCategoryComponent } from './components/Admin/admin-category/admin-category.component';
+import { AgentProfileComponent } from './components/Agent/agent-profile/agent-profile.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -37,6 +38,7 @@ const agentRoutes:Routes = [
   {path:'package/create',component:CreatePackageComponent,canActivate:[AuthGuardService]},
   {path:'login',component:AgentLoginComponent},
   {path:'signup',component:AgentSignupComponent},
+  {path:'MyProfile',component:AgentProfileComponent},
 
   {path:'admin',component:AdminLoginComponent},
   {path:'admin/dashboard',component:AdminDashboardComponent},
@@ -57,7 +59,8 @@ const agentRoutes:Routes = [
     AdminNavbarComponent,
     AdminDashboardComponent,
     AdminCityComponent,
-    AdminCategoryComponent
+    AdminCategoryComponent,
+    AgentProfileComponent
   ],
   imports: [
     BrowserModule,
