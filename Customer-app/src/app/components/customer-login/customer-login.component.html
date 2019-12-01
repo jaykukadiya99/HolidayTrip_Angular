@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-center align-items-center container">
     <form class="text-center col-md-4 border border-light p-5 justify-content-around" action="#">
-        <p class="h4 mb-4">Sign in / Login</p>
+        <p class="h4 mb-4">Sign in / Sign up</p>
         <div class="col-auto">
             <label class="sr-only" for="AgencyEmail">Mobile</label>
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+                    <div class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></div>
                 </div>
-                <input type="text" name="Mobile" class="form-control" [(ngModel)]="customers.Mobile" placeholder="Mobile Number">
+                <input type="text" name="Mobile" class="form-control" [(ngModel)]="customers.Mobile" placeholder="Mobile Number" required>
             </div>
         </div>        
         <div class="d-flex justify-content-around">
@@ -17,14 +17,14 @@
                     <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
                 </div>
             </div> -->
-            <div>
+            <!-- <div>
                 <a href="">Forgot password?</a>
-            </div>
+            </div> -->
         </div>
         <button class="btn btn-info btn-block my-4" (click)="login()" type="submit">Generate OTP</button>
-        <p>Not a member?
+        <!-- <p>Not a member?
             <a href="">Register</a>
-        </p>
+        </p> -->
         <!--
         <p>or sign in with:</p>
         <a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>

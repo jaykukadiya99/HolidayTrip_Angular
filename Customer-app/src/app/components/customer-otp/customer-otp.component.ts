@@ -33,7 +33,13 @@ export class CustomerOtpComponent implements OnInit {
         console.log(data);
         if(msgObj.msg=="Valid User")
         {
-          this.routes.navigate(["/"]);
+          if(localStorage.getItem("userType")=="New User") {
+            window.alert("New User...!! Welcome to HolidayTrip");
+            this.routes.navigate(["myProfile"]);
+          } else {
+            window.alert("Loggged In Successfully");
+            this.routes.navigate(["/"]);
+          }
         }
         else
         {
