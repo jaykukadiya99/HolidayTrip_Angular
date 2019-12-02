@@ -29,4 +29,12 @@ export class AdminService {
   togglePackgeStatus(pckgId : any, status : any) {
     return this.http.get(this.baseUri+"/AllRoute/adminPackageStatus/"+pckgId+"/"+status);
   }
+
+  changeCity(cityId:any, formsData:any) {
+    return this.http.put(this.baseUri+"/City/"+cityId,formsData);
+  }
+
+  changeCategory(categoryId:any, formsData:any) {
+    return this.http.put(this.baseUri+"/Category/"+categoryId,formsData);
+  }
 }
