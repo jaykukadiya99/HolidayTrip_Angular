@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { AgentLoginService } from '../../../shared/Agent/agent-login.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Agent } from '../../../Models/agent';
 @Component({
   selector: 'app-agent-login',

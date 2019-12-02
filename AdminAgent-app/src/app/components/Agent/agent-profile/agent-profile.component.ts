@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AgentLoginService } from "../../../shared/Agent/agent-login.service";
 import { PackageService } from "../../../shared/Agent/package.service";
+import { CountTotalService } from "../../../shared/Agent/count-total.service";
 
 @Component({
   selector: 'app-agent-profile',
@@ -20,19 +21,22 @@ export class AgentProfileComponent implements OnInit {
   contactNumber = [];
   public imageAgency;
   public totPackages:any;
+  public totInquiry:any;
   public baseUri = "http://localhost:58030/Resources/";
   public contacts:string;
   constructor(private router: Router,
-    private _agentService: AgentLoginService, private _packageService:PackageService) { }
+    private _agentService: AgentLoginService, private _packageService:PackageService, private _countTotalService:CountTotalService) { }
 
   ngOnInit() {
     this.getAgent();
-    this._packageService.getAllPackage().subscribe(
+    this._countTotalService.getTotalCount().subscribe(
       data=>{
+        // console.log(data);
         this.totPackages=data;
-        this.totPackages=this.totPackages.length;
-        // console.log(this.totPackages);
-      }, error => {
+        this.totPackages=this.totPackages.totalPackage;
+        this.totInquiry=data;
+        this.totInquiry=this.totInquiry.totalInquiry;
+      }, error=>{
         console.log(error);
       }
     )
