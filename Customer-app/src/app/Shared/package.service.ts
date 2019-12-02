@@ -13,6 +13,6 @@ export class PackageService {
   }
 
   getFilteredData(filterObj:any) {
-    return this.http.get(this.baseUri+"/Customer/customerFilter",filterObj);
+    return this.http.post(this.baseUri+"/Customer/customerFilter",filterObj);
   }
 }
