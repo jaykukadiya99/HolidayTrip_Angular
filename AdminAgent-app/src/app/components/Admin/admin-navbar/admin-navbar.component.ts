@@ -10,8 +10,6 @@ export class AdminNavbarComponent implements OnInit {
 
   constructor(private routes:Router) { }
 
-  
-
   ngOnInit() {
     if (localStorage.getItem("AdminToken") === null) {  
       this.routes.navigate(["/admin"]);

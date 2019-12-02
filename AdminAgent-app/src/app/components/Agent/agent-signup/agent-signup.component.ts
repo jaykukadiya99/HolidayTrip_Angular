@@ -9,12 +9,13 @@ import { Router } from "@angular/router";
   templateUrl: './agent-signup.component.html',
   styleUrls: ['./agent-signup.component.css']
 })
+
 export class AgentSignupComponent implements OnInit {
   private agents : Agent = new Agent();
   private invalidLogin;
-  constructor(private jwtHelper : JwtHelperService
-    ,private routes : Router
-    ,private _agentService:AgentLoginService) { }
+  constructor(private jwtHelper : JwtHelperService, 
+    private routes : Router,
+    private _agentService:AgentLoginService) { }
 
   ngOnInit() {
   }
@@ -30,6 +31,7 @@ export class AgentSignupComponent implements OnInit {
         // var data = JSON.parse(jwtdata.sub);
         localStorage.setItem("AgentId", jwtdata.nameid);
         this.invalidLogin = false;
+        window.alert("Signed up Successfully");
         this.routes.navigate(["/"]);
       },
       error =>

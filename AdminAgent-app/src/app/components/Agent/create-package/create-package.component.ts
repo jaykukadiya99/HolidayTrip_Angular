@@ -93,7 +93,7 @@ export class CreatePackageComponent implements OnInit {
     this._packageService.insertPackage(this.formsData).subscribe(
       data=> {
         // console.log(data);
-        window.alert("Package Inserted Successfully");
+        window.alert("Package Inserted Successfully.");
         this.router.navigate([""]);
       }, error => {
         console.log(error);
@@ -102,7 +102,6 @@ export class CreatePackageComponent implements OnInit {
   }
 
   changeImage(files, index, event) {
-    var reader = new FileReader();
     // if (files[0].size > 2000000) {
     //   window.alert("Please upload image less than < 2 MB");
     //   return;
@@ -116,7 +115,6 @@ export class CreatePackageComponent implements OnInit {
   }  
 
   changeIImage(files,event) {
-    var reader = new FileReader();
     // if (files[0].size > 2000000) {
     //   window.alert("Please upload image less than < 2 MB");
     //   return;

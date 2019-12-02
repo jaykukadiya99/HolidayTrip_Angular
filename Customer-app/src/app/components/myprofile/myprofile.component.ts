@@ -10,9 +10,14 @@ import { CustomerService } from "../../Shared/customer.service";
 export class MyprofileComponent implements OnInit {
 
   public customer:any={
-    FirstName:"", LastName:"", Mobile:"", Email: "", OTP:""
+    FirstName:"", 
+    LastName:"", 
+    Mobile:"", 
+    Email: "", 
+    OTP:""
   };
-  constructor(private router:Router, private _customerService:CustomerService) { }
+  constructor(private router:Router, 
+    private _customerService:CustomerService) { }
 
   ngOnInit() {
     this.getCustomer();

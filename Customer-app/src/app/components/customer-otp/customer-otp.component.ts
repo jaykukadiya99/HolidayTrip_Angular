@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../../Shared/customer.service";
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Customer } from "../../Models/customer";
 import { JwtHelperService } from "@auth0/angular-jwt";
 
@@ -37,12 +37,13 @@ export class CustomerOtpComponent implements OnInit {
             window.alert("New User...!! Welcome to HolidayTrip");
             this.routes.navigate(["myProfile"]);
           } else {
-            window.alert("Loggged In Successfully");
+            window.alert("Logged In Successfully");
             this.routes.navigate(["/"]);
           }
         }
         else
         {
+          window.alert("Something went Wrong!! Please try again.");
           this.routes.navigate(["/customerLogin"]);
         }
       },

@@ -16,6 +16,7 @@ export class PackageComponent implements OnInit {
   public myDate = new Date();
   public newDate:any;
   public baseUri:string="http://localhost:58030/Resources";
+
   constructor(private _packageSerive:PackageService, 
     private router:Router,
     private datePipe: DatePipe) { }
@@ -51,6 +52,7 @@ export class PackageComponent implements OnInit {
       data=>{
         // console.log(data);
         dataObj = data;  
+        window.alert("Package Deleted.");
         this.readPackge();     
       },
       error=>{

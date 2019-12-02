@@ -22,7 +22,7 @@ export class AgentLoginComponent implements OnInit {
   login(){
     this._agentLoginService.agentLogin(this.agents).subscribe(      
       data => {
-        console.log(data);
+        // console.log(data);
         let token = (<any>data).token;
         localStorage.setItem("AgentToken", token);
         //console.log(this.jwtHelper.decodeToken(token));
@@ -30,6 +30,7 @@ export class AgentLoginComponent implements OnInit {
         // var data = JSON.parse(jwtdata.sub);
         localStorage.setItem("AgentId", jwtdata.nameid);
         this.invalidLogin = false;
+        window.alert("Login Successfully");
         this.routes.navigate(["/"]);
       }, err => {
         this.invalidLogin = true;

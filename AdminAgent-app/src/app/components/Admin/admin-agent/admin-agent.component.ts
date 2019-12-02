@@ -40,7 +40,7 @@ export class AdminAgentComponent implements OnInit {
     this._agentService.getAllAgents().subscribe(
       data => {
         this.agents=data;
-        console.log(data);
+        // console.log(data);
       }, error => {
         console.log(error);
       }

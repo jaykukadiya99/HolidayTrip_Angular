@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
       this.loginLogoutText = "Logout";
     }
   }
-
+  
   loginLogoutFunc(){
     if(this.loginLogoutText == "Login") {
       this.router.navigate(["customerLogin"]);

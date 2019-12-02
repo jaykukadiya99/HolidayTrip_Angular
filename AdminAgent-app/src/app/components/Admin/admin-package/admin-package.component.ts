@@ -14,7 +14,7 @@ export class AdminPackageComponent implements OnInit {
 
   ngOnInit() {
     if(localStorage.getItem("agentIdForPackage") === null){
-      alert("Please select agent first");
+      window.alert("Please select agent first");
       this.router.navigate(["admin/agent"]);
     } else {
       this.packages=[{
@@ -52,7 +52,7 @@ export class AdminPackageComponent implements OnInit {
     let agntId = localStorage.getItem("agentIdForPackage");
     this._agentService.getAllPackage(agntId).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         localStorage.setItem("agnt",agntId);
         localStorage.removeItem("agentIdForPackage");
         this.packages = data;

@@ -23,7 +23,7 @@ export class AdminCityComponent implements OnInit {
     this._cityService.getAllCity().subscribe(
       data=>{
         this.cities=data;
-        console.log(this.cities);
+        // console.log(this.cities);
       },
       err =>
       {
@@ -36,8 +36,9 @@ export class AdminCityComponent implements OnInit {
     this._cityService.addNewCity(this.cityAdd).subscribe(
       data=>
       {
-        console.log(data);
-        this.cityAdd = new City();                
+        // console.log(data);
+        window.alert("City inserted Successfully.");
+        this.cityAdd = new City();
         this.getCitys();
       },
       err=>
@@ -51,9 +52,9 @@ export class AdminCityComponent implements OnInit {
     this._cityService.deleteCity(id).subscribe(
       data=>
       {
-        console.log(data);
+        // console.log(data);
         this.getCitys();
-        window.alert("city deleted");
+        window.alert("City deleted.");
       },
       err=>{
         console.log(err);
@@ -67,13 +68,14 @@ export class AdminCityComponent implements OnInit {
       id : citysId,
       CityName : nCity
     }
-    console.log(cityObj);
+    // console.log(cityObj);
     let fromsData = new FormData();
     fromsData.append("data",JSON.stringify(cityObj));
     this._adminService.changeCity(citysId,fromsData).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         // this.getCitys();
+        window.alert("City Updated.");
         this.router.navigate(["/admin/city"]);
       }, error => {
         console.log(error);

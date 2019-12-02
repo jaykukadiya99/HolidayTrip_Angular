@@ -128,7 +128,6 @@ export class DashboardComponent implements OnInit {
   generateInquiry(agentId : string, packageId : string){
     // console.log(agentId, packageId, inqPerson, inqAbout);
     let objInq : any = { CustomerId:"", AgentId: "", PackageId : "", Person: "", InquiryAbout : ""};
-
     // objInq.AgentId=agentId;
     // objInq.PackageId=packageId;
     // objInq.Person=this.inqPerson;
@@ -153,7 +152,7 @@ export class DashboardComponent implements OnInit {
           // console.log(data);
           this.inqAbout=" ";
           this.inqPerson=" "; 
-          window.alert("Agent will contact you soon.");
+          window.alert("Thank you...! Agent will contact you soon.");
         }, error => {
           console.log(error);
         }

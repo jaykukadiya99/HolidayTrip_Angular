@@ -18,7 +18,9 @@ export class AgentProfileComponent implements OnInit {
   public baseUri = "http://localhost:58030/Resources/";
   public contacts: string;
   constructor(private router: Router,
-    private _agentService: AgentLoginService, private _packageService: PackageService, private _countTotalService: CountTotalService) { }
+    private _agentService: AgentLoginService, 
+    private _packageService: PackageService, 
+    private _countTotalService: CountTotalService) { }
 
   ngOnInit() {
     this.totInquiry=0;
@@ -69,7 +71,6 @@ export class AgentProfileComponent implements OnInit {
     // this.contactNumber = this.agentProfile.contactMobile.split(",");
     this.agentProfile.contactMobile = this.contacts.split(",");
     let formsdata = new FormData();
-
     if (typeof (this.imageAgency) === "undefined") {
       // console.log("image not");
     }
@@ -77,7 +78,6 @@ export class AgentProfileComponent implements OnInit {
       formsdata.append("agencyImage", this.imageAgency[0], this.imageAgency[0]["name"]);
     }
     formsdata.append("data", JSON.stringify(this.agentProfile));
-
     this._agentService.updateAgent(formsdata).subscribe(
       data => {
         window.alert("Your profile is updated");

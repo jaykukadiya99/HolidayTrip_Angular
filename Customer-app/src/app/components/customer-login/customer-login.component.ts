@@ -45,5 +45,6 @@ export class CustomerLoginComponent implements OnInit {
   logOut() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("customerId");
+    window.alert("Logged Out Successfully");
  }
 }

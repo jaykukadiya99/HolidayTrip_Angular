@@ -25,6 +25,7 @@ export class AdminLoginComponent implements OnInit {
         var jwtdata = this.jwtHelper.decodeToken(token);
         // var data = JSON.parse(jwtdata.sub);
         localStorage.setItem("AdminId", jwtdata.nameid);
+        window.alert("Login Successfully.");
         this.routes.navigate(["admin/dashboard"]);
       },
       error=>{

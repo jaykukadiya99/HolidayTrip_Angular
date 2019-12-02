@@ -45,6 +45,7 @@ export class AgentInquiryComponent implements OnInit {
     this._inquiryService.setInquiryCompleted(inqId).subscribe(
       data=>{
         // console.log(data);
+        window.alert("Good...! Inquiry marked as Completed.");
         this.getAllInquiryDetails();
       }, error=> {
         console.log(error);

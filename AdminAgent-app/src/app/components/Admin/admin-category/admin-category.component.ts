@@ -35,7 +35,7 @@ export class AdminCategoryComponent implements OnInit {
     this._categoryService.addNewCategory(this.categoryAdd).subscribe(
       data=>{
         //console.log(data);
-        window.alert("Category Inserted");
+        window.alert("Category inserted Successfully.");
         this.categoryAdd=new Category();
         this.getCategory();
       },
@@ -51,6 +51,7 @@ export class AdminCategoryComponent implements OnInit {
       data=>
       {
         //console.log(data);
+        window.alert("Category Deleted.");
         this.getCategory();
       },
       err=>
@@ -71,8 +72,9 @@ export class AdminCategoryComponent implements OnInit {
     fromsData.append("data",JSON.stringify(categoryObj));
     this._adminService.changeCategory(categoryId,fromsData).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         // this.getCitys();
+        window.alert("Category Updated");
         this.router.navigate(["/admin/category"]);
       }, error => {
         console.log(error);

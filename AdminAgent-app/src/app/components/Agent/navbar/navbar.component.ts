@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   logOut() {
     localStorage.removeItem("AgentToken");
     localStorage.removeItem("AgentId");    
+    window.alert("Logged Out Successfully");
     this.routes.navigate(["/login"]);
  }
 }
