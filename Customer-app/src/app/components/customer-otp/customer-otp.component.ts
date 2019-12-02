@@ -30,7 +30,7 @@ export class CustomerOtpComponent implements OnInit {
       data => {
         let msgObj : any;
         msgObj=data;
-        console.log(data);
+        // console.log(data);
         if(msgObj.msg=="Valid User")
         {
           if(localStorage.getItem("userType")=="New User") {

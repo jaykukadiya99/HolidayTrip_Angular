@@ -22,7 +22,7 @@ export class AgentSignupComponent implements OnInit {
   signup(){
     this._agentService.agentSingUp(this.agents).subscribe(
       data => {
-        console.log("signup" + data);
+        // console.log("signup" + data);
         let token = (<any>data).token;
         localStorage.setItem("AgentToken", token);
         //console.log(this.jwtHelper.decodeToken(token));

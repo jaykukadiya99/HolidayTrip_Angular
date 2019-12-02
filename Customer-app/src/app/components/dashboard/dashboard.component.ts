@@ -15,7 +15,7 @@ import { DatePipe } from "@angular/common";
 })
 export class DashboardComponent implements OnInit {
 
-  private packages:any;
+  private packages:any;  
   items = [];
   pageOfItems: Array<any>;
   public inqAbout:string;
@@ -36,6 +36,55 @@ export class DashboardComponent implements OnInit {
     private _categoryService:CategoryService) { }
 
   ngOnInit() {
+    this.packages= [{
+      agent: [{
+        agencyAddress: {
+          addressLine1 : " ",
+          addressLine2 : " ",
+          area : " ",
+          city : " ",
+          pincode : " ",
+          state : " "
+        },
+        agencyEmail: " ",
+        agencyName : " ",
+        agentName : " ",
+        contactMobile : [],
+        id : " ",
+        idAsString : " ",
+        images : " ",
+        pass : " ",
+        status : 0,
+        website : ""
+      }],
+      package: {
+        agentId : " ",
+        brochure : " ",
+        categoryId : [],
+        cityIncluded : [],
+        days : 1,
+        description : " ",
+        exclusion : " ",
+        fixedDepartureDate : " ",
+        id : " ",
+        idAsString : " ",
+        inclusion : " ",
+        insertedDate : " ",
+        itinerary : [{
+          title : " ",
+          description : " ",
+          images : " "
+        }],
+        mainImage : " ",
+        otherInfo : " ",
+        price : 0,
+        priceDesc : " ",
+        status : 1,
+        tandC : " ",
+        title : " ",
+        trendingRank : 0
+      }
+    }];
     this.loadPackages();
     this.tripCategoryD="selectcategory";
     this.tripCityD="selectcity";
@@ -148,9 +197,15 @@ export class DashboardComponent implements OnInit {
     formsdata.append("filter",JSON.stringify(filterObj));
     this._packageService.getFilteredData(formsdata).subscribe(
       data => {
-         console.log(data);
-        //this.packages=data;
-        //this.items = this.packages;
+        // console.log(data);
+        let dataObj:any = data;
+        if(dataObj.msg=="filter Data") {
+          window.alert("Great...!! Matched Your Criterial.");
+        } else {
+          window.alert("Doesn't found Exact Result.");
+        }
+        this.packages=dataObj.data;
+        this.items = this.packages;
       }, error => {
         console.log(error);
       }

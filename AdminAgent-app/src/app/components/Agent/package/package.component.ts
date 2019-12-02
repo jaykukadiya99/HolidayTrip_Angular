@@ -22,12 +22,8 @@ export class PackageComponent implements OnInit {
 
   ngOnInit() {
     this.newDate=this.datePipe.transform(this.myDate,'yyyy-MM-dd');
-    console.log(this.newDate);
+    // console.log(this.newDate);
     this.readPackge();
-  }
-
-  isvalidDate(fixedDate:Date){
-    console.log(fixedDate<this.myDate);
   }
 
   readPackge() {

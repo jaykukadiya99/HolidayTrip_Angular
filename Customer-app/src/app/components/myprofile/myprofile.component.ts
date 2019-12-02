@@ -23,7 +23,7 @@ export class MyprofileComponent implements OnInit {
     this._customerService.getUserDetails(custId).subscribe(
       data=>{
         this.customer=data;
-        console.log(data);
+        // console.log(data);
       }, error => {
         console.log(error);
       }
