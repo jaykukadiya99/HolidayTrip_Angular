@@ -1,2 +1,30 @@
 <app-navbar></app-navbar>
-<p>agent-inquiry works!</p>
+<div class="container">
+    <table datatable class="table table-hover table-responsive-sm table-responsive-md">
+        <thead>
+            <tr>
+                <th>Package Name</th>
+                <th>Inquiry Date</th>
+                <th>Person</th>
+                <th>Other Details</th>
+                <th>View</th>
+                <th>Is done?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inq of inquiry;let i=index;">
+                <td>{{inq.pack[0].title}}</td>
+                <td>{{inq.inq.inquiryDate}}</td>
+                <td>{{inq.inq.person}}</td>
+                <td>{{inq.inq.inquiryAbout}}</td>
+                <td><button class="btn bg-secondary" (click)="viewDetails(inq.inq.customerId)">View</button></td>
+                <td *ngIf="inq.inq.inquiryStatus==0;else other_content">
+                    <button class="btn bg-success" (click)="changeStatus(inq.inq.id)" ><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+                </td>
+                <ng-template #other_content>
+                    <td>Completed</td>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+</div>
