@@ -33,11 +33,11 @@
                 </option>
             </select>
             <select class="form-control ml-2 mt-2" name="tripDays" id="tripDays" [(ngModel)]="tripDaysD">
-                <option disabled selected value="selectdays">-- Select Days --</option>
-                <option value="1">1+ Days</option>
-                <option value="5">5+ Days</option>
-                <option value="10">10+ Days</option>
-                <option value="15">15+ Days</option>
+                <option disabled selected value="0">-- Select Days --</option>
+                <option value="1">1 Day</option>
+                <option value="5">Upto 5 Days</option>
+                <option value="10">Upto 10 Days</option>
+                <option value="1000">More than 10</option>
             </select>
             <button type="submit" class="btn btn-success ml-2 mt-2" (click)="applyFilter()"><i class="fa fa-check" aria-hidden="true"></i>Apply Filter</button>
             <button type="submit" class="btn btn-danger ml-2 mt-2" (click)="clearFilter()"><i class="fa fa-times" aria-hidden="true"></i>Clear Filter</button>

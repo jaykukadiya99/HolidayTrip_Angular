@@ -11,4 +11,12 @@ export class InquiryService {
   generateInquiry(objInq : any) {
     return this.http.post(this.baseUri+"/Inquiry",objInq);
   }
+
+  getAllInquiry(custId:any){
+    return this.http.get(this.baseUri+"/Customer/customerInquiry/"+custId);
+  }
+
+  getInquiryAgent(agentId:any){
+    return this.http.get(this.baseUri+"/Agent/"+agentId);
+  }
 }

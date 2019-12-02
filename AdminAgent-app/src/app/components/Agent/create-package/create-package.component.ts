@@ -24,7 +24,10 @@ export class CreatePackageComponent implements OnInit {
   public cityArray:any[] = new Array();
   public categoryArray:any[] = new Array();
   public formsData:FormData = new FormData();
-  constructor(private _packageService:PackageService, private _cityService:CityService, private _categoryService:CategoryService, private router:Router) { }
+  constructor(private _packageService:PackageService, 
+    private _cityService:CityService, 
+    private _categoryService:CategoryService, 
+    private router:Router) { }
 
   ngOnInit() {
     this.cityArray=[];
@@ -89,7 +92,9 @@ export class CreatePackageComponent implements OnInit {
 
     this._packageService.insertPackage(this.formsData).subscribe(
       data=> {
-        console.log(data);        
+        // console.log(data);
+        window.alert("Package Inserted Successfully");
+        this.router.navigate([""]);
       }, error => {
         console.log(error);
       }
