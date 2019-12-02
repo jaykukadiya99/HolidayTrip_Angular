@@ -8,6 +8,7 @@ import { InquiryService } from "../../../shared/Agent/inquiry.service";
 })
 export class AgentInquiryComponent implements OnInit {
 
+  public inquiry:any;
   constructor(private router:Router,private _inquiryService:InquiryService) { }
 
   ngOnInit() {
@@ -17,8 +18,35 @@ export class AgentInquiryComponent implements OnInit {
   getAllInquiryDetails() {
     this._inquiryService.getAllInquiry().subscribe(
       data=>{
-        console.log(data);
+        this.inquiry=data;
+        // console.log(data);
       }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+  viewDetails(custId : string){
+    // console.log(custId);
+    let custDetail:any;
+    this._inquiryService.getSpecificCustomer(custId).subscribe(
+      data => {
+        custDetail = data;
+        window.alert("Customer Name: "+custDetail.firstName+"\nContact: "+custDetail.mobile+"\nEmail: "+custDetail.email);
+        // console.log(custDetail.firstName);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+  changeStatus(inqId:string) {
+    console.log(inqId);
+    this._inquiryService.setInquiryCompleted(inqId).subscribe(
+      data=>{
+        console.log(data);
+        this.getAllInquiryDetails();
+      }, error=> {
         console.log(error);
       }
     )
