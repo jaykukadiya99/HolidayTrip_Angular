@@ -4,9 +4,9 @@
         <div class="col-auto">
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                <div class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></div>
                 </div>
-                <input type="text" id="username" name="username" [(ngModel)]="admins.username" class="form-control" placeholder="Enter UserName">
+                <input type="text" id="username" name="username" [(ngModel)]="admins.username" class="form-control" placeholder="Enter User Name">
             </div>
         </div>
         <div class="col-auto">        
@@ -17,21 +17,6 @@
                 <input type="password" id="Pass" name="Pass" [(ngModel)]="admins.Pass" class="form-control" placeholder="Password">
             </div>
         </div>    
-        <div class="d-flex justify-content-around">
-            <!-- <div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                </div>
-            </div> -->            
-        </div>
         <button class="btn btn-info btn-block my-4" (click)="login()" type="submit">Sign in</button>        
-        <!--
-        <p>or sign in with:</p>
-        <a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fa fa-twitter light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fa fa-linkedin-in light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fa fa-github light-blue-text"></i></a>
-        -->
     </form>
     </div>

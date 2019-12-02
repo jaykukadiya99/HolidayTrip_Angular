@@ -21,6 +21,8 @@ export class AgentProfileComponent implements OnInit {
     private _agentService: AgentLoginService, private _packageService: PackageService, private _countTotalService: CountTotalService) { }
 
   ngOnInit() {
+    this.totInquiry=0;
+    this.totPackages=0;
     this.agentProfile = {
       agencyAddress: {
         addressline1: " ",

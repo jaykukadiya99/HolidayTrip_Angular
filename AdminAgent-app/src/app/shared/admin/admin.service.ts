@@ -12,4 +12,16 @@ export class AdminService {
   agentLogin(admins:Admin) {
     return this.http.post(this.baseUri+"/AllRoute/AdminLogin",admins);
   }
+
+  getTotCount() {
+    return this.http.get(this.baseUri+"/AllRoute/adminCount");
+  }
+
+  getAllAgents() {
+    return this.http.get(this.baseUri+"/Agent");
+  }
+
+  getAllPackage(agentId : any) {
+    return this.http.get(this.baseUri+"/AllRoute/AgentPackage/"+agentId);
+  }
 }

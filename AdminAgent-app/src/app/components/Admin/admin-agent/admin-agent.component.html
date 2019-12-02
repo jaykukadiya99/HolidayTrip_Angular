@@ -1,0 +1,37 @@
+<app-admin-navbar></app-admin-navbar>
+<br>
+<div class="container">
+    <table datatable class="table table-hover table-responsive-sm table-responsive-md">
+        <thead>
+            <tr>
+                <th>Sr.</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Package</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let agent of agents;let i=index;">
+                <td>{{i+1}}</td>
+                <td>
+                    <img src="{{baseUri}}/Images/{{agent.images}}" alt="{{agent.agencyName}} Image" class="rounded" width="200" height="90">
+                    <br><b>By: </b>{{agent.agentName}}
+                </td>
+                <td>{{agent.agencyName}}</td>
+                <td>{{agent.contactMobile}}</td>
+                <td>{{agent.agencyEmail}}</td>
+                <td>{{agent.agencyAddress.addressLine1}},<br>
+                    {{agent.agencyAddress.addressLine2}},<br>
+                    {{agent.agencyAddress.area}},<br>
+                    {{agent.agencyAddress.city}},<br>
+                    {{agent.agencyAddress.state}}.
+                </td>
+                <td><button class="btn bg-secondary" (click)="viewDetails(agent.id)">View</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

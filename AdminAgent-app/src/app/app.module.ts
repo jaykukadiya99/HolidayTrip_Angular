@@ -27,6 +27,8 @@ import { AdminCityComponent } from './components/Admin/admin-city/admin-city.com
 import { AdminCategoryComponent } from './components/Admin/admin-category/admin-category.component';
 import { AgentProfileComponent } from './components/Agent/agent-profile/agent-profile.component';
 import { AgentInquiryComponent } from './components/Agent/agent-inquiry/agent-inquiry.component';
+import { AdminAgentComponent } from './components/Admin/admin-agent/admin-agent.component';
+import { AdminPackageComponent } from './components/Admin/admin-package/admin-package.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -43,7 +45,9 @@ const agentRoutes:Routes = [
   {path:'admin',component:AdminLoginComponent},
   {path:'admin/dashboard',component:AdminDashboardComponent},
   {path:'admin/city',component:AdminCityComponent},
-  {path:'admin/category',component:AdminCategoryComponent}
+  {path:'admin/category',component:AdminCategoryComponent},
+  {path:'admin/agent',component:AdminAgentComponent},
+  {path:'admin/package',component:AdminPackageComponent}
 ]
 
 @NgModule({
@@ -60,7 +64,9 @@ const agentRoutes:Routes = [
     AdminCityComponent,
     AdminCategoryComponent,
     AgentProfileComponent,
-    AgentInquiryComponent
+    AgentInquiryComponent,
+    AdminAgentComponent,
+    AdminPackageComponent
   ],
   imports: [
     BrowserModule,
