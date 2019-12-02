@@ -139,6 +139,7 @@ export class DashboardComponent implements OnInit {
     formsdata.append("filter",JSON.stringify(filterObj));
     this._packageService.getFilteredData(formsdata).subscribe(
       data => {
+        console.log(data);
         this.packages=data;
         this.items = this.packages;
       }, error => {
