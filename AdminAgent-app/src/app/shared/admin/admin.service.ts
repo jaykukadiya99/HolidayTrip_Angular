@@ -27,6 +27,6 @@ export class AdminService {
 
   //AllRoute/agentPackageStatus
   togglePackgeStatus(pckgId : any, status : any) {
-    return this.http.get(this.baseUri+"/AllRoute/agentPackage/Status/"+pckgId+"/"+status);
+    return this.http.get(this.baseUri+"/AllRoute/adminPackageStatus/"+pckgId+"/"+status);
   }
 }

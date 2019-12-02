@@ -71,7 +71,8 @@ export class AdminPackageComponent implements OnInit {
     }
     this._agentService.togglePackgeStatus(packageId,newStatus).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
+        window.alert("Status Changed");
         let agnt = localStorage.getItem("agnt");
         localStorage.setItem("agentIdForPackage",agnt);
         this.getPackage();
