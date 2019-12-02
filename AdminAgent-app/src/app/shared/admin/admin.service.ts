@@ -24,4 +24,9 @@ export class AdminService {
   getAllPackage(agentId : any) {
     return this.http.get(this.baseUri+"/AllRoute/AgentPackage/"+agentId);
   }
+
+  //AllRoute/agentPackageStatus
+  togglePackgeStatus(pckgId : any, status : any) {
+    return this.http.get(this.baseUri+"/AllRoute/agentPackage/Status/"+pckgId+"/"+status);
+  }
 }

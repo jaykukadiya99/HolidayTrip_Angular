@@ -69,10 +69,15 @@ export class AdminPackageComponent implements OnInit {
     } else if(packageStatus==0) {
       newStatus=1;
     }
-
-    //ifok
-    let agnt = localStorage.getItem("agnt");
-    localStorage.setItem("agentIdForPackage",agnt);
-    this.getPackage();
+    this._agentService.togglePackgeStatus(packageId,newStatus).subscribe(
+      data => {
+        console.log(data);
+        let agnt = localStorage.getItem("agnt");
+        localStorage.setItem("agentIdForPackage",agnt);
+        this.getPackage();
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 }
