@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CategoryService } from "../../../shared/Category/category.service";
 import { Category } from "../../../Models/category";
-
+import { AdminService } from "../../../shared/admin/admin.service";
 
 @Component({
   selector: 'app-admin-category',
@@ -10,9 +10,10 @@ import { Category } from "../../../Models/category";
   styleUrls: ['./admin-category.component.css']
 })
 export class AdminCategoryComponent implements OnInit {
+
   private categoryAdd : Category = new Category();
   private categories:any;
-  constructor(private _categoryService:CategoryService,private router :Router) { }
+  constructor(private _categoryService:CategoryService,private router :Router, private _adminService : AdminService) { }
 
   ngOnInit() {
     this.getCategory();
@@ -56,6 +57,30 @@ export class AdminCategoryComponent implements OnInit {
       {
         console.log(err);
       }
-    )
+    );
+  }
+
+  updateCategory(event:any,categoryId:any){
+    let nCategory = event.target.txtCategory.value;
+    let categoryObj : any = {
+      id : categoryId,
+      CategoryName : nCategory
+    }
+    console.log(categoryObj);
+    let fromsData = new FormData();
+    fromsData.append("data",JSON.stringify(categoryObj));
+    this._adminService.changeCategory(categoryId,fromsData).subscribe(
+      data => {
+        console.log(data);
+        // this.getCitys();
+        this.router.navigate(["/admin/category"]);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+  reloadData(){
+    this.getCategory();
   }
 }

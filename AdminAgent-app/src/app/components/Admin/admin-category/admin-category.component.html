@@ -44,10 +44,46 @@
             <tr *ngFor="let cat of categories;let i=index;">
                 <td>{{i+1}}</td>                
                 <td>{{cat.categoryName}}</td>             
-                <td><button class="btn bg-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
-                <td><button class="btn bg-danger" (click)="deleteCategory(cat.id)" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
+                <td>
+                  <button type="button" class="btn btn-warning" data-toggle="modal" [attr.data-target]="'#categoryModalCenter'+ (i)">
+                      <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn bg-danger" (click)="deleteCategory(cat.id)" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button>
+                </td>
             </tr>
         </tbody>
-    </table>    
-</div>
+    </table>
+    <div *ngFor="let cat of categories;let i=index;">
+      <div class="modal fade" id="categoryModalCenter{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title text-capitalize" id="categoryModalCenterTitle{{i}}">Edit Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="updateCategory($event,cat.id)">
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-4">
+                      <label for="txtCategory">Category:</label>
+                  </div>
+                  <div class="col-md-8">
+                      <input type="text" class="form-control" name="txtCategory" id="txtCategory" value="{{cat.categoryName}}">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <input type="submit" class="btn btn-success" value="Save" name="Save">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reloadData()">Close</button>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+    </div>    
+  </div>
 </div>
