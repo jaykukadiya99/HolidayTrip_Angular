@@ -8,12 +8,12 @@
                     <div class="form-group col-md-8 pr-4">
                         <label for="Title">Package Title</label>
                         <input type="text" class="form-control" id="Title"
-                            placeholder="Place your Package Title here....." name="Title" [(ngModel)]="packages.Title">
+                            placeholder="Place your Package Title here....." name="Title" [(ngModel)]="packages.Title" required>
                     </div>
                     <div class="form-group col-md-4 pr-4">
                         <label for="Days">Days</label>
                         <input type="number" class="form-control" id="Days" placeholder="Total days of package"
-                            name="Days" [(ngModel)]="packages.Days">
+                            name="Days" [(ngModel)]="packages.Days" required>
                         <small class="text-info">
                             {{packages.Days}} Days and {{packages.Days-1}} Nights
                         </small>
@@ -33,7 +33,7 @@
                         <div class="form-row">
                             <label for="FixedDepartureDate">Fixed Departure Date</label>
                             <input type="date" class="form-control" id="FixedDepartureDate" name="FixedDepartureDate"
-                                [(ngModel)]="packages.FixedDepartureDate">
+                                [(ngModel)]="packages.FixedDepartureDate" required>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                         <!-- <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities"> -->
                         <select name="CityInclude" #citySelect
                             (dblclick)="onCitySelected(citySelect.options[citySelect.options.selectedIndex].text)"
-                            id="CityInclude" class="form-control" multiple data-live-search="true">
+                            id="CityInclude" class="form-control" multiple data-live-search="true" required>
                             <!-- <select name="CityInclude" id="CityInclude" class="selectpicker" multiple data-live-search="true" [(ngModel)]="cities"> -->
                             <option *ngFor="let city of selectCities; let i=index" [ngValue]="city.cityName">
                                 {{city.cityName}}</option>
@@ -108,7 +108,7 @@
                         <!-- <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category"> -->
                         <select name="Category" #categorySelect
                             (dblclick)="onCategorySelected(categorySelect.options[categorySelect.options.selectedIndex].text)"
-                            id="Category" class="form-control" multiple data-live-search="true">
+                            id="Category" class="form-control" multiple data-live-search="true" required>
                             <!-- <select name="Category" id="Category" class="selectpicker" multiple data-live-search="true" [(ngModel)]="categories"> -->
                             <option *ngFor="let category of selectCategories; let i=index"
                                 [ngValue]="category.categoryName">{{category.categoryName}}</option>
@@ -121,12 +121,12 @@
                 <div class="form-row pb-2">
                     <div class="form-group col-md-3">
                         <label for="Price">Package Price:</label>
-                        <input type="number" class="form-control" id="Price" name="Price" [(ngModel)]="packages.Price">
+                        <input type="number" class="form-control" id="Price" name="Price" [(ngModel)]="packages.Price" required>
                     </div>
                     <div class="form-group col-md-9">
                         <label for="PriceDesc">Price Description:</label>
                         <input type="text" class="form-control" id="PriceDesc" name="PriceDesc"
-                            [(ngModel)]="packages.PriceDesc">
+                            [(ngModel)]="packages.PriceDesc" required>
                     </div>
                 </div>
                 <div class="form-row pb-2">
@@ -140,7 +140,7 @@
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" #MainImage accept=".png, .jpg ,.jpeg ,.gif"
                                     (change)="changeImage(MainImage.files,0,$event)" id="MainImage" name="MainImage"
-                                    aria-describedby="MainImageLB">
+                                    aria-describedby="MainImageLB" required>
                                 <label class="custom-file-label" for="MainImage">Choose Image</label>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" #Brochure accept=".pdf"
                                     (change)="changeImage(Brochure.files,1,$event)" id="Brochure" name="Brochure"
-                                    aria-describedby="BrochureLB">
+                                    aria-describedby="BrochureLB" required>
                                 <label class="custom-file-label" for="Brochure">Choose PDF file</label>
                             </div>
                         </div>

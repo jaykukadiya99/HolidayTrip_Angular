@@ -44,7 +44,7 @@ export class AgentInquiryComponent implements OnInit {
     console.log(inqId);
     this._inquiryService.setInquiryCompleted(inqId).subscribe(
       data=>{
-        console.log(data);
+        // console.log(data);
         this.getAllInquiryDetails();
       }, error=> {
         console.log(error);

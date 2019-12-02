@@ -15,7 +15,7 @@ export class PackageService {
   //get all package of this agent
   getAllPackage(){    
     var tokenid = localStorage.getItem("AgentId");
-    console.log(tokenid);
+    // console.log(tokenid);
     return this.http.get(this.baseUri+"/AllRoute/AgentPackage/"+tokenid);
   }
 

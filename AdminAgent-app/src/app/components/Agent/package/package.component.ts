@@ -2,27 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { PackageService } from "../../../shared/Agent/package.service";
 import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-package',
   templateUrl: './package.component.html',
-  styleUrls: ['./package.component.css']
+  styleUrls: ['./package.component.css'],
+  providers:[DatePipe]
 })
 export class PackageComponent implements OnInit {
 
   private packages:any;
+  public myDate = new Date();
+  public newDate:any;
   public baseUri:string="http://localhost:58030/Resources";
-  constructor(private _packageSerive:PackageService, private router:Router) { }
+  constructor(private _packageSerive:PackageService, 
+    private router:Router,
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.newDate=this.datePipe.transform(this.myDate,'yyyy-MM-dd');
+    console.log(this.newDate);
     this.readPackge();
+  }
+
+  isvalidDate(fixedDate:Date){
+    console.log(fixedDate<this.myDate);
   }
 
   readPackge() {
     this._packageSerive.getAllPackage().subscribe(
       data=> {
         this.packages=data;
-        console.log(this.packages);
+        // console.log(this.packages);
       },
       error=>{
         console.log(error);
@@ -41,7 +53,7 @@ export class PackageComponent implements OnInit {
     var dataObj :any;
     this._packageSerive.deletePackage(id).subscribe(
       data=>{
-        console.log(data);
+        // console.log(data);
         dataObj = data;  
         this.readPackge();     
       },

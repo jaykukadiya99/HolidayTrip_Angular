@@ -5,11 +5,13 @@ import { PackageService } from "../../Shared/package.service";
 import { InquiryService } from "../../Shared/inquiry.service";
 import { CategoryService } from "../../Shared/category.service";
 import { CityService } from "../../Shared/city.service";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers:[DatePipe]
 })
 export class DashboardComponent implements OnInit {
 
@@ -25,12 +27,19 @@ export class DashboardComponent implements OnInit {
   public tripDaysD:string;
   public forArray = [1,2,3,4];
   public baseUri:string = "http://localhost:58030/Resources";
-  constructor(private router : Router,private jwtHelper : JwtHelperService, private _packageService : PackageService, private _inquiryService : InquiryService, private _cityService: CityService, private _categoryService:CategoryService) { }
+  
+  constructor(private router : Router,
+    private jwtHelper : JwtHelperService, 
+    private _packageService : PackageService, 
+    private _inquiryService : InquiryService, 
+    private _cityService: CityService, 
+    private _categoryService:CategoryService) { }
+
   ngOnInit() {
     this.loadPackages();
     this.tripCategoryD="selectcategory";
     this.tripCityD="selectcity";
-    this.tripDaysD="selectdays";
+    this.tripDaysD="0";
     this.inqAbout="";
     this.inqPerson="";
     this._cityService.getAllCity().subscribe(
@@ -130,8 +139,8 @@ export class DashboardComponent implements OnInit {
 
   applyFilter() {
     let filterObj:any = {
-      City : this.tripCityD,
-      Category : this.tripCategoryD,
+      CityIncluded : [this.tripCityD],
+      CategoryId : [this.tripCategoryD],
       Days : this.tripDaysD
     }
     // console.log(filterObj);

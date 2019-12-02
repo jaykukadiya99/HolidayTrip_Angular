@@ -14,7 +14,8 @@
                 <th>Price</th>
                 <th>Departure Date</th>
                 <th>Cities</th>
-                <th>Edit</th>
+                <th>Status</th>
+                <!-- <th>Edit</th> -->
                 <th>Delete</th>
             </tr>
         </thead>
@@ -27,10 +28,20 @@
                     <a href="#" data-toggle="modal" [attr.data-target]="'#tripModalCenter'+i">{{package.title}}</a>
                 </td>
                 <td>{{package.price}}</td>
-                <td>{{package.fixedDepartureDate}}</td>
+                <td *ngIf="package.fixedDepartureDate > newDate;else other_content">
+                    {{package.fixedDepartureDate}}
+                </td>
+                <ng-template #other_content>
+                    <td>{{package.fixedDepartureDate}}<small> (Outdated)</small></td>
+                </ng-template>
                 <td>{{package.cityIncluded}}</td>
-                
-                <td><button class="btn bg-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
+                <td *ngIf="package.status==0;else other_cntn">
+                    Disabled by Admin
+                </td>
+                <ng-template #other_cntn>
+                    <td>Enable</td>
+                </ng-template>    
+                <!-- <td><button class="btn bg-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td> -->
                 <td><button class="btn bg-danger" (click)="deletePackage(package.id)" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
             </tr>
         </tbody>
