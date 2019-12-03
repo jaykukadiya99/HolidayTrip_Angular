@@ -11,13 +11,13 @@ export class AdminNavbarComponent implements OnInit {
   constructor(private routes:Router) { }
 
   ngOnInit() {
-    if (localStorage.getItem("AdminToken") === null) {  
+    if (localStorage.getItem("AdminId") === null) {  
       this.routes.navigate(["/admin"]);
     }
   }
 
   logOut() {
-    localStorage.removeItem("AdminToken");
+    // localStorage.removeItem("AdminToken");
     localStorage.removeItem("AdminId");    
     this.routes.navigate(["/admin"]);
  }

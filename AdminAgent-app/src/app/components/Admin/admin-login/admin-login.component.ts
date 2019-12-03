@@ -19,14 +19,21 @@ export class AdminLoginComponent implements OnInit {
   login(){
     this._adminLoginService.agentLogin(this.admins).subscribe(
       data=>{
-        let token = (<any>data).token;
-        localStorage.setItem("AdminToken", token);
-        console.log(this.jwtHelper.decodeToken(token));
-        var jwtdata = this.jwtHelper.decodeToken(token);
-        // var data = JSON.parse(jwtdata.sub);
-        localStorage.setItem("AdminId", jwtdata.nameid);
-        window.alert("Login Successfully.");
-        this.routes.navigate(["admin/dashboard"]);
+        // let token = (<any>data).token;
+        // localStorage.setItem("AdminToken", token);
+        // console.log(this.jwtHelper.decodeToken(token));
+        // var jwtdata = this.jwtHelper.decodeToken(token);
+        // // var data = JSON.parse(jwtdata.sub);
+        // localStorage.setItem("AdminId", jwtdata.nameid);
+        let adminObj:any = data;
+        // console.log(data);
+        if(adminObj.msg=="Invalid User") {
+          window.alert("Invalid User");
+        } else {
+          localStorage.setItem("AdminId",adminObj.id);
+          window.alert("Login Successfully.");
+          this.routes.navigate(["admin/dashboard"]);
+        }
       },
       error=>{
         console.log(error);
