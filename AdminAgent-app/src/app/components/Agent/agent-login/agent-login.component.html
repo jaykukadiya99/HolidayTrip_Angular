@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-center align-items-center container">
-<form class="text-center col-md-4 border border-light p-5 justify-content-around" >
+<form class="text-center col-md-4 border border-light p-5 justify-content-around" ngNativeValidate #myForm="ngForm">
     <p class="h4 mb-4">Sign In</p>    
     <div class="col-auto">
         <div class="input-group mb-4">
             <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
             </div>
-            <input type="email" id="AgencyEmail" name="AgencyEmail" [(ngModel)]="agents.AgencyEmail" class="form-control" placeholder="E-mail">
+            <input type="email" id="AgencyEmail" name="AgencyEmail" required [(ngModel)]="agents.AgencyEmail" class="form-control" placeholder="E-mail">
         </div>
     </div>
     <div class="col-auto">        
@@ -14,7 +14,7 @@
             <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></div>
             </div>
-            <input type="password" id="Pass" name="Pass" [(ngModel)]="agents.Pass" class="form-control" placeholder="Password">
+            <input type="password" id="Pass" name="Pass" required [(ngModel)]="agents.Pass" class="form-control" placeholder="Password">
         </div>
     </div>    
     <div class="d-flex justify-content-around">
@@ -25,7 +25,7 @@
             </div>
         </div> -->        
     </div>
-    <button class="btn btn-info btn-block my-4" (click)="login()" type="submit">Sign in</button>
+    <button class="btn btn-info btn-block my-4" (click)="login()" type="submit" [disabled]="!myForm.form.valid">Sign in</button>
     <p>Not a member?
         <a href="/signup">Sign Up</a>
     </p>

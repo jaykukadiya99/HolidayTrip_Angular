@@ -24,15 +24,19 @@ export class AgentSignupComponent implements OnInit {
     this._agentService.agentSingUp(this.agents).subscribe(
       data => {
         // console.log("signup" + data);
-        let token = (<any>data).token;
-        localStorage.setItem("AgentToken", token);
-        //console.log(this.jwtHelper.decodeToken(token));
-        var jwtdata = this.jwtHelper.decodeToken(token);
-        // var data = JSON.parse(jwtdata.sub);
-        localStorage.setItem("AgentId", jwtdata.nameid);
-        this.invalidLogin = false;
-        window.alert("Signed up Successfully");
-        this.routes.navigate(["/"]);
+        if(data===null){
+          window.alert("Something Wrong. Please try again later.");
+        } else {
+          let token = (<any>data).token;
+          localStorage.setItem("AgentToken", token);
+          //console.log(this.jwtHelper.decodeToken(token));
+          var jwtdata = this.jwtHelper.decodeToken(token);
+          // var data = JSON.parse(jwtdata.sub);
+          localStorage.setItem("AgentId", jwtdata.nameid);
+          this.invalidLogin = false;
+          window.alert("Signed up Successfully");
+          this.routes.navigate(["/"]);
+        }
       },
       error =>
       {

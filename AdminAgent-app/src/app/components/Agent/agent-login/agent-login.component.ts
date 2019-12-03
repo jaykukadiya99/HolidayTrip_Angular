@@ -23,15 +23,19 @@ export class AgentLoginComponent implements OnInit {
     this._agentLoginService.agentLogin(this.agents).subscribe(      
       data => {
         // console.log(data);
-        let token = (<any>data).token;
-        localStorage.setItem("AgentToken", token);
-        //console.log(this.jwtHelper.decodeToken(token));
-        var jwtdata = this.jwtHelper.decodeToken(token);
-        // var data = JSON.parse(jwtdata.sub);
-        localStorage.setItem("AgentId", jwtdata.nameid);
-        this.invalidLogin = false;
-        window.alert("Login Successfully");
-        this.routes.navigate(["/"]);
+        if(data===null){
+          window.alert("Unknown User..! Try agin later.")
+        } else {
+          let token = (<any>data).token;
+          localStorage.setItem("AgentToken", token);
+          //console.log(this.jwtHelper.decodeToken(token));
+          var jwtdata = this.jwtHelper.decodeToken(token);
+          // var data = JSON.parse(jwtdata.sub);
+          localStorage.setItem("AgentId", jwtdata.nameid);
+          this.invalidLogin = false;
+          window.alert("Login Successfully");
+          this.routes.navigate(["/"]);
+        }
       }, err => {
         this.invalidLogin = true;
       }

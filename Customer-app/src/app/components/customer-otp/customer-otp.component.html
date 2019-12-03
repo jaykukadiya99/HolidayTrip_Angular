@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center align-items-center container">
-    <form class="text-center col-md-4 border border-light p-5 justify-content-around" action="#">
+    <form class="text-center col-md-4 border border-light p-5 justify-content-around" ngNativeValidate #myForm="ngForm">
         <p class="h4 mb-4">OTP</p>
         <div class="col-auto">
             <label class="sr-only" for="AgencyEmail">OTP</label>
@@ -7,9 +7,11 @@
                 <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></div>
                 </div>
-                <input type="text" name="OTP" class="form-control" [(ngModel)]="customers.OTP" >
+                <input type="text" name="OTP" class="form-control" required pattern="^[0-9]{6}$" [(ngModel)]="customers.OTP" >
             </div>
         </div>
-        <button class="btn btn-info btn-block my-4" (click)="otpCheck()" type="submit">Login</button>        
+        <button class="btn btn-info btn-block my-4" (click)="otpCheck()" type="submit" [disabled]="!myForm.form.valid">
+            Login
+        </button>        
     </form>
     </div>
