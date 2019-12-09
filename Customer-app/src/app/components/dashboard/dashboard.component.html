@@ -160,6 +160,20 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-12">
+                                            <div class="collapse" id="collapseInclusion">
+                                                <div class="card card-body">
+                                                    <p>{{ pageOfItems[i + y].package.inclusion }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="collapseExclusion">
+                                                <div class="card card-body">
+                                                    <p>{{ pageOfItems[i + y].package.exclusion }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <p>
@@ -178,16 +192,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="collapse" id="collapseInclusion">
-                                                <div class="card card-body">
-                                                    <p>{{ pageOfItems[i + y].package.inclusion }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="collapse" id="collapseExclusion">
-                                                <div class="card card-body">
-                                                    <p>{{ pageOfItems[i + y].package.exclusion }}</p>
-                                                </div>
-                                            </div>  
                                             <div class="collapse" id="collapseOtherInfo">
                                                 <div class="card card-body">
                                                     <p>{{ pageOfItems[i + y].package.otherInfo }}</p>
@@ -300,15 +304,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-center">
-                                            <p>
-                                                <button (click)="clickWishList()" class="btn" type="button">
-                                                    <i class="fa fa-heart text-danger" aria-hidden="true"></i>
-                                                </button>
-                                            </p>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="modal-footer">
