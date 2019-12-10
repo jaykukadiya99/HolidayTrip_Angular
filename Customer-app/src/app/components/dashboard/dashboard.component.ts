@@ -6,6 +6,8 @@ import { InquiryService } from "../../Shared/inquiry.service";
 import { CategoryService } from "../../Shared/category.service";
 import { CityService } from "../../Shared/city.service";
 import { DatePipe } from "@angular/common";
+import html2canvas from "html2canvas";
+import * as jspdf from "jspdf";
 
 @Component({
   selector: 'app-dashboard',
@@ -213,5 +215,29 @@ export class DashboardComponent implements OnInit {
 
   clearFilter() {
     this.loadPackages();
+  }
+
+  shareWhatsapp(divId:any,lastId:any) {
+    var modalId = divId+lastId; 
+    console.log(modalId);
+    var data = document.getElementById(modalId);
+
+    html2canvas(data).then(function(canvas){
+      var generatedImage = canvas.toDataURL("image/png").replace("image/png","image/octet-stream");
+      var a = document.createElement('a');
+         a.href = generatedImage;
+         a.download = 'HolidayTrip.png';
+         a.click();
+      // window.location.href=generatedImage;
+    });
+    
+    // html2canvas(data).then(canvas => {
+    //   const contentDataUrl = canvas.toDataURL('image/png');
+    //   let pdf = new jspdf('p','mm','a4');
+    //   pdf.addImage(contentDataUrl, 'PNG', 0, 0, 208, canvas.height*208/canvas.width);
+    //   pdf.save('File.pdf');
+    // });
+
+
   }
 }
