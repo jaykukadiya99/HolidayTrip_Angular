@@ -7,7 +7,11 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></div>
                 </div>
-                <input type="text" name="Mobile" class="form-control" required pattern="^[6-9][0-9]{9}$" [(ngModel)]="customers.Mobile" placeholder="Mobile Number" required>
+                <input type="text" name="Mobile" class="form-control" required 
+                pattern="^[6-9][0-9]{9}$" 
+                title="Enter Valid Mobile Number"
+                [(ngModel)]="customers.Mobile" 
+                placeholder="Mobile Number" required>
             </div>
         </div>        
         <div class="d-flex justify-content-around">
@@ -21,7 +25,7 @@
                 <a href="">Forgot password?</a>
             </div> -->
         </div>
-        <button class="btn btn-info btn-block my-4" (click)="login()" type="submit" [disabled]="!myForm.form.valid">Generate OTP</button>
+        <button class="btn btn-info btn-block my-4" title="Please Enter Valid Mobile Number" (click)="login()" type="submit" [disabled]="!myForm.form.valid">Generate OTP</button>
         <!-- <p>Not a member?
             <a href="">Register</a>
         </p> -->
