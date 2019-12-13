@@ -4,24 +4,30 @@
     <div class="card">
         <div class="card-header">My Profile</div>
         <div class="card-body">
-            <form>
+            <form ngNativeValidate #myForm="ngForm">
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="txtFname"> First Name: </label>
                         <input type="text" class="form-control" id="txtFname" placeholder="Enter Your First Name" name="txtFname"
-                            [(ngModel)]="customer.firstName">
+                            [(ngModel)]="customer.firstName" 
+                            pattern="^[a-zA-Z ]{2,30}$"
+                            title="Enter Valid Name (a-z,A-Z)">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="txtLname">Last Name: </label>
                         <input type="text" class="form-control" id="txtLname" placeholder="Enter Your Last Name" name="txtLname"
-                            [(ngModel)]="customer.lastName">
+                            [(ngModel)]="customer.lastName"
+                            pattern="^[a-zA-Z ]{2,30}$"
+                            title="Enter Valid Name (a-z,A-Z)">
                     </div>
                 </div>
                 <div class="form-row pb-2">
                     <div class="form-group col-md-6 pr-4">
                         <label for="txtEmail">Email id: </label>
                         <input type="text" class="form-control" id="txtEmail" name="txtEmail"
-                            [(ngModel)]="customer.email" placeholder="Enter Your Email-id">
+                            [(ngModel)]="customer.email" placeholder="Enter Your Email-id"
+                            pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                            title="Enter Valid Email">
                     </div>
                     <div class="form-group col-md-6 pr-4">
                         <label for="txtMobile">Mobile number:</label>
@@ -29,7 +35,10 @@
                             [(ngModel)]="customer.mobile">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" (click)="updateCustomer()">Update Profile</button>
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="!myForm.form.valid"
+                    title="Enter Valid Data"
+                    (click)="updateCustomer()">Update Profile</button>
             </form>
         </div>
     </div>

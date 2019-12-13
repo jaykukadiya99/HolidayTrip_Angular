@@ -7,10 +7,12 @@
                 <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></div>
                 </div>
-                <input type="text" name="OTP" class="form-control" required pattern="^[0-9]{6}$" [(ngModel)]="customers.OTP" >
+                <input type="text" name="OTP" class="form-control" required pattern="^[0-9]{6}$" 
+                title="OTP must be numeric and length is 6"
+                [(ngModel)]="customers.OTP" >
             </div>
         </div>
-        <button class="btn btn-info btn-block my-4" (click)="otpCheck()" type="submit" [disabled]="!myForm.form.valid">
+        <button class="btn btn-info btn-block my-4" title="Please Enter Valid OTP" (click)="otpCheck()" type="submit" [disabled]="!myForm.form.valid">
             Login
         </button>        
     </form>
