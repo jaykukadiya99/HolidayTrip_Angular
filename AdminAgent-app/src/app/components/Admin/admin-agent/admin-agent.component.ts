@@ -13,6 +13,7 @@ export class AdminAgentComponent implements OnInit {
   public agents:any;
   constructor(private router:Router,private _agentService:AdminService) { }
   dtTrigger: Subject<any> = new Subject();
+  public baseUri:string="http://localhost:58030/Resources";
 
   ngOnInit() {
     this.agents = [{

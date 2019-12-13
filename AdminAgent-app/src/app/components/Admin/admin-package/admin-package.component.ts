@@ -13,6 +13,7 @@ export class AdminPackageComponent implements OnInit {
   public packages:any;
   constructor(private router:Router,private _agentService:AdminService) { }
   dtTrigger: Subject<any> = new Subject();
+  public baseUri:string="http://localhost:58030/Resources";
 
   ngOnInit() {
     if(localStorage.getItem("agentIdForPackage") === null){
