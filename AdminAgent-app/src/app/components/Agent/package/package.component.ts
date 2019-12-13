@@ -3,6 +3,7 @@ import { PackageService } from "../../../shared/Agent/package.service";
 import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-package',
@@ -16,6 +17,7 @@ export class PackageComponent implements OnInit {
   public myDate = new Date();
   public newDate:any;
   public baseUri:string="http://localhost:58030/Resources";
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private _packageSerive:PackageService, 
     private router:Router,
@@ -27,11 +29,16 @@ export class PackageComponent implements OnInit {
     this.readPackge();
   }
 
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
+  }
+
   readPackge() {
     this._packageSerive.getAllPackage().subscribe(
       data=> {
         this.packages=data;
         // console.log(this.packages);
+        this.dtTrigger.next();
       },
       error=>{
         console.log(error);

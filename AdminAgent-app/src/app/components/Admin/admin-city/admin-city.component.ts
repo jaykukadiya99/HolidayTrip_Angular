@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { CityService } from "../../../shared/City/city.service" ;
 import { City } from "../../../Models/city";
 import { AdminService } from "../../../shared/admin/admin.service";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-city',
@@ -14,6 +15,7 @@ export class AdminCityComponent implements OnInit {
   private cities : any;
   constructor(private _cityService:CityService,private router : Router, private _adminService : AdminService) { }
   private cityAdd :City = new City();
+  dtTrigger: Subject<any> = new Subject();
 
   ngOnInit() {    
     this.getCitys();
@@ -23,6 +25,7 @@ export class AdminCityComponent implements OnInit {
     this._cityService.getAllCity().subscribe(
       data=>{
         this.cities=data;
+        this.dtTrigger.next();
         // console.log(this.cities);
       },
       err =>

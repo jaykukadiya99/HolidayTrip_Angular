@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { CategoryService } from "../../../shared/Category/category.service";
 import { Category } from "../../../Models/category";
 import { AdminService } from "../../../shared/admin/admin.service";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-category',
@@ -14,6 +15,7 @@ export class AdminCategoryComponent implements OnInit {
   private categoryAdd : Category = new Category();
   private categories:any;
   constructor(private _categoryService:CategoryService,private router :Router, private _adminService : AdminService) { }
+  dtTrigger: Subject<any> = new Subject();
 
   ngOnInit() {
     this.getCategory();
@@ -24,6 +26,7 @@ export class AdminCategoryComponent implements OnInit {
       data=>
       {
         this.categories=data;
+        this.dtTrigger.next();
       },
       err=>{
         console.log(err);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InquiryService } from "../../../shared/Agent/inquiry.service";
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-agent-inquiry',
   templateUrl: './agent-inquiry.component.html',
@@ -10,6 +12,7 @@ export class AgentInquiryComponent implements OnInit {
 
   public inquiry:any;
   constructor(private router:Router,private _inquiryService:InquiryService) { }
+  dtTrigger: Subject<any> = new Subject();
 
   ngOnInit() {
     this.getAllInquiryDetails();
@@ -20,6 +23,7 @@ export class AgentInquiryComponent implements OnInit {
       data=>{
         this.inquiry=data;
         // console.log(data);
+        this.dtTrigger.next();
       }, error => {
         console.log(error);
       }

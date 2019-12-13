@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Router } from "@angular/router";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-agent',
@@ -11,6 +12,7 @@ export class AdminAgentComponent implements OnInit {
 
   public agents:any;
   constructor(private router:Router,private _agentService:AdminService) { }
+  dtTrigger: Subject<any> = new Subject();
 
   ngOnInit() {
     this.agents = [{
@@ -41,6 +43,7 @@ export class AdminAgentComponent implements OnInit {
       data => {
         this.agents=data;
         // console.log(data);
+        this.dtTrigger.next();
       }, error => {
         console.log(error);
       }

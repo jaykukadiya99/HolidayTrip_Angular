@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Router } from "@angular/router";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-package',
@@ -11,6 +12,7 @@ export class AdminPackageComponent implements OnInit {
 
   public packages:any;
   constructor(private router:Router,private _agentService:AdminService) { }
+  dtTrigger: Subject<any> = new Subject();
 
   ngOnInit() {
     if(localStorage.getItem("agentIdForPackage") === null){
@@ -56,6 +58,7 @@ export class AdminPackageComponent implements OnInit {
         localStorage.setItem("agnt",agntId);
         localStorage.removeItem("agentIdForPackage");
         this.packages = data;
+        this.dtTrigger.next();
       }, error => {
         console.log(error);
       }
