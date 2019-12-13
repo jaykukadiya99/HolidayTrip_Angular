@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../../Shared/customer.service";
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Customer } from "../../Models/customer";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { error } from 'util';
-import { importExpr } from '@angular/compiler/src/output/output_ast';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-customer-login',
@@ -45,6 +44,7 @@ export class CustomerLoginComponent implements OnInit {
   logOut() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("customerId");
-    window.alert("Logged Out Successfully");
+    // window.alert("Logged Out Successfully");
+    swal.fire('Logged Out Successfully');
  }
 }

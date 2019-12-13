@@ -3,6 +3,7 @@ import { CustomerService } from "../../Shared/customer.service";
 import { Router } from '@angular/router';
 import { Customer } from "../../Models/customer";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-customer-otp',
@@ -34,7 +35,8 @@ export class CustomerOtpComponent implements OnInit {
         if(msgObj.msg=="Valid User")
         {
           if(localStorage.getItem("userType")=="New User") {
-            window.alert("New User...!! Welcome to HolidayTrip");
+            // window.alert("New User...!! Welcome to HolidayTrip");
+            swal.fire('New User...!! Welcome to HolidayTrip');
             this.routes.navigate(["myProfile"]);
           } else {
             window.alert("Logged In Successfully");
@@ -43,7 +45,8 @@ export class CustomerOtpComponent implements OnInit {
         }
         else
         {
-          window.alert("Something went Wrong!! Please try again.");
+          // window.alert("Something went Wrong!! Please try again.");
+          swal.fire('Something went Wrong!! Please try again.');
           this.routes.navigate(["/customerLogin"]);
         }
       },

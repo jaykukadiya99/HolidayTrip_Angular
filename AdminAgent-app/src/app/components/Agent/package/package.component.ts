@@ -4,6 +4,7 @@ import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { Subject } from 'rxjs';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-package',
@@ -59,7 +60,8 @@ export class PackageComponent implements OnInit {
       data=>{
         // console.log(data);
         dataObj = data;  
-        window.alert("Package Deleted.");
+        // window.alert("Package Deleted.");
+        swal.fire("Package Deleted.");
         this.readPackge();     
       },
       error=>{

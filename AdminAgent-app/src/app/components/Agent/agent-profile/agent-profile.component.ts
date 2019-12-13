@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AgentLoginService } from "../../../shared/Agent/agent-login.service";
 import { PackageService } from "../../../shared/Agent/package.service";
 import { CountTotalService } from "../../../shared/Agent/count-total.service";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-agent-profile',
@@ -80,7 +81,8 @@ export class AgentProfileComponent implements OnInit {
     formsdata.append("data", JSON.stringify(this.agentProfile));
     this._agentService.updateAgent(formsdata).subscribe(
       data => {
-        window.alert("Your profile is updated");
+        // window.alert("Your profile is updated");
+        swal.fire("Your profile is updated");
         this.getAgent();
         // console.log(data);
       },

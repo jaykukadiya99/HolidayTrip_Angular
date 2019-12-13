@@ -4,6 +4,7 @@ import { Package } from "../../../Models/package";
 import { Router } from "@angular/router";
 import { CityService } from "../../../shared/City/city.service";
 import { CategoryService } from "../../../shared/Category/category.service";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-create-package',
@@ -61,7 +62,8 @@ export class CreatePackageComponent implements OnInit {
     // console.log(this.itineraries);
     // let imgI = this.itineraryObj.img;
     this.itineraryObj= { Title : "", Description : "" };
-    window.alert(title+" is added");
+    // window.alert(title+" is added");
+    swal.fire(title+" is added");
     return;
   }
 
@@ -93,7 +95,8 @@ export class CreatePackageComponent implements OnInit {
     this._packageService.insertPackage(this.formsData).subscribe(
       data=> {
         // console.log(data);
-        window.alert("Package Inserted Successfully.");
+        // window.alert("Package Inserted Successfully.");
+        swal.fire("Package Inserted Successfully.");
         this.router.navigate([""]);
       }, error => {
         console.log(error);

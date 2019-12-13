@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InquiryService } from "../../../shared/Agent/inquiry.service";
 import { Subject } from 'rxjs';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-agent-inquiry',
@@ -36,7 +37,8 @@ export class AgentInquiryComponent implements OnInit {
     this._inquiryService.getSpecificCustomer(custId).subscribe(
       data => {
         custDetail = data;
-        window.alert("Customer Name: "+custDetail.firstName+"\nContact: "+custDetail.mobile+"\nEmail: "+custDetail.email);
+        // window.alert("Customer Name: "+custDetail.firstName+"\nContact: "+custDetail.mobile+"\nEmail: "+custDetail.email);
+        swal.fire("Customer Name: "+custDetail.firstName+"\nContact: "+custDetail.mobile+"\nEmail: "+custDetail.email);
         // console.log(custDetail.firstName);
       }, error => {
         console.log(error);
@@ -49,7 +51,8 @@ export class AgentInquiryComponent implements OnInit {
     this._inquiryService.setInquiryCompleted(inqId).subscribe(
       data=>{
         // console.log(data);
-        window.alert("Good...! Inquiry marked as Completed.");
+        // window.alert("Good...! Inquiry marked as Completed.");
+        swal.fire("Good...! Inquiry marked as Completed.");
         this.getAllInquiryDetails();
       }, error=> {
         console.log(error);

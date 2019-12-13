@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Router } from "@angular/router";
 import { Subject } from 'rxjs';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-admin-package',
@@ -17,7 +18,8 @@ export class AdminPackageComponent implements OnInit {
 
   ngOnInit() {
     if(localStorage.getItem("agentIdForPackage") === null){
-      window.alert("Please select agent first");
+      // window.alert("Please select agent first");
+      swal.fire("Please select agent first");
       this.router.navigate(["admin/agent"]);
     } else {
       this.packages=[{
@@ -76,7 +78,8 @@ export class AdminPackageComponent implements OnInit {
     this._agentService.togglePackgeStatus(packageId,newStatus).subscribe(
       data => {
         // console.log(data);
-        window.alert("Status Changed");
+        // window.alert("Status Changed");
+        swal.fire("Status Changed");
         let agnt = localStorage.getItem("agnt");
         localStorage.setItem("agentIdForPackage",agnt);
         this.getPackage();

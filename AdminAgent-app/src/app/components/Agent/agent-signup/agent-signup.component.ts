@@ -3,6 +3,7 @@ import { Agent } from "../../../Models/agent";
 import { AgentLoginService } from "../../../shared/Agent/agent-login.service";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-agent-signup',
@@ -25,7 +26,8 @@ export class AgentSignupComponent implements OnInit {
       data => {
         // console.log("signup" + data);
         if(data===null){
-          window.alert("Something Wrong. Please try again later.");
+          // window.alert("Something Wrong. Please try again later.");
+          swal.fire("Something Wrong. Please try again later.");
         } else {
           let token = (<any>data).token;
           localStorage.setItem("AgentToken", token);
@@ -34,7 +36,8 @@ export class AgentSignupComponent implements OnInit {
           // var data = JSON.parse(jwtdata.sub);
           localStorage.setItem("AgentId", jwtdata.nameid);
           this.invalidLogin = false;
-          window.alert("Signed up Successfully");
+          // window.alert("Signed up Successfully");
+          swal.fire("Signed up Successfully");
           this.routes.navigate(["/"]);
         }
       },

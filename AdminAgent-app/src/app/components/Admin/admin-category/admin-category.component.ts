@@ -4,6 +4,7 @@ import { CategoryService } from "../../../shared/Category/category.service";
 import { Category } from "../../../Models/category";
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Subject } from 'rxjs';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-admin-category',
@@ -38,7 +39,8 @@ export class AdminCategoryComponent implements OnInit {
     this._categoryService.addNewCategory(this.categoryAdd).subscribe(
       data=>{
         //console.log(data);
-        window.alert("Category inserted Successfully.");
+        // window.alert("Category inserted Successfully.");
+        swal.fire("Category inserted Successfully.");
         this.categoryAdd=new Category();
         this.getCategory();
       },
@@ -54,7 +56,8 @@ export class AdminCategoryComponent implements OnInit {
       data=>
       {
         //console.log(data);
-        window.alert("Category Deleted.");
+        // window.alert("Category Deleted.");
+        swal.fire("Category Deleted.");
         this.getCategory();
       },
       err=>
@@ -77,7 +80,8 @@ export class AdminCategoryComponent implements OnInit {
       data => {
         // console.log(data);
         // this.getCitys();
-        window.alert("Category Updated");
+        // window.alert("Category Updated");
+        swal.fire("Category Updated");
         this.router.navigate(["/admin/category"]);
       }, error => {
         console.log(error);

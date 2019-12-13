@@ -8,6 +8,7 @@ import { CityService } from "../../Shared/city.service";
 import { DatePipe } from "@angular/common";
 import html2canvas from "html2canvas";
 import * as jspdf from "jspdf";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-dashboard',
@@ -139,7 +140,8 @@ export class DashboardComponent implements OnInit {
     // this.inqPerson="";
     let custId: string = localStorage.getItem("customerId");
     if(custId === null) {
-      window.alert("Try to login first");
+      // window.alert("Try to login first");
+      swal.fire('Try to login first');
       // window.open("/customerLogin","_self");
       this.router.navigate(["/customerLogin"]);
     } else {
@@ -154,7 +156,8 @@ export class DashboardComponent implements OnInit {
           // console.log(data);
           this.inqAbout=" ";
           this.inqPerson=" "; 
-          window.alert("Thank you...! Agent will contact you soon.");
+          // window.alert("Thank you...! Agent will contact you soon.");
+          swal.fire('Thank you...! Agent will contact you soon.');
         }, error => {
           console.log(error);
         }
@@ -237,7 +240,6 @@ export class DashboardComponent implements OnInit {
     //   pdf.addImage(contentDataUrl, 'PNG', 0, 0, 208, canvas.height*208/canvas.width);
     //   pdf.save('File.pdf');
     // });
-
 
   }
 }

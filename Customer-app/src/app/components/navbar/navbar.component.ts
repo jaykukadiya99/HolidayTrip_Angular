@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-navbar',
@@ -26,7 +27,8 @@ export class NavbarComponent implements OnInit {
       localStorage.removeItem("jwt");
       localStorage.removeItem("customerId");
       this.loginLogoutText = "Login";
-      window.alert("You are logged out");
+      // window.alert("You are logged out");
+      swal.fire('You are logged out');
       this.router.navigate([""]);
     }
   }

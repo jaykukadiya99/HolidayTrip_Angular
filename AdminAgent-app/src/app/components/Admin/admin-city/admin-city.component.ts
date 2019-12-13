@@ -4,6 +4,7 @@ import { CityService } from "../../../shared/City/city.service" ;
 import { City } from "../../../Models/city";
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Subject } from 'rxjs';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-admin-city',
@@ -40,7 +41,8 @@ export class AdminCityComponent implements OnInit {
       data=>
       {
         // console.log(data);
-        window.alert("City inserted Successfully.");
+        // window.alert("City inserted Successfully.");
+        swal.fire("City inserted Successfully.");
         this.cityAdd = new City();
         this.getCitys();
       },
@@ -57,7 +59,8 @@ export class AdminCityComponent implements OnInit {
       {
         // console.log(data);
         this.getCitys();
-        window.alert("City deleted.");
+        // window.alert("City deleted.");
+        swal.fire("City deleted.");
       },
       err=>{
         console.log(err);
@@ -78,7 +81,8 @@ export class AdminCityComponent implements OnInit {
       data => {
         // console.log(data);
         // this.getCitys();
-        window.alert("City Updated.");
+        // window.alert("City Updated.");
+        swal.fire("City Updated.");
         this.router.navigate(["/admin/city"]);
       }, error => {
         console.log(error);

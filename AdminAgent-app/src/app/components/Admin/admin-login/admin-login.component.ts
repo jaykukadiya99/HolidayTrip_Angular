@@ -3,6 +3,7 @@ import { AdminService } from "../../../shared/admin/admin.service";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
 import { Admin } from 'src/app/Models/admin';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-admin-login',
@@ -28,10 +29,12 @@ export class AdminLoginComponent implements OnInit {
         let adminObj:any = data;
         // console.log(data);
         if(adminObj.msg=="Invalid User") {
-          window.alert("Invalid User");
+          // window.alert("Invalid User");
+          swal.fire("Invalid User");
         } else {
           localStorage.setItem("AdminId",adminObj.id);
-          window.alert("Login Successfully.");
+          // window.alert("Login Successfully.");
+          swal.fire("Login Successfully.");
           this.routes.navigate(["admin/dashboard"]);
         }
       },

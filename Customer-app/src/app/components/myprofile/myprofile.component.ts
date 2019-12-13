@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CustomerService } from "../../Shared/customer.service";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-myprofile',
@@ -41,7 +42,8 @@ export class MyprofileComponent implements OnInit {
     formsData.append("data",JSON.stringify(this.customer));
     this._customerService.updateUserDetails(custId,formsData).subscribe(
       data => {
-        window.alert("Your profile is updated");
+        // window.alert("Your profile is updated");
+        swal.fire("Your profile is updated");
         this.getCustomer();
         //console.log(data);
       }, error => {

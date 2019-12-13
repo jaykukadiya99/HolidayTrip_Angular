@@ -3,6 +3,8 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { AgentLoginService } from '../../../shared/Agent/agent-login.service';
 import { Router } from '@angular/router';
 import { Agent } from '../../../Models/agent';
+import swal from "sweetalert2";
+
 @Component({
   selector: 'app-agent-login',
   templateUrl: './agent-login.component.html',
@@ -24,7 +26,8 @@ export class AgentLoginComponent implements OnInit {
       data => {
         // console.log(data);
         if(data===null){
-          window.alert("Unknown User..! Try agin later.")
+          // window.alert("Unknown User..! Try agin later.");
+          swal.fire("Unknown User..! Try agin later.");
         } else {
           let token = (<any>data).token;
           localStorage.setItem("AgentToken", token);
@@ -33,7 +36,8 @@ export class AgentLoginComponent implements OnInit {
           // var data = JSON.parse(jwtdata.sub);
           localStorage.setItem("AgentId", jwtdata.nameid);
           this.invalidLogin = false;
-          window.alert("Login Successfully");
+          // window.alert("Login Successfully");
+          swal.fire("Login Successfully");
           this.routes.navigate(["/"]);
         }
       }, err => {
