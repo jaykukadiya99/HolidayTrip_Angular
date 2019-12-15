@@ -14,17 +14,19 @@
         </thead>
         <tbody>
             <tr *ngFor="let inq of inquiry;let i=index;">
-                <td>{{inq.pack[0].title}}</td>
-                <td>{{inq.inq.inquiryDate}}</td>
-                <td>{{inq.inq.person}}</td>
-                <td>{{inq.inq.inquiryAbout}}</td>
-                <td><button class="btn bg-secondary" (click)="viewDetails(inq.inq.agentId)">View</button></td>
-                <td *ngIf="inq.inq.inquiryStatus==0;else other_content" class="text-danger">
-                    Pending
-                </td>
-                <ng-template #other_content>
-                    <td class="text-success">Completed</td>
-                </ng-template>
+                <ng-container *ngIf="inq.pack[0].title"> 
+                    <td>{{inq.pack[0].title}}</td>
+                    <td>{{inq.inq.inquiryDate}}</td>
+                    <td>{{inq.inq.person}}</td>
+                    <td>{{inq.inq.inquiryAbout}}</td>
+                    <td><button class="btn bg-secondary" (click)="viewDetails(inq.inq.agentId)">View</button></td>
+                    <td *ngIf="inq.inq.inquiryStatus==0;else other_content" class="text-danger">
+                        Pending
+                    </td>
+                    <ng-template #other_content>
+                        <td class="text-success">Completed</td>
+                    </ng-template>
+                </ng-container>
             </tr>
         </tbody>
     </table>
