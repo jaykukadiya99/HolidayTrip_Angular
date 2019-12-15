@@ -31,12 +31,9 @@ export class AgentLoginComponent implements OnInit {
         } else {
           let token = (<any>data).token;
           localStorage.setItem("AgentToken", token);
-          //console.log(this.jwtHelper.decodeToken(token));
           var jwtdata = this.jwtHelper.decodeToken(token);
-          // var data = JSON.parse(jwtdata.sub);
           localStorage.setItem("AgentId", jwtdata.nameid);
           this.invalidLogin = false;
-          // window.alert("Login Successfully");
           swal.fire("Login Successfully");
           this.routes.navigate(["/"]);
         }

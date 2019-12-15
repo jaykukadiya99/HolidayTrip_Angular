@@ -79,7 +79,6 @@ export class AdminCategoryComponent implements OnInit {
     this._adminService.changeCategory(categoryId,fromsData).subscribe(
       data => {
         // console.log(data);
-        // this.getCitys();
         // window.alert("Category Updated");
         swal.fire("Category Updated");
         this.router.navigate(["/admin/category"]);

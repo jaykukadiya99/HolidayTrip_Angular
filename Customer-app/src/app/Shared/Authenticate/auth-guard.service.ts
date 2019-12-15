@@ -8,9 +8,10 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class AuthGuardService implements CanActivate {
 
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
+  
+  //user validation
   canActivate() {
     var token = localStorage.getItem("jwt");
-    
     if (token && !this.jwtHelper.isTokenExpired(token)){
       //console.log(token);
       // var jwtdata = this.jwtHelper.decodeToken(token);

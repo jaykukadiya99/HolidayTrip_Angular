@@ -8,6 +8,7 @@ export class CategoryService {
   private baseUri:string = "http://localhost:58030/api";
   constructor(private http:HttpClient) { }
 
+  //to fetch all category
   getAllCategory() {
     return this.http.get(this.baseUri+"/Category");
   }

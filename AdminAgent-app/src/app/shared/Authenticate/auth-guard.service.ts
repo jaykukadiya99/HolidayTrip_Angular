@@ -8,6 +8,7 @@ export class AuthGuardService {
 
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
 
+  //check whether user is active or not
   canActivate() {
     var token = localStorage.getItem("AgentToken");
  

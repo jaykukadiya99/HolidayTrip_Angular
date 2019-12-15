@@ -61,9 +61,6 @@
                             </p>
                             
                         </div>
-                        <!-- <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div> -->
                     </div>
                     <div class="modal fade" id="tripModalCenter{{i+y}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,18 +70,12 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
-                                <!-- <button type="button" class="btn" (click)="shareWhatsapp('tripModalCenter',i+y)">
-                                    <i class="fa fa-share-alt" aria-hidden="true"></i>
-                                </button> -->
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <img class="img-fluid border border-dark rounded" src="{{baseUri}}/Images/{{pageOfItems[i + y].package.mainImage}}" alt="{{pageOfItems[i + y].package.title}} Image">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <p class="lead text-capitalize">{{ pageOfItems[i + y].package.description }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -327,9 +318,5 @@
                 </div>    
             </div>
         </div>
-    </div>
-</div>
-
-<div class="container">
     <jw-pagination class="pagination" [items]="items" (changePage)="onChangePage($event)" [pageSize]="10" [maxPages]="3"></jw-pagination>
 </div>

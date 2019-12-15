@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-admin-navbar',
@@ -17,8 +18,8 @@ export class AdminNavbarComponent implements OnInit {
   }
 
   logOut() {
-    // localStorage.removeItem("AdminToken");
-    localStorage.removeItem("AdminId");    
+    localStorage.removeItem("AdminId");   
+    swal.fire("Logged Out."); 
     this.routes.navigate(["/admin"]);
  }
 }

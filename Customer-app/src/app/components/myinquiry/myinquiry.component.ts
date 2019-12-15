@@ -31,7 +31,6 @@ export class MyinquiryComponent implements OnInit {
   }
 
   viewDetails(agentId : string){
-    // console.log(custId);
     let agentDetail:any;
     this._inquiryService.getInquiryAgent(agentId).subscribe(
       data => {

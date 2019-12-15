@@ -80,7 +80,6 @@ export class AdminCityComponent implements OnInit {
     this._adminService.changeCity(citysId,fromsData).subscribe(
       data => {
         // console.log(data);
-        // this.getCitys();
         // window.alert("City Updated.");
         swal.fire("City Updated.");
         this.router.navigate(["/admin/city"]);

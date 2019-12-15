@@ -68,8 +68,6 @@ export class AgentProfileComponent implements OnInit {
   }
 
   updateAgent() {
-
-    // this.contactNumber = this.agentProfile.contactMobile.split(",");
     this.agentProfile.contactMobile = this.contacts.split(",");
     let formsdata = new FormData();
     if (typeof (this.imageAgency) === "undefined") {

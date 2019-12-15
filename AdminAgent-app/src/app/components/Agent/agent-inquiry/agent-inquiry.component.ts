@@ -32,14 +32,13 @@ export class AgentInquiryComponent implements OnInit {
   }
 
   viewDetails(custId : string){
-    // console.log(custId);
     let custDetail:any;
     this._inquiryService.getSpecificCustomer(custId).subscribe(
       data => {
         custDetail = data;
         // window.alert("Customer Name: "+custDetail.firstName+"\nContact: "+custDetail.mobile+"\nEmail: "+custDetail.email);
         swal.fire("Customer Name: "+custDetail.firstName+"\nContact: "+custDetail.mobile+"\nEmail: "+custDetail.email);
-        // console.log(custDetail.firstName);
+        // console.log(custDetail);
       }, error => {
         console.log(error);
       }

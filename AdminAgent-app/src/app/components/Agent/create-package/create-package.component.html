@@ -47,7 +47,6 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>Images:</label>
-                            <!-- <input type="file" class="form-control" #IImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeIImage(IImage.files,$event)" id="IImages" name="IImages">         -->
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="IImagesLB">Upload</span>
@@ -91,11 +90,9 @@
                 <div class="form-row pb-2">
                     <div class="form-group col-md-6 pr-4">
                         <label for="CityInclude">City Includes: </label>
-                        <!-- <input type="text" class="form-control" id="CityInclude" name="CityInclude" [(ngModel)]="cities"> -->
                         <select name="CityInclude" #citySelect
                             (dblclick)="onCitySelected(citySelect.options[citySelect.options.selectedIndex].text)"
                             id="CityInclude" class="form-control" multiple data-live-search="true" required>
-                            <!-- <select name="CityInclude" id="CityInclude" class="selectpicker" multiple data-live-search="true" [(ngModel)]="cities"> -->
                             <option *ngFor="let city of selectCities; let i=index" [ngValue]="city.cityName">
                                 {{city.cityName}}</option>
                         </select>
@@ -105,11 +102,9 @@
                     </div>
                     <div class="form-group col-md-6 pr-4">
                         <label for="Category">Category</label>
-                        <!-- <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="packages.Category"> -->
                         <select name="Category" #categorySelect
                             (dblclick)="onCategorySelected(categorySelect.options[categorySelect.options.selectedIndex].text)"
                             id="Category" class="form-control" multiple data-live-search="true" required>
-                            <!-- <select name="Category" id="Category" class="selectpicker" multiple data-live-search="true" [(ngModel)]="categories"> -->
                             <option *ngFor="let category of selectCategories; let i=index"
                                 [ngValue]="category.categoryName">{{category.categoryName}}</option>
                         </select>
@@ -132,7 +127,6 @@
                 <div class="form-row pb-2">
                     <div class="form-group col-md-6">
                         <label>Main Package Image:</label>
-                        <!-- <input type="file" #MainImage accept=".png, .jpg ,.jpeg ,.gif" (change)="changeImage(MainImage.files,0,$event)" class="form-control" id="MainImage" name="MainImage"> -->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="MainImageLB">Upload</span>
@@ -147,7 +141,6 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Select Brochure</label>
-                        <!-- <input type="file" #Brochure accept=".pdf" (change)="changeImage(Brochure.files,1,$event)" class="form-control" id="Brochure" name="Brochure"> -->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="BrochureLB">Upload</span>
@@ -173,40 +166,6 @@
                             [(ngModel)]="packages.TandC"></textarea>
                     </div>
                 </div>
-
-                <!-- <div class="form-group">
-                            <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                            </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                Check me out
-                            </label>
-                            </div>
-                        </div> -->
                 <button type="submit" class="btn btn-primary" (click)="createPackage()">Add Package</button>
             </form>
         </div>

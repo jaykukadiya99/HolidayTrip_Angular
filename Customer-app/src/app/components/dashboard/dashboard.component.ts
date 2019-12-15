@@ -129,20 +129,12 @@ export class DashboardComponent implements OnInit {
   }
   
   generateInquiry(agentId : string, packageId : string){
-    // console.log(agentId, packageId, inqPerson, inqAbout);
     let objInq : any = { CustomerId:"", AgentId: "", PackageId : "", Person: "", InquiryAbout : ""};
-    // objInq.AgentId=agentId;
-    // objInq.PackageId=packageId;
-    // objInq.Person=this.inqPerson;
-    // objInq.InquiryAbout=this.inqAbout;
     // console.log(objInq);
-    // this.inqAbout="";
-    // this.inqPerson="";
     let custId: string = localStorage.getItem("customerId");
     if(custId === null) {
       // window.alert("Try to login first");
       swal.fire('Try to login first');
-      // window.open("/customerLogin","_self");
       this.router.navigate(["/customerLogin"]);
     } else {
       objInq.AgentId=agentId;
@@ -150,7 +142,6 @@ export class DashboardComponent implements OnInit {
       objInq.Person=this.inqPerson;
       objInq.InquiryAbout=this.inqAbout;
       objInq.CustomerId=custId;
-      // console.log(objInq);
       this._inquiryService.generateInquiry(objInq).subscribe(
         data => {
           // console.log(data);
@@ -165,23 +156,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // clickWishList(){
-  //   let custId: string = localStorage.getItem("customerId");
-  //   if(custId === null) {
-  //     localStorage.setItem["action"] = "close";
-  //     window.open(window.location.href+"customerLogin","_blank");
-  //   } else {
-  //     //wishlist logic
-  //   } 
-  // }
-
   loadPackages() {
     this._packageService.getAllPackage().subscribe(
       data => {
         this.packages=data;
-        // for (let index = 0; index < this.packages.length; index++) {
-        //   console.log(this.packages[index].package);
-        // }
         this.items = this.packages;
         // console.log(this.packages);
       }, error => {
@@ -196,7 +174,6 @@ export class DashboardComponent implements OnInit {
       CategoryId : [this.tripCategoryD],
       Days : this.tripDaysD
     }
-    // console.log(filterObj);
     var formsdata = new FormData();
     formsdata.append("filter",JSON.stringify(filterObj));
     this._packageService.getFilteredData(formsdata).subscribe(
