@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { Subject } from 'rxjs';
 import swal from "sweetalert2";
+import { DataTableDirective } from 'angular-datatables';
+import { ViewChild } from "@angular/core";
 
 @Component({
   selector: 'app-package',
@@ -13,7 +15,7 @@ import swal from "sweetalert2";
   providers:[DatePipe]
 })
 export class PackageComponent implements OnInit {
-
+  @ViewChild(DataTableDirective, { static : true}) dtElement : DataTableDirective;
   private packages:any;
   public myDate = new Date();
   public newDate:any;
@@ -30,21 +32,35 @@ export class PackageComponent implements OnInit {
     this.readPackge();
   }
 
-  ngOnDestroy() {
-    this.dtTrigger.unsubscribe();
-  }
-
   readPackge() {
     this._packageSerive.getAllPackage().subscribe(
       data=> {
         this.packages=data;
         // console.log(this.packages);
-        this.dtTrigger.next();
+        this.rerender();
       },
       error=>{
         console.log(error);
       }
     )
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+  
+  ngAfterViewInit() {
+    this.dtTrigger.next();
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.on( 'draw.dt', function () {
+            if(jQuery('.dataTables_empty').length > 0) {
+                jQuery('.dataTables_empty').remove();
+            }
+        });
+    });
   }
 
   newPackage(event:any) {
@@ -58,6 +74,7 @@ export class PackageComponent implements OnInit {
     var dataObj :any;
     this._packageSerive.deletePackage(id).subscribe(
       data=>{
+        this.rerender();
         // console.log(data);
         dataObj = data;  
         // window.alert("Package Deleted.");

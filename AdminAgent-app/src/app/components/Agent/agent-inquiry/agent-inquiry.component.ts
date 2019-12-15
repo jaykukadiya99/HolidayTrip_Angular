@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { InquiryService } from "../../../shared/Agent/inquiry.service";
 import { Subject } from 'rxjs';
 import swal from "sweetalert2";
+import { DataTableDirective } from 'angular-datatables';
+import { ViewChild } from "@angular/core";
 
 @Component({
   selector: 'app-agent-inquiry',
@@ -10,7 +12,7 @@ import swal from "sweetalert2";
   styleUrls: ['./agent-inquiry.component.css']
 })
 export class AgentInquiryComponent implements OnInit {
-
+  @ViewChild(DataTableDirective, { static : true}) dtElement : DataTableDirective;
   public inquiry:any;
   constructor(private router:Router,private _inquiryService:InquiryService) { }
   dtTrigger: Subject<any> = new Subject();
@@ -24,11 +26,29 @@ export class AgentInquiryComponent implements OnInit {
       data=>{
         this.inquiry=data;
         // console.log(data);
-        this.dtTrigger.next();
+        this.rerender();
       }, error => {
         console.log(error);
       }
     );
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+  
+  ngAfterViewInit() {
+    this.dtTrigger.next();
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.on( 'draw.dt', function () {
+            if(jQuery('.dataTables_empty').length > 0) {
+                jQuery('.dataTables_empty').remove();
+            }
+        });
+    });
   }
 
   viewDetails(custId : string){
@@ -49,6 +69,7 @@ export class AgentInquiryComponent implements OnInit {
     console.log(inqId);
     this._inquiryService.setInquiryCompleted(inqId).subscribe(
       data=>{
+        this.rerender();
         // console.log(data);
         // window.alert("Good...! Inquiry marked as Completed.");
         swal.fire("Good...! Inquiry marked as Completed.");

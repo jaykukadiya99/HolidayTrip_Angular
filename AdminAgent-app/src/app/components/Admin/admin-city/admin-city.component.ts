@@ -5,6 +5,8 @@ import { City } from "../../../Models/city";
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Subject } from 'rxjs';
 import swal from "sweetalert2";
+import { DataTableDirective } from 'angular-datatables';
+import { ViewChild } from "@angular/core";
 
 @Component({
   selector: 'app-admin-city',
@@ -12,7 +14,7 @@ import swal from "sweetalert2";
   styleUrls: ['./admin-city.component.css']
 })
 export class AdminCityComponent implements OnInit {
-
+  @ViewChild(DataTableDirective, { static : true}) dtElement : DataTableDirective;
   private cities : any;
   constructor(private _cityService:CityService,private router : Router, private _adminService : AdminService) { }
   private cityAdd :City = new City();
@@ -26,7 +28,7 @@ export class AdminCityComponent implements OnInit {
     this._cityService.getAllCity().subscribe(
       data=>{
         this.cities=data;
-        this.dtTrigger.next();
+        this.rerender();
         // console.log(this.cities);
       },
       err =>
@@ -36,10 +38,29 @@ export class AdminCityComponent implements OnInit {
     )
   }
 
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+  
+  ngAfterViewInit() {
+    this.dtTrigger.next();
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.on( 'draw.dt', function () {
+            if(jQuery('.dataTables_empty').length > 0) {
+                jQuery('.dataTables_empty').remove();
+            }
+        });
+    });
+}
+
   addNewCity(){
     this._cityService.addNewCity(this.cityAdd).subscribe(
       data=>
       {
+        this.rerender();
         // console.log(data);
         // window.alert("City inserted Successfully.");
         swal.fire("City inserted Successfully.");
@@ -57,6 +78,7 @@ export class AdminCityComponent implements OnInit {
     this._cityService.deleteCity(id).subscribe(
       data=>
       {
+        this.rerender();
         // console.log(data);
         this.getCitys();
         // window.alert("City deleted.");

@@ -5,6 +5,8 @@ import { Category } from "../../../Models/category";
 import { AdminService } from "../../../shared/admin/admin.service";
 import { Subject } from 'rxjs';
 import swal from "sweetalert2";
+import { DataTableDirective } from 'angular-datatables';
+import { ViewChild } from "@angular/core";
 
 @Component({
   selector: 'app-admin-category',
@@ -12,7 +14,7 @@ import swal from "sweetalert2";
   styleUrls: ['./admin-category.component.css']
 })
 export class AdminCategoryComponent implements OnInit {
-
+  @ViewChild(DataTableDirective, { static : true}) dtElement : DataTableDirective;
   private categoryAdd : Category = new Category();
   private categories:any;
   constructor(private _categoryService:CategoryService,private router :Router, private _adminService : AdminService) { }
@@ -27,12 +29,30 @@ export class AdminCategoryComponent implements OnInit {
       data=>
       {
         this.categories=data;
-        this.dtTrigger.next();
+        this.rerender();
       },
       err=>{
         console.log(err);
       }
     )
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+  
+  ngAfterViewInit() {
+    this.dtTrigger.next();
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.on( 'draw.dt', function () {
+            if(jQuery('.dataTables_empty').length > 0) {
+                jQuery('.dataTables_empty').remove();
+            }
+        });
+    });
   }
 
   addNewCategory(){
@@ -55,6 +75,7 @@ export class AdminCategoryComponent implements OnInit {
     this._categoryService.deleteCategory(id).subscribe(
       data=>
       {
+        this.rerender();
         //console.log(data);
         // window.alert("Category Deleted.");
         swal.fire("Category Deleted.");

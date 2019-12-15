@@ -3,6 +3,8 @@ import { AdminService } from "../../../shared/admin/admin.service";
 import { Router } from "@angular/router";
 import { Subject } from 'rxjs';
 import swal from "sweetalert2";
+import { DataTableDirective } from 'angular-datatables';
+import { ViewChild } from "@angular/core";
 
 @Component({
   selector: 'app-admin-package',
@@ -10,7 +12,7 @@ import swal from "sweetalert2";
   styleUrls: ['./admin-package.component.css']
 })
 export class AdminPackageComponent implements OnInit {
-
+  @ViewChild(DataTableDirective, { static : true}) dtElement : DataTableDirective;
   public packages:any;
   constructor(private router:Router,private _agentService:AdminService) { }
   dtTrigger: Subject<any> = new Subject();
@@ -61,11 +63,29 @@ export class AdminPackageComponent implements OnInit {
         localStorage.setItem("agnt",agntId);
         localStorage.removeItem("agentIdForPackage");
         this.packages = data;
-        this.dtTrigger.next();
+        this.rerender();
       }, error => {
         console.log(error);
       }
     );
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+  
+  ngAfterViewInit() {
+    this.dtTrigger.next();
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.on( 'draw.dt', function () {
+            if(jQuery('.dataTables_empty').length > 0) {
+                jQuery('.dataTables_empty').remove();
+            }
+        });
+    });
   }
 
   changeStatus(packageId : any,packageStatus : any){
@@ -77,6 +97,7 @@ export class AdminPackageComponent implements OnInit {
     }
     this._agentService.togglePackgeStatus(packageId,newStatus).subscribe(
       data => {
+        this.rerender();
         // console.log(data);
         // window.alert("Status Changed");
         swal.fire("Status Changed");
