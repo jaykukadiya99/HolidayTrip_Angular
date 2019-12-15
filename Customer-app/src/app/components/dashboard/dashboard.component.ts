@@ -181,9 +181,11 @@ export class DashboardComponent implements OnInit {
         // console.log(data);
         let dataObj:any = data;
         if(dataObj.msg=="filter Data") {
-          window.alert("Great...!! Matched Your Criterial.");
+          // window.alert("Great...!! Matched Your Criteria.");
+          swal.fire('Great...!! Matched Your Criteria.');
         } else {
-          window.alert("Doesn't found Exact Result.");
+          // window.alert("Doesn't found Exact Result.");
+          swal.fire("Doesn't found Exact Result.");
         }
         this.packages=dataObj.data;
         this.items = this.packages;

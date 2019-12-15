@@ -77,7 +77,13 @@
                                         <div class="col-md-4">
                                             <img class="img-fluid border border-dark rounded" src="{{baseUri}}/Images/{{pageOfItems[i + y].package.mainImage}}" alt="{{pageOfItems[i + y].package.title}} Image">
                                         </div>
+                                        <div class="col-md-8">
+                                            <p class="lead text-capitalize">
+                                                {{ pageOfItems[i+y].package.description}}
+                                            </p>
+                                        </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="font-weight-bold">Package Type:</div>
@@ -318,5 +324,8 @@
                 </div>    
             </div>
         </div>
+</div>  
+</div>
+        <div class="container">
     <jw-pagination class="pagination" [items]="items" (changePage)="onChangePage($event)" [pageSize]="10" [maxPages]="3"></jw-pagination>
 </div>
