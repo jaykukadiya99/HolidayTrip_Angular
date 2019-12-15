@@ -1,17 +1,4 @@
 <app-navbar></app-navbar>
-
-<!-- <div class="container">
-    <div *ngFor="let item of pageOfItems; let i = index">
-        <div *ngIf="i % 5 == 0" class="row">
-            <div *ngIf="i + 0 < pageOfItems.length">{{ pageOfItems[i + 0].name }}</div>
-            <div *ngIf="i + 1 < pageOfItems.length">{{ pageOfItems[i + 1].name }}</div>
-            <div *ngIf="i + 2 < pageOfItems.length">{{ pageOfItems[i + 2].name }}</div>
-            <div *ngIf="i + 3 < pageOfItems.length">{{ pageOfItems[i + 3].name }}</div> 
-            <div *ngIf="i + 4 < pageOfItems.length">{{ pageOfItems[i + 4].name }}</div>
-        </div>
-    </div>
-</div> -->
-
 <div class="container">
     <form class="form-inline mx-3">
         <button class="btn btn-warning mt-2" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
@@ -20,14 +7,12 @@
         <div class="collapse form-group" id="collapseFilter">
             <select class="form-control ml-2 mt-2" name="tripCity" id="tripCity" [(ngModel)]="tripCityD">
                 <option disabled selected value="selectcity">-- Select City --</option>
-                <!-- <option value="1">1+ Days</option> -->
                 <option *ngFor="let city of allCity; let i=index" [ngValue]="city.cityName">
                     {{city.cityName}}
                 </option>
             </select>
             <select class="form-control ml-2 mt-2" name="tripCategory" id="tripCategory" [(ngModel)]="tripCategoryD">
                 <option disabled selected value="selectcategory">-- Select Category --</option>
-                <!-- <option value="1">1+ Days</option> -->
                 <option *ngFor="let category of allCategory; let i=index" [ngValue]="category.categoryName">
                     {{category.categoryName}}
                 </option>
@@ -47,12 +32,23 @@
         <div *ngIf="i % 4 == 0" class="row justify-content-center">
             <div *ngFor = "let arr of forArray; let y = index;">
                 <div *ngIf="i + y < pageOfItems.length">
-                    <!-- <div class="card border-primary mb-5 mt-5 mr-5"> -->
-                        <div class="card border-primary mx-3 my-3" style="max-width: 15rem; height:26rem;">
+                    <div class="card border-primary mx-3 my-3" style="max-width: 15rem; height:26rem;">
                         <img class="card-img-top img-fluid" src="{{baseUri}}/Images/{{pageOfItems[i + y].package.mainImage}}" alt="{{pageOfItems[i + y].package.title}} Image">
                         <div class="card-body">
                             <h5 class="card-title text-capitalize">{{ pageOfItems[i + y].package.title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-right text-muted">{{ pageOfItems[i + y].package.days }} Day(s) and {{ pageOfItems[i + y].package.days-1 }} Night(s)</h6>
+                            <h6 class="card-subtitle mb-2 text-right text-muted">
+                                <div *ngIf="pageOfItems[i + y].package.days > 1;else onlyDays">
+                                    <div *ngIf="pageOfItems[i + y].package.days > 2;else singleNight">
+                                        {{ pageOfItems[i + y].package.days }} Days and {{ pageOfItems[i + y].package.days-1 }} Nights
+                                    </div>
+                                    <ng-template #singleNight>
+                                        {{ pageOfItems[i + y].package.days }} Days and {{ pageOfItems[i + y].package.days-1 }} Night
+                                    </ng-template>    
+                                </div>
+                                <ng-template #onlyDays>
+                                    {{ pageOfItems[i + y].package.days }} Day
+                                </ng-template>
+                            </h6>
                             <br>
                             <p class="card-text">
                                 <i class="fa fa-inr" aria-hidden="true"></i>
@@ -117,10 +113,20 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="font-weight-bold">Days:</div>
+                                            <div class="font-weight-bold">Trip:</div>
                                         </div>
                                         <div class="col-md-8">
-                                            <p>{{ pageOfItems[i + y].package.days }}</p>
+                                            <div *ngIf="pageOfItems[i + y].package.days > 1;else onlyDays">
+                                                <div *ngIf="pageOfItems[i + y].package.days > 2;else singleNight">
+                                                    <p>{{ pageOfItems[i + y].package.days }} Days and {{ pageOfItems[i + y].package.days-1 }} Nights</p>
+                                                </div>
+                                                <ng-template #singleNight>
+                                                    <p>{{ pageOfItems[i + y].package.days }} Days and {{ pageOfItems[i + y].package.days-1 }} Night</p>
+                                                </ng-template>    
+                                            </div>
+                                            <ng-template #onlyDays>
+                                                <p>{{ pageOfItems[i + y].package.days }} Day</p>
+                                            </ng-template>
                                         </div>
                                     </div>
                                     <div class="accordion" id="collapseItinerary" *ngFor="let itnry of pageOfItems[i + y].package.itinerary; let z=index;">

@@ -82,10 +82,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="font-weight-bold">Days:</div>
+                                <div class="font-weight-bold">Trip:</div>
                             </div>
                             <div class="col-md-8">
-                                <p>{{ package.days }}</p>
+                                <div *ngIf="package.days > 1;else onlyDays">
+                                    <div *ngIf="package.days > 2;else singleNight">
+                                        <p>{{ package.days }} Days and {{ package.days-1 }} Nights</p>
+                                    </div>
+                                    <ng-template #singleNight>
+                                        <p>{{ package.days }} Days and {{ package.days-1 }} Night</p>
+                                    </ng-template>    
+                                </div>
+                                <ng-template #onlyDays>
+                                    <p>{{ package.days }} Day</p>
+                                </ng-template>
                             </div>
                         </div>
                         <div class="accordion" id="collapseItinerary" *ngFor="let itnry of package.itinerary; let z=index;">
@@ -128,6 +138,20 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="row-mb-2">
+                            <div class="col-md-12">
+                                <div class="collapse" id="collapseInclusion">
+                                    <div class="card card-body">
+                                        <p>{{ package.inclusion }}</p>
+                                    </div>
+                                </div>
+                                <div class="collapse" id="collapseExclusion">
+                                    <div class="card card-body">
+                                        <p>{{ package.exclusion }}</p>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <p>
@@ -144,18 +168,8 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row-mb-2">
                             <div class="col-md-12">
-                                <div class="collapse" id="collapseInclusion">
-                                    <div class="card card-body">
-                                        <p>{{ package.inclusion }}</p>
-                                    </div>
-                                </div>
-                                <div class="collapse" id="collapseExclusion">
-                                    <div class="card card-body">
-                                        <p>{{ package.exclusion }}</p>
-                                    </div>
-                                </div>  
                                 <div class="collapse" id="collapseOtherInfo">
                                     <div class="card card-body">
                                         <p>{{ package.otherInfo }}</p>

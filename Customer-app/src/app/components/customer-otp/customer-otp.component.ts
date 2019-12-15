@@ -39,7 +39,8 @@ export class CustomerOtpComponent implements OnInit {
             swal.fire('New User...!! Welcome to HolidayTrip');
             this.routes.navigate(["myProfile"]);
           } else {
-            window.alert("Logged In Successfully");
+            // window.alert("Logged In Successfully");
+            swal.fire('Logged In Successfully');
             this.routes.navigate(["/"]);
           }
         }
