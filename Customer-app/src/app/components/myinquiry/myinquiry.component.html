@@ -4,7 +4,6 @@
     <table datatable class="table table-hover table-responsive-sm table-responsive-md">
         <thead>
             <tr>
-                <th>Packages</th>
                 <th>Package Name</th>
                 <th>Inquiry Date</th>
                 <th>Person</th>
@@ -17,12 +16,9 @@
             <tr *ngFor="let inq of inquiry;let i=index;">
                 <ng-container *ngIf="inq.pack[0].title"> 
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#tripModalCenter'+ (i)">
-                            Show
-                        </button> 
-                    </td>
-                    <td>
-                        {{inq.pack[0].title}}                      
+                        <a href="" data-toggle="modal" [attr.data-target]="'#tripModalCenter'+ (i)">
+                            {{inq.pack[0].title}}                      
+                        </a>
                     </td>
                     <td>{{inq.inq.inquiryDate}}</td>
                     <td>{{inq.inq.person}}</td>
