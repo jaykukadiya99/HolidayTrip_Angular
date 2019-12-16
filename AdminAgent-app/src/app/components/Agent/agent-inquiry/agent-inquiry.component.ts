@@ -14,6 +14,7 @@ import { ViewChild } from "@angular/core";
 export class AgentInquiryComponent implements OnInit {
   @ViewChild(DataTableDirective, { static : true}) dtElement : DataTableDirective;
   public inquiry:any;
+  public baseUri:string = "http://localhost:58030/Resources";
   constructor(private router:Router,private _inquiryService:InquiryService) { }
   dtTrigger: Subject<any> = new Subject();
 

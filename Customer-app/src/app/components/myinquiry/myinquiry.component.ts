@@ -11,6 +11,7 @@ import swal from "sweetalert2";
 export class MyinquiryComponent implements OnInit {
 
   public inquiry:any;
+  public baseUri:string = "http://localhost:58030/Resources";
   constructor(private router:Router,
     private _inquiryService:InquiryService) { }
 
