@@ -62,7 +62,7 @@ export class MyinquiryComponent implements OnInit {
     this._inquiryService.getAllInquiry(custId).subscribe(
       data => {
         this.inquiry=data;
-        console.log(data);
+        // console.log(data);
       }, error => {
         console.log(error);
       }
