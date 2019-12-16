@@ -4,6 +4,7 @@
     <table datatable class="table table-hover table-responsive-sm table-responsive-md">
         <thead>
             <tr>
+                <th>Packages</th>
                 <th>Package Name</th>
                 <th>Inquiry Date</th>
                 <th>Person</th>
@@ -15,7 +16,14 @@
         <tbody>
             <tr *ngFor="let inq of inquiry;let i=index;">
                 <ng-container *ngIf="inq.pack[0].title"> 
-                    <td>{{inq.pack[0].title}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#tripModalCenter'+ (i)">
+                            Show
+                        </button> 
+                    </td>
+                    <td>
+                        {{inq.pack[0].title}}                      
+                    </td>
                     <td>{{inq.inq.inquiryDate}}</td>
                     <td>{{inq.inq.person}}</td>
                     <td>{{inq.inq.inquiryAbout}}</td>
@@ -30,4 +38,180 @@
             </tr>
         </tbody>
     </table>
+    <div *ngFor="let package of inquiry;let i=index;">
+        <div class="modal fade" id="tripModalCenter{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-capitalize" id="tripModalCenterTitle{{i}}">{{ package.pack[0].title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="img-fluid border border-dark rounded" src="{{baseUri}}/Images/{{package.pack[0].mainImage}}" alt="{{package.pack[0].title}} Image">
+                            </div>
+                            <div class="col-md-8">
+                                <p class="lead text-capitalize">{{ package.pack[0].description }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="font-weight-bold">Package Type:</div>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="text-capitalize">{{ package.pack[0].categoryId }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="font-weight-bold">City Included:</div>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="text-capitalize">{{ package.pack[0].cityIncluded }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="font-weight-bold">Departure Date:</div>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ package.pack[0].fixedDepartureDate }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="font-weight-bold">Trip:</div>
+                            </div>
+                            <div class="col-md-8">
+                                <div *ngIf="package.pack[0].days > 1;else onlyDays">
+                                    <div *ngIf="package.pack[0].days > 2;else singleNight">
+                                        <p>{{ package.pack[0].days }} Days and {{ package.pack[0].days-1 }} Nights</p>
+                                    </div>
+                                    <ng-template #singleNight>
+                                        <p>{{ package.pack[0].days }} Days and {{ package.pack[0].days-1 }} Night</p>
+                                    </ng-template>    
+                                </div>
+                                <ng-template #onlyDays>
+                                    <p>{{ package.pack[0].days }} Day</p>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="accordion" id="collapseItinerary" *ngFor="let itnry of package.pack[0].itinerary; let z=index;">
+                            <div class="card">
+                                <div class="card-header" [attr.id]="'heading'+z">
+                                    <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#collapseItnry'+ z" aria-expanded="false" [attr.aria-controls]="'collapseItnry'+z">
+                                        {{itnry.title}}
+                                    </button>
+                                    </h5>
+                                </div>
+                                <div [attr.id]="'collapseItnry'+z" class="collapse" [attr.aria-labelledby]="'heading'+z" data-parent="#collapseItinerary">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-4 col-sm-4">
+                                                <img class="img-fluid border border-dark rounded" src="{{baseUri}}/Images/{{itnry.images}}" alt="{{itnry.title}} Image" width="100">
+                                            </div>
+                                            <div class="col-8 col-sm-8">
+                                                {{itnry.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInclusion" aria-expanded="false" aria-controls="collapseInclusion">
+                                        Inclusion
+                                    </button>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExclusion" aria-expanded="false" aria-controls="collapseExclusion">
+                                        Exclusion
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row-mb-2">
+                            <div class="col-md-12">
+                                <div class="collapse" id="collapseInclusion">
+                                    <div class="card card-body">
+                                        <p>{{ package.pack[0].inclusion }}</p>
+                                    </div>
+                                </div>
+                                <div class="collapse" id="collapseExclusion">
+                                    <div class="card card-body">
+                                        <p>{{ package.pack[0].exclusion }}</p>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOtherInfo" aria-expanded="false" aria-controls="collapseOtherInfo">
+                                        Other Information
+                                    </button>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTandC" aria-expanded="false" aria-controls="collapseTandC">
+                                        Terms and Conditions
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row-mb-2">
+                            <div class="col-md-12">
+                                <div class="collapse" id="collapseOtherInfo">
+                                    <div class="card card-body">
+                                        <p>{{ package.pack[0].otherInfo }}</p>
+                                    </div>
+                                </div>
+                                <div class="collapse" id="collapseTandC">
+                                    <div class="card card-body">
+                                        <p>{{ package.pack[0].tandC }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="font-weight-bold">Brochure:</div>
+                            </div>
+                            <div class="col-md-8">
+                                <p>
+                                    <a href="{{baseUri}}/Images/{{package.pack[0].brochure}}">Download Here</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="font-weight-bold">Price:</div>
+                            </div>
+                            <div class="col-md-8">    
+                                <p>
+                                    <i class="fa fa-inr" aria-hidden="true"></i>
+                                    {{ package.pack[0].price }} <small><i>({{ package.pack[0].priceDesc }})</i></small>
+                                </p>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

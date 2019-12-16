@@ -15,6 +15,45 @@ export class MyinquiryComponent implements OnInit {
     private _inquiryService:InquiryService) { }
 
   ngOnInit() {
+    this.inquiry=[{
+      inq : {
+        agentId:" ",
+        customerId:" ",
+        id: " ",
+        inquiryAbout : " ",
+        inquiryDate : " ",
+        inquiryStatus : " ",
+        packageId : " ",
+        person : " "
+      },
+      pack : [{
+        agentId : " ",
+        brochure : " ",
+        categoryId : [],
+        cityIncluded : [],
+        days : 0,
+        description : " ",
+        exclusion : " ",
+        fixedDepartureDate : " ",
+        id : " ",
+        idAsString : " ",
+        inclusion : " ",
+        insertedDate : " ",
+        itinerary : [{
+          title : " ",
+          description : " ",
+          images : " "
+        }],
+        mainImage : " ",
+        otherInfo : " ",
+        price : 0,
+        priceDesc : " ",
+        status : 1,
+        tandC : " ",
+        title : " ",
+        trendingRank: 0
+      }]
+    }];
     this.getAllInquiry();
   }
 
@@ -23,7 +62,7 @@ export class MyinquiryComponent implements OnInit {
     this._inquiryService.getAllInquiry(custId).subscribe(
       data => {
         this.inquiry=data;
-        // console.log(data);
+        console.log(data);
       }, error => {
         console.log(error);
       }
